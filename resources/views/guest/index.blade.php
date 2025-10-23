@@ -161,10 +161,9 @@
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-6 text-uppercase mb-4">Ultimate Welding and Quality Metal Solutions</h1>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
-                        iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu
-                        quis, fringilla risus. Pellentesque eu consequat augue.</p>
+                    <h1 class="display-6 text-uppercase mb-4">pertanahan</h1>
+                    <p class="mb-4">Belum tau mau diisi apa hehe, nanti
+                        dipikirin mau diisi deskripsi seperti apa, terimakasihh</p>
                     <div class="row g-5 mb-4">
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
