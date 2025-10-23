@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{{asset('assets-guest/img/favicon.ico')}}" rel="icon">
+    <link href="{{ asset('assets-guest/img/favicon.ico') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,10 +26,10 @@
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{asset('assets-guest/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets-guest/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{{asset('assets-guest/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets-guest/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -157,7 +157,7 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img">
-                        <img class="img-fluid w-100" src="{{asset('assets-guest/img/image1.png')}}">
+                        <img class="img-fluid w-100" src="{{ asset('assets-guest/img/image1.png') }}">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -452,7 +452,8 @@
                 <div class="col-lg-6 pe-lg-5 wow fadeIn" data-wow-delay="0.3s">
                     <h1 class="display-6 text-uppercase text-white mb-4">Pertanahan - guest (farrassurya)
                     </h1>
-                    <p class="text-white mb-5 wow fadeIn" data-wow-delay="0.4s">Belum tau mau diisi apa hehe, nanti dipikirin mau diisi deskripsi seperti apa, terimakasihh</p>
+                    <p class="text-white mb-5 wow fadeIn" data-wow-delay="0.4s">Belum tau mau diisi apa hehe, nanti
+                        dipikirin mau diisi deskripsi seperti apa, terimakasihh</p>
                     <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.5s">
                         <div class="btn-lg-square bg-white">
                             <i class="bi bi-geo-alt text-dark fs-3"></i>
@@ -475,46 +476,55 @@
                 </div>
                 <div class="col-lg-6 mb-n5 wow fadeIn" data-wow-delay="0.7s">
                     <div class="bg-white p-5">
-                        <h2 class="text-uppercase mb-4">Janji Temu</h2>
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control border-0 bg-light" id="name" placeholder="Your Name">
-                                    <label for="name">Nama</label>
+                        <h2 class="text-uppercase mb-4">Jenis Penggunaan</h2>
+
+                        <!-- Flash Messages -->
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('jenis-penggunaan.store') }}">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col-sm-12">
+                                    <div class="form-floating">
+                                        <input type="text"
+                                            class="form-control border-0 bg-light @error('nama_penggunaan') is-invalid @enderror"
+                                            id="nama_penggunaan" name="nama_penggunaan" placeholder="Your Name"
+                                            value="{{ old('nama_penggunaan', $oldInput['nama_penggunaan'] ?? '') }}">
+                                        <label for="nama_penggunaan">Nama Penggunaan</label>
+                                        @error('nama_penggunaan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control border-0 bg-light @error('keterangan') is-invalid @enderror"
+                                            placeholder="Leave a message here" id="keterangan" name="keterangan" style="height: 130px">{{ old('keterangan', $oldInput['keterangan'] ?? '') }}</textarea>
+                                        <label for="keterangan">Keterangan</label>
+                                        @error('keterangan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Kirim</button>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control border-0 bg-light" id="mail" placeholder="Your Email">
-                                    <label for="mail">Email</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control border-0 bg-light" id="mobile" placeholder="Your Mobile">
-                                    <label for="mobile">No HP</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <select class="form-select border-0 bg-light" id="service">
-                                        <option selected>Menjual</option>
-                                        <option value="">Membeli</option>
-                                    </select>
-                                    <label for="service">Pilih Layanan</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control border-0 bg-light" placeholder="Leave a message here" id="message"
-                                        style="height: 130px"></textarea>
-                                    <label for="message">Pesan</label>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Kirim</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -722,12 +732,14 @@
                         <h1 class="display-6 text-uppercase mb-4">Saran & Masukan</h1>
                         <div class="d-flex">
                             <i class="far fa-envelope-open fa-3x text-primary me-4"></i>
-                            <p class="fs-5 fst-italic mb-0">Semua saran & masukan kalian sangat berharga dan akan selalu kami cek juga pertimbangkan, terimakasih.</p>
+                            <p class="fs-5 fst-italic mb-0">Semua saran & masukan kalian sangat berharga dan akan
+                                selalu kami cek juga pertimbangkan, terimakasih.</p>
                         </div>
                     </div>
                     <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control border-0 bg-light" id="mail" placeholder="Your Email">
+                            <input type="email" class="form-control border-0 bg-light" id="mail"
+                                placeholder="Your Email">
                             <label for="mail">Email</label>
                         </div>
                         <button class="btn btn-primary w-100 py-3" type="submit">Kirim</button>
@@ -745,16 +757,14 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-uppercase text-light mb-4">Our Office</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Jl. Umban Sari, No 1, Pekanbaru</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Jl. Umban Sari, No 1,
+                        Pekanbaru</p>
                     <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+62 812 7691328</p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>farrassurya12@gmail.com</p>
                     <div class="d-flex pt-3">
-                        <a class="btn btn-square btn-light me-2" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-light me-2" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-light me-2" href=""><i
-                                class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-light me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-light me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-light me-2" href=""><i class="fab fa-youtube"></i></a>
                         <a class="btn btn-square btn-light me-2" href=""><i
                                 class="fab fa-linkedin-in"></i></a>
                     </div>
@@ -778,22 +788,28 @@
                     <h5 class="text-uppercase text-light mb-4">Gallery</h5>
                     <div class="row g-1">
                         <div class="col-4">
-                            <img class="img-fluid" src="{{asset('assets-guest/img/service-1.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-1.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid" src="{{asset('assets-guest/img/service-2.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-2.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid" src="{{asset('assets-guest/img/service-3.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-3.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid" src="{{asset('assets-guest/img/service-4.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-4.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid" src="{{asset('assets-guest/img/service-5.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-5.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid" src="{{asset('assets-guest/img/service-6.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-6.jpg') }}"
+                                alt="">
                         </div>
                     </div>
                 </div>
@@ -823,8 +839,7 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-            class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->
@@ -837,6 +852,7 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="{{asset('assets-guest/js/main.js')}}"></script>
+    <script src="{{ asset('assets-guest/js/main.js') }}"></script>
 </body>
+
 </html>

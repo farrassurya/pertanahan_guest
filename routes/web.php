@@ -16,3 +16,5 @@ Route::get('/auth', [AuthController::class, 'index'])->name('auth.index'); // ta
 Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login'); // proses login pakai function login()
 
 Route::get('index', [IndexController::class, 'index'])->name('index');
+Route::post('jenis-penggunaan', [IndexController::class, 'store'])->name('jenis-penggunaan.store');
+Route::get('jenis-penggunaan', [IndexController::class, 'index'])->name('jenis-penggunaan.index');
