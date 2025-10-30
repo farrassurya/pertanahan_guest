@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{ asset('assets-guest/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets-guest/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('assets-guest/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -30,7 +30,6 @@
 
     {{-- style css utk topbar --}}
     <style>
-        /* Custom CSS untuk tombol Sign Up */
         .btn-signup-custom {
             background-color: #e49e10;
             color: white;
@@ -46,7 +45,6 @@
             color: rgb(0, 0, 0);
         }
 
-        /* Custom CSS untuk tombol Login */
         .btn-login-custom {
             background-color: #e49e10;
             color: white;
@@ -60,30 +58,26 @@
             background-color: #e49e10;
             border: 2px solid #ffffff;
             color: rgb(0, 0, 0);
-            /* Pastikan teks tetap putih saat hover */
         }
 
-        /* Penyesuaian umum untuk tombol jika diperlukan */
         .btn-signup-custom,
         .btn-login-custom {
             min-width: 90px;
-            /* Lebar minimum untuk konsistensi */
             text-align: center;
         }
     </style>
 
-    {{-- Sidebar styles (shrunk) --}}
+    {{-- css sidebar--}}
     <style>
-        /* Basic sidebar layout (narrower to be less intrusive) */
         .user-sidebar {
             position: fixed;
             left: 0;
             top: 0;
             height: 100vh;
-            width: 200px; /* reduced width */
+            width: 200px;
             background: #fff;
             border-right: 1px solid rgba(0,0,0,0.04);
-            padding: 12px; /* reduced padding */
+            padding: 12px;
             z-index: 1050;
             overflow-y: auto;
             box-shadow: 0 1px 6px rgba(0,0,0,0.04);

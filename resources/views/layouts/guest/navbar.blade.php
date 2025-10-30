@@ -15,13 +15,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a class="nav-item nav-link active">Home</a>
+                    <a href="{{asset('assets-guest/about.html')}}" class="nav-item nav-link">About</a>
                     <a href="service.html" class="nav-item nav-link">Services</a>
                     <div class="nav-item dropdown">
                         {{-- dropdown placeholder --}}
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="{{asset('assets-guest/contact.html')}}" class="nav-item nav-link">Contact</a>
                 </div>
                 <div class="ms-auto d-none d-lg-block">
                     <a href="" class="btn btn-primary py-2 px-3">Get A Quote</a>

@@ -1,4 +1,4 @@
-<!-- Sidebar Partial: resources/views/partials/sidebar.blade.php -->
+<!-- Sidebar Partial: resources/views/layouts/guest/sidebar.blade.php -->
 <aside id="user-sidebar" class="user-sidebar">
     <div class="user-sidebar-inner">
         <div class="d-flex align-items-center mb-3">
@@ -11,7 +11,7 @@
                     <div class="small text-muted">{{ auth()->user()->email }}</div>
                 @else
                     <div class="fw-bold">Guest</div>
-                    <div class="small text-muted">Belum masuk</div>
+                    {{-- <div class="small text-muted">Belum masuk</div> --}}
                 @endif
             </div>
         </div>
@@ -26,13 +26,14 @@
                 </form>
             @else
                 <a href="{{ route('auth.index') }}" class="list-group-item list-group-item-action">Login</a>
-                <a href="{{ route('auth.index') }}" class="list-group-item list-group-item-action">Sign Up</a>
+                <a href="{{ route('auth.register') }}" class="list-group-item list-group-item-action">Sign Up</a>
+                <a href="{{ route('auth.users') }}" class="list-group-item list-group-item-action">User</a>
             @endif
         </div>
 
-        <div class="small text-muted">Quick Links</div>
-        <a class="d-block mb-2" href="{{ url('/') }}">Home</a>
-        <a class="d-block mb-2" href="#contact">Contact</a>
+    <div class="small text-muted">Quick Links</div>
+    <a class="d-block mb-2" href="{{ url('/') }}">Home</a>
+    <a class="d-block mb-2" href="#contact">Contact</a>
 
         <button id="sidebar-close" class="btn btn-sm btn-outline-secondary mt-3 d-lg-none">Close</button>
     </div>

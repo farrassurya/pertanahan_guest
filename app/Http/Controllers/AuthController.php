@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show login form
      */
     public function index()
     {
@@ -15,65 +18,122 @@ class AuthController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Process login (kept simple per project requirements)
      */
     public function login(Request $request)
     {
        $request->validate([
-        'username' => 'required',
-        'password' => 'required|min:3|regex:/[A-Z]/',
+        'email' => 'required|email',
+        'password' => 'required|min:3',
     ], [
-        'username.required' => 'Username wajib diisi!',
+        'email.required' => 'Email wajib diisi!',
+        'email.email' => 'Format email tidak valid',
         'password.required' => 'Password wajib diisi!',
         'password.min' => 'Password minimal 3 karakter!',
-        'password.regex' => 'Password harus mengandung huruf kapital!',
     ]);
 
-    // ambil input dari form
-    $username = $request->username;
-    $password = $request->password;
-
-    // langsung kirim ke view success
-    return view('auth.success', compact('username', 'password'));
+    // NOTE: Real authentication (Auth::attempt) is not implemented here by request.
+    $email = $request->email;
+    return redirect()->route('index')->with('success', "Selamat datang, {$email}!");
     }
 
     /**
-     * Display the specified resource.
+     * Show registration form
      */
-    public function show(string $id)
+    public function registerForm()
     {
-        //
+        return view('auth.register');
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Store a newly created user (signup)
      */
-    public function edit(string $id)
+    public function register(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            // password must be at least 8 chars and start with an uppercase letter
+            'password' => ['required','string','min:8','confirmed','regex:/^[A-Z].*/'],
+        ], [
+            'email.required' => 'Email wajib diisi!',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'password.required' => 'Password wajib diisi!',
+            'password.min' => 'Password minimal 8 karakter!',
+            'password.confirmed' => 'Password konfirmasi tidak cocok',
+            'password.regex' => 'Password harus diawali huruf besar (A-Z)!',
+        ]);
+
+        $user = User::create([
+            'name' => $validated['name'] ?? null,
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        // show the created user's name in the flash message (do not expose password hash)
+        // After register, redirect user to home page per revised requirement
+        return redirect()->route('index')->with('success', "User berhasil dibuat: {$user->name}");
     }
 
     /**
-     * Update the specified resource in storage.
+     * List users (simple admin/management view)
      */
-    public function update(Request $request, string $id)
+    public function users()
     {
-        //
+    // show users ordered ascending by id (smallest id at the top)
+    $users = User::orderBy('id', 'asc')->paginate(12);
+        return view('auth.users', compact('users'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Show edit form
      */
-    public function destroy(string $id)
+    public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('auth.edit', compact('user'));
+    }
+
+    /**
+     * Update user
+     */
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => ['required','email', Rule::unique('users')->ignore($user->id)],
+            // password optional, but if present must be min 8 and start with uppercase
+            'password' => ['nullable','string','min:8','confirmed','regex:/^[A-Z].*/'],
+        ], [
+            'email.required' => 'Email wajib diisi!',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'password.min' => 'Password minimal 8 karakter!',
+            'password.confirmed' => 'Password konfirmasi tidak cocok',
+            'password.regex' => 'Password harus diawali huruf besar (A-Z)!',
+        ]);
+
+        $user->name = $validated['name'] ?? $user->name;
+        $user->email = $validated['email'];
+        if(!empty($validated['password'])){
+            $user->password = Hash::make($validated['password']);
+        }
+        $user->save();
+
+        return redirect()->route('auth.users')->with('success', 'User updated successfully.');
+    }
+
+    /**
+     * Remove user
+     */
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('auth.users')->with('success', 'User deleted successfully.');
     }
 }

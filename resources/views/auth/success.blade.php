@@ -94,8 +94,8 @@
     <div class="success-box">
         <div class="checkmark">✅</div>
         <h2>Login Berhasil!</h2>
-        <p>Selamat datang, <strong>{{ $username }}</strong> </p>
-        <a href="{{ route('auth.index') }}" class="btn-back">Kembali ke Login</a>
+        <p>Selamat datang, <strong>{{ $email }}</strong> </p>
+        <a href="{{ route('index') }}" class="btn-back">Ke Halaman Utama</a>
     </div>
 </body>
 </html>

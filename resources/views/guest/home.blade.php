@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include('partials.head')
+@include('layouts.guest.head')
 
 <body>
     <!-- Spinner Start -->
@@ -11,12 +11,28 @@
     </div>
 
     {{-- Sidebar partial --}}
-    @include('partials.sidebar')
+    @include('layouts.guest.sidebar')
 
+    {{-- Login sukses--}}
+    <div class="modal fade" id="loginSuccessModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login Berhasil</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">{{ session('success') ?? 'Login Berhasil' }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{-- Topbar + Navbar partials --}}
-    @include('partials.topbar')
-    @include('partials.navbar')
+    @include('layouts.guest.topbar')
+    @include('layouts.guest.navbar')
 
     <!-- Carousel Start -->
     {{-- <div class="container-fluid p-0 mb-6 wow fadeIn" data-wow-delay="0.1s">
@@ -532,16 +548,16 @@
                 <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="testimonial-img">
                         <div class="animated flip infinite">
-                            <img class="img-fluid" src="img/testimonial-1.jpg" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/testimonial-1.jpg') }}" alt="Testimonial 1">
                         </div>
                         <div class="animated flip infinite">
-                            <img class="img-fluid" src="img/testimonial-2.jpg" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/testimonial-2.jpg') }}" alt="Testimonial 2">
                         </div>
                         <div class="animated flip infinite">
-                            <img class="img-fluid" src="img/testimonial-3.jpg" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/testimonial-3.jpg') }}" alt="Testimonial 3">
                         </div>
                         <div class="animated flip infinite">
-                            <img class="img-fluid" src="img/testimonial-4.jpg" alt="">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/testimonial-4.jpg') }}" alt="Testimonial 4">
                         </div>
                     </div>
                 </div>
@@ -549,7 +565,7 @@
                     <div class="owl-carousel testimonial-carousel">
                         <div class="testimonial-item">
                             <div class="d-flex align-items-center mb-4">
-                                <img class="img-fluid" src="img/testimonial-1.jpg" alt="">
+                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testimonial-1.jpg') }}" alt="Client 1" style="width:64px;height:64px;object-fit:cover;">
                                 <div class="ms-3">
                                     <div class="mb-2">
                                         <i class="far fa-star text-primary"></i>
@@ -568,7 +584,7 @@
                         </div>
                         <div class="testimonial-item">
                             <div class="d-flex align-items-center mb-4">
-                                <img class="img-fluid" src="img/testimonial-2.jpg" alt="">
+                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testimonial-2.jpg') }}" alt="Client 2" style="width:64px;height:64px;object-fit:cover;">
                                 <div class="ms-3">
                                     <div class="mb-2">
                                         <i class="far fa-star text-primary"></i>
@@ -587,7 +603,7 @@
                         </div>
                         <div class="testimonial-item">
                             <div class="d-flex align-items-center mb-4">
-                                <img class="img-fluid" src="img/testimonial-3.jpg" alt="">
+                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testimonial-3.jpg') }}" alt="Client 3" style="width:64px;height:64px;object-fit:cover;">
                                 <div class="ms-3">
                                     <div class="mb-2">
                                         <i class="far fa-star text-primary"></i>
@@ -606,7 +622,7 @@
                         </div>
                         <div class="testimonial-item">
                             <div class="d-flex align-items-center mb-4">
-                                <img class="img-fluid" src="img/testimonial-4.jpg" alt="">
+                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testimonial-4.jpg') }}" alt="Client 4" style="width:64px;height:64px;object-fit:cover;">
                                 <div class="ms-3">
                                     <div class="mb-2">
                                         <i class="far fa-star text-primary"></i>
@@ -631,8 +647,8 @@
     <!-- Testimonial End -->
 
 
-    <!-- Newsletter Start -->
-    <div class="container-fluid newsletter mt-6 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Saran & Masukan -->
+    {{-- <div class="container-fluid newsletter mt-6 wow fadeIn" data-wow-delay="0.1s">
         <div class="container pb-5">
             <div class="bg-white p-5 mb-5">
                 <div class="row g-5">
@@ -655,16 +671,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Newsletter Start -->
 
 
     {{-- Footer partial --}}
-    @include('partials.footer')
+    @include('layouts.guest.footer')
 
 
     {{-- Scripts partial --}}
-    @include('partials.scripts')
+    @include('layouts.guest.scripts')
 </body>
 
 </html>
