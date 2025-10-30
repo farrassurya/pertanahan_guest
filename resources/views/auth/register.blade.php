@@ -4,8 +4,30 @@
 @include('layouts.guest.head')
 
 <body>
-    <div class="container d-flex align-items-center justify-content-center vh-100">
-        <div class="card p-4 shadow-sm" style="max-width:480px; width:100%;">
+    <style>
+        /* Center auth card relative to viewport (ignores page body margin) */
+        .auth-center {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            box-sizing: border-box;
+            z-index: 2000;
+        }
+
+        @media (max-width: 576px) {
+            .auth-center { padding: 10px; }
+            .auth-card { width: 100%; }
+        }
+    </style>
+
+    <div class="auth-center">
+        <div class="card p-4 shadow-sm auth-card" style="max-width:480px; width:100%;">
             <h4 class="mb-3">Register (Sign Up)</h4>
 
             {{-- success message --}}

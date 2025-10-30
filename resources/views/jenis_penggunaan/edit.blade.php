@@ -3,18 +3,24 @@
 
 @include('layouts.guest.head')
 
-<body>
+<body class="db-no-sidebar">
     <!-- Intentionally omitted topbar, navbar, and sidebar for a clean DB-style page -->
 
-    <div class="container py-5">
+    <style>
+        @media (min-width: 992px) { body.db-no-sidebar { margin-left: 0 !important; } }
+        .db-centered { max-width: 900px; margin: 0 auto; }
+    </style>
+
+    <div class="db-centered">
+        <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex align-items-center">
-                <a href="{{ route('guest.services') }}" class="btn btn-outline-secondary me-3" title="Kembali ke Services">
+                <a href="{{ route('guest.home') }}" class="btn btn-outline-secondary me-3" title="Kembali ke Home">
                     <i class="fa fa-arrow-left"></i>
                 </a>
                 <h3 class="m-0">Edit Jenis Penggunaan</h3>
             </div>
-            <a href="{{ route('jenis-penggunaan.index') }}" class="btn btn-secondary">Kembali</a>
+            <a href="{{ route('guest.home') }}" class="btn btn-secondary">Kembali</a>
         </div>
 
         @if($errors->any())
@@ -41,6 +47,9 @@
             </div>
             <button class="btn btn-primary">Perbarui</button>
         </form>
+    </div>
+
+        </div>
     </div>
 
     @include('layouts.guest.scripts')

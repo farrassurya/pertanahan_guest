@@ -19,7 +19,11 @@
 
         <div class="list-group mb-3">
             @if (auth()->check())
-                <a href="{{ route('profile.index') ?? '#' }}" class="list-group-item list-group-item-action">Profile</a>
+                @if (\Illuminate\Support\Facades\Route::has('profile.index'))
+                    <a href="{{ route('profile.index') }}" class="list-group-item list-group-item-action">Profile</a>
+                @else
+                    <a href="#" class="list-group-item list-group-item-action disabled">Profile</a>
+                @endif
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="m-0">
                     @csrf

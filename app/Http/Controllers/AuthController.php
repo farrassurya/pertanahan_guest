@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -31,10 +32,32 @@ class AuthController extends Controller
         'password.required' => 'Password wajib diisi!',
         'password.min' => 'Password minimal 3 karakter!',
     ]);
+    $credentials = $request->only('email','password');
+    $remember = $request->filled('remember');
 
-    // NOTE: Real authentication (Auth::attempt) is not implemented here by request.
-    $email = $request->email;
-    return redirect()->route('index')->with('success', "Selamat datang, {$email}!");
+    if (Auth::attempt($credentials, $remember)) {
+        // Authentication passed...
+        $request->session()->regenerate();
+        $user = Auth::user();
+        return redirect()->route('guest.home')->with('success', "Selamat datang, {$user->email}!");
+    }
+
+    return back()->withErrors([
+        'email' => 'Kombinasi dari Email/Password Anda Salah atau Akun  Anda Belum Terdaftar.',
+    ])->withInput($request->only('email'));
+    }
+
+    /**
+     * Log the user out (invalidate session)
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('guest.home');
     }
 
     /**
@@ -71,9 +94,9 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        // show the created user's name in the flash message (do not expose password hash)
-        // After register, redirect user to home page per revised requirement
-        return redirect()->route('index')->with('success', "User berhasil dibuat: {$user->name}");
+        // Do NOT auto-login the user after registration. Redirect to the login page
+        // with a friendly success message asking them to sign in.
+        return redirect()->route('auth.index')->with('success', "Akun berhasil dibuat untuk: {$user->name}. Silakan login.");
     }
 
     /**

@@ -120,7 +120,7 @@
         }
 
         .btn-login {
-            background-color: #2196F3;
+            background-color: #e49e10; /* theme gold color */
             color: white;
             border: none;
             width: 100%;
@@ -128,12 +128,13 @@
             border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.18s ease;
+            box-shadow: 0 6px 18px rgba(228,158,16,0.14);
         }
 
         .btn-login:hover {
-            background-color: #1976D2;
-            transform: scale(1.02);
+            background-color: #c67e08; /* darker gold on hover */
+            transform: translateY(-1px) scale(1.01);
         }
 
         .forgot {
@@ -153,14 +154,12 @@
 </head>
 <body>
     <div class="login-box">
-        <h2>Form Login</h2>
 
-        {{-- tampilkan pesan error global --}}
-        @if ($errors->has('msg'))
-            <div class="error-msg">{{ $errors->first('msg') }}</div>
+        {{-- tampilkan pesan sukses atau error global --}}
+        @if(session('success'))
+            <div class="error-msg" style="background:#e6ffed; color:#116530; border-color:#c8f0d6">{{ session('success') }}</div>
         @endif
 
-        {{-- tampilkan pesan error validasi lain --}}
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 <div class="error-msg">{{ $error }}</div>
@@ -175,31 +174,30 @@
             </div>
 
             <div class="input-group">
-                <div class="toggle-container">
-                    <label>Password</label>
-                    <button type="button" class="toggle-btn" id="togglePassword">Lihat Password</button>
-                </div>
+                <label>Password</label>
                 <input type="password" name="password" id="passwordField" placeholder="Masukkan password">
             </div>
 
-            <button class="btn-login" type="submit">Login</button>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px">
+            </div>
+
+            <button class="btn-login" type="submit">Masuk</button>
         </form>
 
-        {{-- Lupa Password --}}
-        {{-- <div class="forgot">
-            <a href="#">Lupa Password?</a>
-        </div> --}}
+        <div style="margin-top:14px; font-size:14px; color:#666">Belum punya akun? <a href="{{ route('auth.register') }}" style="color:#1297e4; text-decoration:none; font-weight:600">Daftar sekarang</a></div>
     </div>
 
     <script>
+        // Password toggle is optional - only wire if toggle exists
         const toggleBtn = document.getElementById('togglePassword');
         const passwordField = document.getElementById('passwordField');
-
-        toggleBtn.addEventListener('click', function () {
-            const isHidden = passwordField.type === 'password';
-            passwordField.type = isHidden ? 'text' : 'password';
-            toggleBtn.textContent = isHidden ? 'Sembunyikan Password' : 'Lihat Password';
-        });
+        if (toggleBtn && passwordField) {
+            toggleBtn.addEventListener('click', function () {
+                const isHidden = passwordField.type === 'password';
+                passwordField.type = isHidden ? 'text' : 'password';
+                toggleBtn.textContent = isHidden ? 'Sembunyikan Password' : 'Lihat Password';
+            });
+        }
     </script>
 </body>
 </html>

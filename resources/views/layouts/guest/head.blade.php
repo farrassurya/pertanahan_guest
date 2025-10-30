@@ -74,7 +74,7 @@
             left: 0;
             top: 0;
             height: 100vh;
-            width: 200px;
+            width: 240px; /* slightly wider so long emails won't be cut */
             background: #fff;
             border-right: 1px solid rgba(0,0,0,0.04);
             padding: 12px;
@@ -86,8 +86,8 @@
         }
 
         .user-sidebar .user-avatar{
-            width:40px; /* smaller avatar */
-            height:40px;
+            width:48px; /* a bit larger so layout breathes */
+            height:48px;
             font-size:18px;
         }
 
@@ -106,7 +106,7 @@
         @media (max-width: 991.98px) {
             .user-sidebar{
                 transform: translateX(-110%);
-                width: 240px; /* keep a bit larger on mobile when opened */
+                width: 260px; /* keep a bit larger on mobile when opened */
             }
             body.sidebar-open {
                 overflow: hidden;
@@ -116,7 +116,7 @@
         /* Push page content right on large screens so the sidebar doesn't overlap */
         @media (min-width: 992px) {
             body{
-                margin-left: 200px; /* match the new sidebar width */
+                margin-left: 240px; /* match the new sidebar width */
             }
             .d-lg-none.sidebar-toggle-btn{
                 display:none !important;

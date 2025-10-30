@@ -19,6 +19,9 @@ Route::get('/services', function () {
 Route::get('/auth', [AuthController::class, 'index'])->name('auth.index'); // tampilkan form login
 
 Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login'); // proses login pakai function login()
+
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Registration & user management (guest sign up + CRUD)
 Route::get('/auth/register', [AuthController::class, 'registerForm'])->name('auth.register');
 Route::post('/auth/register', [AuthController::class, 'register'])->name('auth.register.store');

@@ -32,12 +32,8 @@ class JenisPenggunaanController extends Controller
         ]);
 
         if ($validator->fails()) {
-            // if the request came from the guest services page, redirect back there
-            $redirect = route('guest.services');
-            if ($request->headers->get('referer') && strpos($request->headers->get('referer'), '/services') !== false) {
-                $redirect = route('guest.services');
-            }
-            return redirect($redirect)
+            // always redirect back to home on validation errors for guest submissions
+            return redirect()->route('guest.home')
                 ->withErrors($validator)
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan dalam pengisian form.');
@@ -48,12 +44,8 @@ class JenisPenggunaanController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-        // if came from services page, go back there, otherwise to index
-        if ($request->headers->get('referer') && strpos($request->headers->get('referer'), '/services') !== false) {
-            return redirect()->route('guest.services')->with('success', 'Data Jenis Penggunaan berhasil disimpan!');
-        }
-
-        return redirect()->route('jenis-penggunaan.index')->with('success', 'Data Jenis Penggunaan berhasil disimpan!');
+        // Redirect guests back to home after storing
+        return redirect()->route('guest.home')->with('success', 'Data Jenis Penggunaan berhasil disimpan!');
     }
 
     public function edit($id)
@@ -84,13 +76,13 @@ class JenisPenggunaanController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-        return redirect()->route('jenis-penggunaan.index')->with('success', 'Data berhasil diperbarui.');
+    return redirect()->route('guest.home')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $item = JenisPenggunaan::findOrFail($id);
         $item->delete();
-        return redirect()->route('jenis-penggunaan.index')->with('success', 'Data berhasil dihapus.');
+    return redirect()->route('guest.home')->with('success', 'Data berhasil dihapus.');
     }
 }
