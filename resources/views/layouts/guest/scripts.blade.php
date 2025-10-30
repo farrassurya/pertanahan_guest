@@ -63,3 +63,45 @@
         });
     </script>
 @endif
+
+<script>
+    // Smooth-scroll and offset handling for sticky navbar
+    document.addEventListener('DOMContentLoaded', function () {
+        function getNavHeight() {
+            var nav = document.querySelector('.navbar');
+            return nav ? nav.offsetHeight : 80;
+        }
+
+        function scrollToElementWithOffset(el) {
+            var rect = el.getBoundingClientRect();
+            var offset = window.pageYOffset + rect.top - getNavHeight() - 8; // small gap
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        // If page loaded with a hash, scroll to it with offset
+        if (location.hash) {
+            var id = location.hash.slice(1);
+            var el = document.getElementById(id);
+            if (el) {
+                // small timeout to wait for rendering/layout
+                setTimeout(function () { scrollToElementWithOffset(el); }, 50);
+            }
+        }
+
+        // Intercept internal anchor clicks and smooth-scroll with offset
+        document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+            anchor.addEventListener('click', function (e) {
+                var href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                var id = href.slice(1);
+                var el = document.getElementById(id);
+                if (el) {
+                    e.preventDefault();
+                    scrollToElementWithOffset(el);
+                    // update url without jumping
+                    history.pushState(null, '', '#' + id);
+                }
+            });
+        });
+    });
+</script>

@@ -6,10 +6,15 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\GuestPersilController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('guest.home');
+})->name('guest.home');
 
 Route::get('/persil', [GuestPersilController::class, 'index']);
+
+// Guest pages
+Route::get('/services', function () {
+    return view('guest.services');
+})->name('guest.services');
 
 Route::get('/auth', [AuthController::class, 'index'])->name('auth.index'); // tampilkan form login
 
@@ -23,5 +28,12 @@ Route::put('/auth/users/{id}', [AuthController::class, 'update'])->name('auth.us
 Route::delete('/auth/users/{id}', [AuthController::class, 'destroy'])->name('auth.users.destroy');
 
 Route::get('home', [IndexController::class, 'index'])->name('index');
-Route::post('jenis-penggunaan', [IndexController::class, 'store'])->name('jenis-penggunaan.store');
-Route::get('jenis-penggunaan', [IndexController::class, 'index'])->name('jenis-penggunaan.index');
+
+// Jenis Penggunaan CRUD (guest form posts to store; management pages available at /jenis-penggunaan)
+use App\Http\Controllers\JenisPenggunaanController;
+Route::get('jenis-penggunaan', [JenisPenggunaanController::class, 'index'])->name('jenis-penggunaan.index');
+Route::get('jenis-penggunaan/create', [JenisPenggunaanController::class, 'create'])->name('jenis-penggunaan.create');
+Route::post('jenis-penggunaan', [JenisPenggunaanController::class, 'store'])->name('jenis-penggunaan.store');
+Route::get('jenis-penggunaan/{id}/edit', [JenisPenggunaanController::class, 'edit'])->name('jenis-penggunaan.edit');
+Route::put('jenis-penggunaan/{id}', [JenisPenggunaanController::class, 'update'])->name('jenis-penggunaan.update');
+Route::delete('jenis-penggunaan/{id}', [JenisPenggunaanController::class, 'destroy'])->name('jenis-penggunaan.destroy');
