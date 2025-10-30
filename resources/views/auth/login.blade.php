@@ -89,7 +89,7 @@
         }
 
         .input-group input:focus {
-            border-color: #2196F3;
+
             outline: none;
             box-shadow: 0 0 6px rgba(33, 150, 243, 0.3);
         }

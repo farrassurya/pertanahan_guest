@@ -208,7 +208,7 @@
         position: relative;
         min-height: 600px;
     }
-    
+
     .carousel .carousel-item img {
         position: absolute;
         width: 100%;
@@ -271,16 +271,16 @@
     z-index: -1;
 }
 
-@keyframes animateUpDown { 
-    0% { 
+@keyframes animateUpDown {
+    0% {
         top: -25px;
     }
-    50% { 
+    50% {
         top: -45px;
     }
-    100% { 
+    100% {
         top: -25px;
-    } 
+    }
 }
 
 

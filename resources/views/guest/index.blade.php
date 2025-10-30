@@ -38,34 +38,79 @@
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
     </div>
-    <!-- Spinner End -->
-
 
     <!-- Topbar Start -->
-    <div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.2s">
         <div class="container py-4">
             <div class="d-flex align-items-center">
-                <a href="index.html">
+                <a href="{{ url('/') }}">
                     <h2 class="text-white fw-bold m-0">PERTANAHAN</h2>
                 </a>
                 <div class="ms-auto d-flex align-items-center">
-                    <small class="ms-4"><i class="fa fa-map-marker-alt me-3"></i>Jl. Bukit Barisan, Pekanbaru</small>
-                    <small class="ms-4"><i class="fa fa-envelope me-3"></i>suryaputra24si@mahasiswa.pcr.ac.id</small>
-                    <small class="ms-4"><i class="fa fa-phone-alt me-3"></i>+62 812 75166478</small>
-                    <div class="ms-3 d-flex">
-                        <a class="btn btn-sm-square btn-light text-primary ms-2" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-sm-square btn-light text-primary ms-2" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-sm-square btn-light text-primary ms-2" href=""><i
-                                class="fab fa-linkedin-in"></i></a>
+                    <small class="ms-4"><i class="fa fa-map-marker-alt me-2"></i>Jl. Bukit Barisan, Pekanbaru</small>
+                    <small class="ms-4"><i class="fa fa-envelope me-2"></i>suryaputra24si@mahasiswa.pcr.ac.id</small>
+                    <small class="ms-4"><i class="fa fa-phone-alt me-2"></i>+62 812 75166478</small>
+
+                    <div class="ms-3 d-flex align-items-center"> {{-- Tambahkan align-items-center di sini juga --}}
+                        <a class="btn btn-info btn-login-custom px-1 py-2 me-2" href="{{ route('auth.index') }}"
+                            title="Masuk ke Akun">
+                            <i class="fa fa-sign-in-alt me-1"></i>
+                            Login
+                        </a>
+                        <a class="btn btn-primary btn-signup-custom px-1 py-2" href="{{ route('auth.index') }}"
+                            title="Daftar Akun Baru">
+                            <i class="fa fa-user-plus me-1"></i>
+                            Sign Up
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
 
+    {{-- style css utk topbar --}}
+    <style>
+        /* Custom CSS untuk tombol Sign Up */
+        .btn-signup-custom {
+            background-color: #e49e10;
+            color: white;
+            border-radius: 8px;
+            border: 2px solid #ffffff;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-signup-custom:hover {
+            background-color: #e49e10;
+            border: 2px solid #ffffff;
+            color: rgb(0, 0, 0);
+        }
+
+        /* Custom CSS untuk tombol Login */
+        .btn-login-custom {
+            background-color: #e49e10;
+            color: white;
+            border-radius: 8px;
+            border: 2px solid #fffdfd;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login-custom:hover {
+            background-color: #e49e10;
+            border: 2px solid #ffffff;
+            color: rgb(0, 0, 0);
+            /* Pastikan teks tetap putih saat hover */
+        }
+
+        /* Penyesuaian umum untuk tombol jika diperlukan */
+        .btn-signup-custom,
+        .btn-login-custom {
+            min-width: 90px;
+            /* Lebar minimum untuk konsistensi */
+            text-align: center;
+        }
+    </style>
 
     <!-- Navbar Start -->
     <div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s">
@@ -84,14 +129,14 @@
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="service.html" class="nav-item nav-link">Services</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
                                 <a href="feature.html" class="dropdown-item">Features</a>
                                 <a href="team.html" class="dropdown-item">Our Team</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="appoinment.html" class="dropdown-item">Appoinment</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
+                            </div> --}}
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
@@ -102,8 +147,6 @@
             </nav>
         </div>
     </div>
-    <!-- Navbar End -->
-
 
     <!-- Carousel Start -->
     {{-- <div class="container-fluid p-0 mb-6 wow fadeIn" data-wow-delay="0.1s">
@@ -148,8 +191,6 @@
             </div>
         </div>
     </div> --}}
-    <!-- Carousel End -->
-
 
     <!-- About Start -->
     <div class="container-fluid pt-6 pb-6">
@@ -195,8 +236,6 @@
             </div>
         </div>
     </div>
-    <!-- About End -->
-
 
     <!-- Features Start -->
     <div class="container-fluid pt-2 pb-2">
