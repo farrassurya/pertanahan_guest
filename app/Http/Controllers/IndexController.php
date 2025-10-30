@@ -15,7 +15,7 @@ class IndexController extends Controller
     {
         // return view ('guest.index');
 
-        return view('guest.index', [
+        return view('guest.home', [
             'oldInput' => $request->session()->get('_old_input', [])
         ]);
     }

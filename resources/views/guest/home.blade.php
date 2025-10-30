@@ -1,36 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <title>Pertanahan - Guest</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
-    <!-- Favicon -->
-    <link href="{{ asset('assets-guest/img/favicon.ico') }}" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('assets-guest/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="{{ asset('assets-guest/css/style.css') }}" rel="stylesheet">
-</head>
+@include('partials.head')
 
 <body>
     <!-- Spinner Start -->
@@ -39,114 +10,13 @@
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
     </div>
 
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.2s">
-        <div class="container py-4">
-            <div class="d-flex align-items-center">
-                <a href="{{ url('/') }}">
-                    <h2 class="text-white fw-bold m-0">PERTANAHAN</h2>
-                </a>
-                <div class="ms-auto d-flex align-items-center">
-                    <small class="ms-4"><i class="fa fa-map-marker-alt me-2"></i>Jl. Bukit Barisan, Pekanbaru</small>
-                    <small class="ms-4"><i class="fa fa-envelope me-2"></i>suryaputra24si@mahasiswa.pcr.ac.id</small>
-                    <small class="ms-4"><i class="fa fa-phone-alt me-2"></i>+62 812 75166478</small>
+    {{-- Sidebar partial --}}
+    @include('partials.sidebar')
 
-                    <div class="ms-3 d-flex align-items-center"> {{-- Tambahkan align-items-center di sini juga --}}
-                        <a class="btn btn-info btn-login-custom px-1 py-2 me-2" href="{{ route('auth.index') }}"
-                            title="Masuk ke Akun">
-                            <i class="fa fa-sign-in-alt me-1"></i>
-                            Login
-                        </a>
-                        <a class="btn btn-primary btn-signup-custom px-1 py-2" href="{{ route('auth.index') }}"
-                            title="Daftar Akun Baru">
-                            <i class="fa fa-user-plus me-1"></i>
-                            Sign Up
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    {{-- style css utk topbar --}}
-    <style>
-        /* Custom CSS untuk tombol Sign Up */
-        .btn-signup-custom {
-            background-color: #e49e10;
-            color: white;
-            border-radius: 8px;
-            border: 2px solid #ffffff;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-signup-custom:hover {
-            background-color: #e49e10;
-            border: 2px solid #ffffff;
-            color: rgb(0, 0, 0);
-        }
-
-        /* Custom CSS untuk tombol Login */
-        .btn-login-custom {
-            background-color: #e49e10;
-            color: white;
-            border-radius: 8px;
-            border: 2px solid #fffdfd;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-login-custom:hover {
-            background-color: #e49e10;
-            border: 2px solid #ffffff;
-            color: rgb(0, 0, 0);
-            /* Pastikan teks tetap putih saat hover */
-        }
-
-        /* Penyesuaian umum untuk tombol jika diperlukan */
-        .btn-signup-custom,
-        .btn-login-custom {
-            min-width: 90px;
-            /* Lebar minimum untuk konsistensi */
-            text-align: center;
-        }
-    </style>
-
-    <!-- Navbar Start -->
-    <div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg bg-white navbar-light p-lg-0">
-                <a href="index.html" class="navbar-brand d-lg-none">
-                    <h1 class="fw-bold m-0">WELDORK</h1>
-                </a>
-                <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Services</a>
-                        <div class="nav-item dropdown">
-                            {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
-                                <a href="feature.html" class="dropdown-item">Features</a>
-                                <a href="team.html" class="dropdown-item">Our Team</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="appoinment.html" class="dropdown-item">Appoinment</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div> --}}
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
-                    </div>
-                    <div class="ms-auto d-none d-lg-block">
-                        <a href="" class="btn btn-primary py-2 px-3">Get A Quote</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
+    {{-- Topbar + Navbar partials --}}
+    @include('partials.topbar')
+    @include('partials.navbar')
 
     <!-- Carousel Start -->
     {{-- <div class="container-fluid p-0 mb-6 wow fadeIn" data-wow-delay="0.1s">
@@ -653,7 +523,7 @@
 
 
     <!-- Testimonial Start -->
-    {{-- <div class="container-fluid pt-6 pb-6">
+    <div class="container-fluid pt-6 pb-6">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h1 class="display-6 text-uppercase mb-5">What They’re Talking About Our Welding Work</h1>
@@ -757,7 +627,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <!-- Testimonial End -->
 
 
@@ -789,108 +659,12 @@
     <!-- Newsletter Start -->
 
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark footer py-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase text-light mb-4">Our Office</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Jl. Umban Sari, No 1,
-                        Pekanbaru</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+62 812 7691328</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>farrassurya12@gmail.com</p>
-                    <div class="d-flex pt-3">
-                        <a class="btn btn-square btn-light me-2" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-light me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-light me-2" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-light me-2" href=""><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase text-light mb-4">Tautan</h5>
-                    <a class="btn btn-link" href="">Tentang Kami</a>
-                    <a class="btn btn-link" href="">Kontak</a>
-                    <a class="btn btn-link" href="">Pelayanan</a>
-                    <a class="btn btn-link" href="">Syarat & Ketentuan</a>
-                    <a class="btn btn-link" href="">Dukungan</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase text-light mb-4">Jam Kerja</h5>
-                    <p class="text-uppercase mb-0">Senin - Sabtu</p>
-                    <p>06:00 WIB - 17:00 WIB</p>
-                    <p class="text-uppercase mb-0">Minggu</p>
-                    <p>Tutup</p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase text-light mb-4">Gallery</h5>
-                    <div class="row g-1">
-                        <div class="col-4">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-1.jpg') }}"
-                                alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-2.jpg') }}"
-                                alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-3.jpg') }}"
-                                alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-4.jpg') }}"
-                                alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-5.jpg') }}"
-                                alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/service-6.jpg') }}"
-                                alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
+    {{-- Footer partial --}}
+    @include('partials.footer')
 
 
-    <!-- Copyright Start -->
-    <div class="container-fluid text-body copyright py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="fw-semi-bold" href="#">Pertanahan - Guest</a>, All Right Reserved.
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                    <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                    <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                    Designed By <a class="fw-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Copyright End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="{{ asset('assets-guest/js/main.js') }}"></script>
+    {{-- Scripts partial --}}
+    @include('partials.scripts')
 </body>
 
 </html>

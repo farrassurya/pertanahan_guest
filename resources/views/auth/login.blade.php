@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+{{-- tampilan dari login --}}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -184,9 +185,10 @@
             <button class="btn-login" type="submit">Login</button>
         </form>
 
-        <div class="forgot">
+        {{-- Lupa Password --}}
+        {{-- <div class="forgot">
             <a href="#">Lupa Password?</a>
-        </div>
+        </div> --}}
     </div>
 
     <script>
