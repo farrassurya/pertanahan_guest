@@ -30,39 +30,66 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Hash (password)</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($users as $u)
-                        <tr>
-                            <td>{{ $u->id }}</td>
-                            <td>{{ $u->name }}</td>
-                            <td>{{ $u->email }}</td>
-                            <td style="font-family:monospace; font-size:12px; max-width:320px; overflow:auto;">{{ $u->password }}</td>
-                            <td style="white-space:nowrap;">
-                                <a href="{{ route('auth.users.edit', $u->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                <form action="{{ route('auth.users.destroy', $u->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus user ini?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger">Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <style>
+            .user-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 1.25rem; }
+            .user-card {
+                border: 0; border-radius: 12px; padding: 1rem; background: linear-gradient(180deg,#fff,#fbfbfd);
+                box-shadow: 0 8px 28px rgba(11,18,35,0.06); transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease;
+                position: relative; overflow: hidden; opacity:0; transform: translateY(10px) scale(.995); animation: cardIn .42s ease forwards;
+            }
+            .user-card:hover{ transform: translateY(-8px); box-shadow: 0 18px 48px rgba(11,18,35,0.12); }
+            .user-name { font-weight:800; font-family: 'Poppins', sans-serif; color:#12202b; }
+            .user-meta { font-size:13px; color:#6c757d; }
+            .user-actions a, .user-actions form { display:inline-block; }
+            .user-hash { font-family: monospace; font-size:12px; color:#444; background: linear-gradient(90deg,#f7f8fa,#ffffff); padding:6px 8px; border-radius:8px; display:inline-block; max-width:100%; overflow:auto; }
+
+            /* Accent corner */
+            .user-card::before{ content: ''; position: absolute; right: -40px; top: -24px; width: 120px; height:120px; background: radial-gradient(circle at 30% 30%, rgba(184,125,26,0.12), rgba(184,125,26,0.06)); transform: rotate(18deg); }
+
+            /* entrance animation */
+            @keyframes cardIn { to { opacity: 1; transform: translateY(0) scale(1); } }
+            .user-grid .user-card:nth-child(1){ animation-delay: .04s }
+            .user-grid .user-card:nth-child(2){ animation-delay: .09s }
+            .user-grid .user-card:nth-child(3){ animation-delay: .14s }
+            .user-grid .user-card:nth-child(4){ animation-delay: .19s }
+
+            @media (max-width:576px){ .user-card{ padding: .85rem } }
+        </style>
+
+        <div class="user-grid">
+            @foreach($users as $u)
+                <div class="user-card">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <div class="user-name">{{ $u->name }}</div>
+                            <div class="user-meta">{{ $u->email }}</div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-secondary">ID {{ $u->id }}</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="small text-muted">Password (hash)</div>
+                        <div class="user-hash">{{ $u->password }}</div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center user-actions">
+                        <div class="small text-muted">Terdaftar: {{ $u->created_at ? $u->created_at->format('d M Y') : '-' }}</div>
+                        <div>
+                            <a href="{{ route('auth.users.edit', $u->id) }}" class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i> Edit</a>
+                            <form action="{{ route('auth.users.destroy', $u->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus user ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
 
-        {{ $users->links() }}
+        <div class="mt-4">{{ $users->links() }}</div>
         </div>
     </div>
 

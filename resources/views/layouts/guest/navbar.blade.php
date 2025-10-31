@@ -44,7 +44,7 @@
 
                 <div class="navbar-nav">
                     <a href="{{ route('guest.home') }}" class="nav-item nav-link {{ request()->routeIs('guest.home') ? 'active' : '' }}">Home</a>
-                    <a href="{{ asset('assets-guest/about.html') }}" class="nav-item nav-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
+                    <a href="{{ route('guest.about') }}" class="nav-item nav-link {{ request()->is('about.home*') ? 'active' : '' }}">About</a>
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('guest.services') ? 'active' : '' }}" data-bs-toggle="dropdown">Services</a>
@@ -54,7 +54,18 @@
                         </div>
                     </div>
 
-                    <a href="{{ asset('assets-guest/contact.html') }}" class="nav-item nav-link {{ request()->is('contact*') ? 'active' : '' }}">Contact</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle {{ request()->is('contact*') ? 'active' : '' }}" data-bs-toggle="dropdown">Contact</a>
+                        <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0 centered">
+                            <a class="dropdown-item" href="https://wa.me/+628117691328" target="_blank" rel="noopener">
+                                <i class="fab fa-whatsapp me-2 text-success"></i> WhatsApp
+                            </a>
+                            <a class="dropdown-item" href="https://www.instagram.com/farrassuryaa?igsh=cnJjY3U2MWdkd2pt" target="_blank" rel="noopener">
+                                <i class="fab fa-instagram me-2 text-danger"></i> Instagram
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="ms-auto d-none d-lg-block">
