@@ -41,6 +41,7 @@
 
         <div class="small text-muted">Quick Links</div>
         <a class="d-block mb-2" href="{{ route('guest.home') }}">Home</a>
+        <a class="d-block mb-2" href="{{ route('guest.about') }}">About</a>
         <a class="d-block mb-2" href="{{ route('guest.services') }}">Jenis Penggunaan</a>
 
         <button id="sidebar-close" class="btn btn-sm btn-outline-secondary mt-3 d-lg-none">Close</button>

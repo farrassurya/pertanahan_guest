@@ -15,7 +15,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('pages.auth.login');
+        return view('auth.login');
     }
 
     /**
@@ -65,7 +65,7 @@ class AuthController extends Controller
      */
     public function registerForm()
     {
-        return view('pages.auth.register');
+        return view('auth.register');
     }
 
     /**
@@ -106,7 +106,7 @@ class AuthController extends Controller
     {
     // show users ordered ascending by id (smallest id at the top)
     $users = User::orderBy('id', 'asc')->paginate(12);
-        return view('pages.auth.users', compact('users'));
+        return view('auth.users', compact('users'));
     }
 
     /**
@@ -115,7 +115,7 @@ class AuthController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-    return view('pages.auth.edit', compact('user'));
+    return view('auth.edit', compact('user'));
     }
 
     /**

@@ -11,12 +11,12 @@ class JenisPenggunaanController extends Controller
     public function index()
     {
         $items = JenisPenggunaan::orderBy('id', 'asc')->paginate(12);
-        return view('pages.jenis_penggunaan.index', compact('items'));
+        return view('jenis_penggunaan.index', compact('items'));
     }
 
     public function create()
     {
-        return view('pages.jenis_penggunaan.create');
+        return view('jenis_penggunaan.create');
     }
 
     public function store(Request $request)
@@ -51,7 +51,7 @@ class JenisPenggunaanController extends Controller
     public function edit($id)
     {
         $item = JenisPenggunaan::findOrFail($id);
-        return view('pages.jenis_penggunaan.edit', compact('item'));
+        return view('jenis_penggunaan.edit', compact('item'));
     }
 
     public function update(Request $request, $id)
