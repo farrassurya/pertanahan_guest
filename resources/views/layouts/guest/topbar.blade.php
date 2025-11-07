@@ -12,12 +12,12 @@
 
                 @guest
                     <div class="ms-3 d-flex align-items-center">
-                        <a class="btn btn-info btn-login-custom px-1 py-2 me-2" href="{{ route('auth.index') }}"
+                        <a class="btn btn-info btn-login-custom px-1 py-2 me-2" href="{{ route('pages.auth.index') }}"
                             title="Masuk ke Akun">
                             <i class="fa fa-sign-in-alt me-1"></i>
                             Login
                         </a>
-                        <a class="btn btn-primary btn-signup-custom px-1 py-2" href="{{ route('auth.register') }}"
+                        <a class="btn btn-primary btn-signup-custom px-1 py-2" href="{{ route('pages.auth.register') }}"
                             title="Daftar Akun Baru">
                             <i class="fa fa-user-plus me-1"></i>
                             Sign Up

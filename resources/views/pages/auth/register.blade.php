@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <a href="{{ route('auth.index') }}" class="btn btn-outline-secondary">Kembali ke Login</a>
+                    <a href="{{ route('pages.auth.index') }}" class="btn btn-outline-secondary">Kembali ke Login</a>
                     <button class="btn btn-primary" type="submit">Daftar</button>
                 </div>
             </form>

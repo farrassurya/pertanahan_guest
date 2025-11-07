@@ -15,12 +15,12 @@
         <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex align-items-center">
-                <a href="{{ route('guest.home') }}" class="btn btn-outline-secondary me-3" title="Kembali ke Home">
+                <a href="{{ route('pages.guest.home') }}" class="btn btn-outline-secondary me-3" title="Kembali ke Home">
                     <i class="fa fa-arrow-left"></i>
                 </a>
                 <h3 class="m-0">Edit Jenis Penggunaan</h3>
             </div>
-            <a href="{{ route('guest.home') }}" class="btn btn-secondary">Kembali</a>
+            <a href="{{ route('pages.guest.home') }}" class="btn btn-secondary">Kembali</a>
         </div>
 
         @if($errors->any())
@@ -33,7 +33,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('jenis-penggunaan.update', $item->id) }}">
+        <form method="POST" action="{{ route('pages.jenis-penggunaan.update', $item->id) }}">
             @csrf
             @method('PUT')
             <div class="mb-3">

@@ -20,12 +20,12 @@
         <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex align-items-center">
-                <a href="{{ route('guest.home') }}" class="btn btn-outline-secondary me-3" title="Kembali ke Home">
+                <a href="{{ route('pages.guest.home') }}" class="btn btn-outline-secondary me-3" title="Kembali ke Home">
                     <i class="fa fa-arrow-left"></i>
                 </a>
                 <h3 class="m-0">Daftar Jenis Penggunaan</h3>
             </div>
-            <a href="{{ route('jenis-penggunaan.create') }}" class="btn btn-success">Tambah</a>
+            <a href="{{ route('pages.jenis-penggunaan.create') }}" class="btn btn-success">Tambah</a>
         </div>
 
         @if(session('success'))
@@ -99,8 +99,8 @@
                         <div class="d-flex justify-content-between align-items-center jp-actions">
                             <div class="small text-muted">Dibuat: {{ $it->created_at ? $it->created_at->format('d M Y') : '-' }}</div>
                             <div>
-                                <a href="{{ route('jenis-penggunaan.edit', $it->id) }}" class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i> Edit</a>
-                                <form action="{{ route('jenis-penggunaan.destroy', $it->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus data ini?');">
+                                <a href="{{ route('pages.jenis-penggunaan.edit', $it->id) }}" class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i> Edit</a>
+                                <form action="{{ route('pages.jenis-penggunaan.destroy', $it->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus data ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>

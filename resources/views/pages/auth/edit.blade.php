@@ -16,7 +16,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('auth.users.update', $user->id) }}" method="POST">
+            <form action="{{ route('pages.auth.users.update', $user->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('auth.users') }}" class="btn btn-outline-secondary">Kembali</a>
+                    <a href="{{ route('pages.auth.users') }}" class="btn btn-outline-secondary">Kembali</a>
                     <button class="btn btn-primary">Simpan Perubahan</button>
                 </div>
             </form>

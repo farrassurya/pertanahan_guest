@@ -43,13 +43,13 @@
                 </style>
 
                 <div class="navbar-nav">
-                    <a href="{{ route('guest.home') }}" class="nav-item nav-link {{ request()->routeIs('guest.home') ? 'active' : '' }}">Home</a>
-                    <a href="{{ route('guest.about') }}" class="nav-item nav-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
+                    <a href="{{ route('pages.guest.home') }}" class="nav-item nav-link {{ request()->routeIs('pages.guest.home') ? 'active' : '' }}">Home</a>
+                    <a href="{{ route('pages.guest.about') }}" class="nav-item nav-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
 
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('guest.services') ? 'active' : '' }}" data-bs-toggle="dropdown">Services</a>
+                        <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') ? 'active' : '' }}" data-bs-toggle="dropdown">Services</a>
                         <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0 centered">
-                            <a href="{{ route('guest.services') }}#jenis" class="dropdown-item">Jenis Penggunaan</a>
+                            <a href="{{ route('pages.guest.services') }}#jenis" class="dropdown-item">Jenis Penggunaan</a>
                             {{-- add more dropdown items here if needed --}}
                         </div>
                     </div>

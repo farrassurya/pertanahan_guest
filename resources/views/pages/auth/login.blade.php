@@ -166,7 +166,7 @@
             @endforeach
         @endif
 
-        <form action="{{ route('auth.login') }}" method="POST">
+        <form action="{{ route('pages.auth.login') }}" method="POST">
             @csrf
             <div class="input-group">
                 <label>Email</label>
@@ -184,7 +184,7 @@
             <button class="btn-login" type="submit">Masuk</button>
         </form>
 
-        <div style="margin-top:14px; font-size:14px; color:#666">Belum punya akun? <a href="{{ route('auth.register') }}" style="color:#1297e4; text-decoration:none; font-weight:600">Daftar sekarang</a></div>
+        <div style="margin-top:14px; font-size:14px; color:#666">Belum punya akun? <a href="{{ route('pages.auth.register') }}" style="color:#1297e4; text-decoration:none; font-weight:600">Daftar sekarang</a></div>
     </div>
 
     <script>

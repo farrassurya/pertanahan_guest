@@ -54,7 +54,7 @@
                         Alurnya simpel: <em>Login &rarr; Create / Read / Update</em>. Sistem ini dibuat supaya administrasi lebih cepat, akurat, dan dapat dipercaya.
                     </p>
 
-                    <a href="{{ route('guest.home') }}" class="btn btn-primary py-2 px-4">Kembali ke Beranda</a>
+                    <a href="{{ route('pages.guest.home') }}" class="btn btn-primary py-2 px-4">Kembali ke Beranda</a>
                 </div>
             </div>
         </div>
