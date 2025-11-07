@@ -18,6 +18,9 @@
         <div class="container">
             <div class="row g-5 align-items-center">
 
+                    {{-- Topbar + Navbar partials --}}
+    @include('layouts.guest.topbar')
+    @include('layouts.guest.navbar')
 
                 {{-- Bagian Kiri: Gambar --}}
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -49,6 +52,7 @@
             </div>
         </div>
     </div>
+    @endsection
 
             {{-- Footer partial --}}
     @include('layouts.guest.footer')

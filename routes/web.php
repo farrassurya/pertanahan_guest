@@ -6,14 +6,14 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\GuestPersilController;
 
 Route::get('/', function () {
-    return view('guest.home');
+    return view('pages.guest.home');
 })->name('guest.home');
 
 Route::get('/persil', [GuestPersilController::class, 'index']);
 
 // Guest pages
 Route::get('/services', function () {
-    return view('guest.services');
+    return view('pages.guest.services');
 })->name('guest.services');
 
 Route::get('/auth', [AuthController::class, 'index'])->name('auth.index'); // tampilkan form login
@@ -40,7 +40,3 @@ Route::post('jenis-penggunaan', [JenisPenggunaanController::class, 'store'])->na
 Route::get('jenis-penggunaan/{id}/edit', [JenisPenggunaanController::class, 'edit'])->name('jenis-penggunaan.edit');
 Route::put('jenis-penggunaan/{id}', [JenisPenggunaanController::class, 'update'])->name('jenis-penggunaan.update');
 Route::delete('jenis-penggunaan/{id}', [JenisPenggunaanController::class, 'destroy'])->name('jenis-penggunaan.destroy');
-
-Route::get('/about', function () {
-    return view('guest.about');
-})->name('guest.about');

@@ -44,7 +44,7 @@
 
                 <div class="navbar-nav">
                     <a href="{{ route('guest.home') }}" class="nav-item nav-link {{ request()->routeIs('guest.home') ? 'active' : '' }}">Home</a>
-                    <a href="{{ route('guest.about') }}" class="nav-item nav-link {{ request()->is('about.home*') ? 'active' : '' }}">About</a>
+                    <a href="{{ asset('assets-guest/about.html') }}" class="nav-item nav-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('guest.services') ? 'active' : '' }}" data-bs-toggle="dropdown">Services</a>
