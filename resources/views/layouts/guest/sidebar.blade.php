@@ -31,10 +31,10 @@
                         class="list-group-item list-group-item-action text-start btn btn-link p-0">Logout</button>
                 </form>
             @else
-                <a href="{{ route('auth.index') }}" class="list-group-item list-group-item-action">Login</a>
-                <a href="{{ route('auth.register') }}" class="list-group-item list-group-item-action">Sign Up</a>
-                <a href="{{ route('auth.users') }}" class="list-group-item list-group-item-action">User</a>
-                <a href="{{ route('jenis-penggunaan.index') }}" class="list-group-item list-group-item-action">DB Jenis Penggunaan</a>
+                <a href="{{ route('auth.index') }}" class="list-group-item list-group-item-action"> <i class="fa fa-sign-in-alt me-3 fa-fw"></i> <span>Login</span> </a>
+                <a href="{{ route('auth.register') }}" class="list-group-item list-group-item-action"> <i class="fa fa-user-plus me-3 fa-fw"></i> <span>Sign Up</span></a>
+                <a href="{{ route('auth.users') }}" class="list-group-item list-group-item-action"> <i class="fa fa-users me-3 fa-fw"></i> <span>User</span></a>
+                <a href="{{ route('jenis-penggunaan.index') }}" class="list-group-item list-group-item-action"> <i class="fa fa-database me-3 fa-fw"></i> <span>DB Jenis Penggunaan</span></a>
             @endif
         </div>
 
@@ -46,4 +46,13 @@
 
         <button id="sidebar-close" class="btn btn-sm btn-outline-secondary mt-3 d-lg-none">Close</button>
     </div>
+
+      <!-- Tombol Toggle Mini Sidebar (hanya desktop) -->
+        <button id="sidebar-toggle-bottom" class="btn btn-light rounded-0 d-none d-lg-block">
+            <i class="fa fa-angle-double-left me-2 fa-fw"></i> <span class="fw-bold">Collapse Sidebar</span>
+        </button>
+    </aside>
+    <!-- Akhir Sidebar -->
 </aside>
+
+
