@@ -65,67 +65,46 @@
             min-width: 90px;
             text-align: center;
         }
-    </style>
 
-    {{-- css sidebar--}}
-    <style>
+        /* HANYA INI YANG DITAMBAHIN - Reset margin body buat hilangkan sidebar space */
+        body {
+            margin-left: 0 !important;
+        }
+
+        /* Sembunyikan sidebar yang tidak dipakai */
         .user-sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            width: 240px; /* slightly wider so long emails won't be cut */
-            background: #fff;
-            border-right: 1px solid rgba(0,0,0,0.04);
-            padding: 12px;
-            z-index: 1050;
-            overflow-y: auto;
-            box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-            transform: translateX(0);
-            transition: transform .22s ease-in-out, width .2s ease-in-out;
+            display: none !important;
         }
 
-        .user-sidebar .user-avatar{
-            width:48px; /* a bit larger so layout breathes */
-            height:48px;
-            font-size:18px;
+        /* PASTIKAN UKURAN NORMAL - Reset semua yang bikin gede */
+        html, body {
+            font-size: 14px !important;
         }
 
-        .user-sidebar .user-sidebar-inner {
-            font-size: 14px; /* slightly smaller text */
-        }
+        h1 { font-size: 2.5rem !important; }
+        h2 { font-size: 2rem !important; }
+        h3 { font-size: 1.75rem !important; }
+        h4 { font-size: 1.5rem !important; }
+        h5 { font-size: 1.25rem !important; }
+        h6 { font-size: 1rem !important; }
 
-        .user-sidebar .list-group-item{
-            border: none;
-            padding-left: 0;
-            padding-right: 0;
-            font-size: 14px;
-        }
+        .display-1 { font-size: 5rem !important; }
+        .display-2 { font-size: 4.5rem !important; }
+        .display-3 { font-size: 4rem !important; }
+        .display-4 { font-size: 3.5rem !important; }
+        .display-5 { font-size: 3rem !important; }
+        .display-6 { font-size: 2.5rem !important; }
 
-        /* When viewport is small, hide sidebar by default and show a toggle button in header */
-        @media (max-width: 991.98px) {
-            .user-sidebar{
-                transform: translateX(-110%);
-                width: 260px; /* keep a bit larger on mobile when opened */
-            }
-            body.sidebar-open {
-                overflow: hidden;
-            }
-        }
+        /* Ukuran icon normal */
+        .fa-4x { font-size: 2.5em !important; }
+        .fa-3x { font-size: 2em !important; }
+        .fa-2x { font-size: 1.5em !important; }
 
-        /* Push page content right on large screens so the sidebar doesn't overlap */
-        @media (min-width: 992px) {
-            body{
-                margin-left: 240px; /* match the new sidebar width */
-            }
-            .d-lg-none.sidebar-toggle-btn{
-                display:none !important;
-            }
-        }
-
-        /* Small helper to collapse sidebar visually */
-        .user-sidebar.collapsed{
-            transform: translateX(-110%);
+        /* Container tetap 100% tapi konten normal */
+        .container-fluid {
+            width: 100% !important;
+            padding-left: 15px;
+            padding-right: 15px;
         }
     </style>
 </head>

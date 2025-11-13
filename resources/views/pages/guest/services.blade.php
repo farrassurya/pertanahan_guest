@@ -7,9 +7,6 @@
     {{-- Topbar partial --}}
     @include('layouts.guest.topbar')
 
-    {{-- Sidebar partial --}}
-    @include('layouts.guest.sidebar')
-
     {{-- Navbar partial --}}
     @include('layouts.guest.navbar')
 
@@ -44,7 +41,13 @@
                 </div>
                 <div class="col-lg-6 mb-n5 wow fadeIn" data-wow-delay="0.7s">
                     <div class="bg-white p-5">
-                        <h2 id="jenis" class="text-uppercase mb-4">Jenis Penggunaan</h2>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 id="jenis" class="text-uppercase mb-0">Jenis Penggunaan</h2>
+                            <!-- Tombol Lihat Daftar -->
+                            <a href="{{ route('pages.jenis-penggunaan.index') }}" class="btn btn-outline-primary btn-sm">
+                                <i class="fa fa-list me-1"></i> Lihat Daftar
+                            </a>
+                        </div>
 
                         <!-- Flash Messages -->
                         @if (session('success'))
@@ -99,9 +102,10 @@
         </div>
     </div>
 
-        {{-- Footer partial --}}
+    {{-- Footer partial --}}
     @include('layouts.guest.footer')
 
     <!-- Appoinment End -->
     @include('layouts.guest.scripts')
 </body>
+</html>

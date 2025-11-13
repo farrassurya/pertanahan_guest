@@ -9,9 +9,6 @@
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
     </div>
 
-    {{-- Sidebar partial (kept consistent with other guest pages) --}}
-    @include('layouts.guest.sidebar')
-
     {{-- Topbar + Navbar partials --}}
     @include('layouts.guest.topbar')
     @include('layouts.guest.navbar')
