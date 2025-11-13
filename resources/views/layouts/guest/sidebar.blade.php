@@ -31,18 +31,18 @@
                         class="list-group-item list-group-item-action text-start btn btn-link p-0">Logout</button>
                 </form>
             @else
-                <a href="{{ route('auth.index') }}" class="list-group-item list-group-item-action"> <i class="fa fa-sign-in-alt me-3 fa-fw"></i> <span>Login</span> </a>
-                <a href="{{ route('auth.register') }}" class="list-group-item list-group-item-action"> <i class="fa fa-user-plus me-3 fa-fw"></i> <span>Sign Up</span></a>
-                <a href="{{ route('auth.users') }}" class="list-group-item list-group-item-action"> <i class="fa fa-users me-3 fa-fw"></i> <span>User</span></a>
-                <a href="{{ route('jenis-penggunaan.index') }}" class="list-group-item list-group-item-action"> <i class="fa fa-database me-3 fa-fw"></i> <span>DB Jenis Penggunaan</span></a>
+                <a href="{{ route('pages.auth.index') }}" class="list-group-item list-group-item-action"> <i class="fa fa-sign-in-alt me-3 fa-fw"></i> <span>Login</span> </a>
+                <a href="{{ route('pages.auth.register') }}" class="list-group-item list-group-item-action"> <i class="fa fa-user-plus me-3 fa-fw"></i> <span>Sign Up</span></a>
+                <a href="{{ route('pages.auth.users') }}" class="list-group-item list-group-item-action"> <i class="fa fa-users me-3 fa-fw"></i> <span>User</span></a>
+                <a href="{{ route('pages.jenis-penggunaan.index') }}" class="list-group-item list-group-item-action"> <i class="fa fa-database me-3 fa-fw"></i> <span>DB Jenis Penggunaan</span></a>
             @endif
         </div>
 
 
         <div class="small text-muted">Quick Links</div>
-        <a class="d-block mb-2" href="{{ route('guest.home') }}">Home</a>
-        <a class="d-block mb-2" href="{{ route('guest.about') }}">About</a>
-        <a class="d-block mb-2" href="{{ route('guest.services') }}">Jenis Penggunaan</a>
+        <a class="d-block mb-2" href="{{ route('pages.guest.home') }}">Home</a>
+        <a class="d-block mb-2" href="{{ route('pages.guest.about') }}">About</a>
+        <a class="d-block mb-2" href="{{ route('pages.guest.services') }}">Jenis Penggunaan</a>
 
         <button id="sidebar-close" class="btn btn-sm btn-outline-secondary mt-3 d-lg-none">Close</button>
     </div>

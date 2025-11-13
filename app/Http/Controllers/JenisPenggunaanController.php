@@ -11,12 +11,12 @@ class JenisPenggunaanController extends Controller
     public function index()
     {
         $items = JenisPenggunaan::orderBy('id', 'asc')->paginate(12);
-        return view('jenis_penggunaan.index', compact('items'));
+        return view('pages.jenis_penggunaan.index', compact('items'));
     }
 
     public function create()
     {
-        return view('jenis_penggunaan.create');
+        return view('pages.jenis_penggunaan.create');
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class JenisPenggunaanController extends Controller
 
         if ($validator->fails()) {
             // always redirect back to home on validation errors for guest submissions
-            return redirect()->route('guest.home')
+            return redirect()->route('pages.guest.home')
                 ->withErrors($validator)
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan dalam pengisian form.');
@@ -45,13 +45,13 @@ class JenisPenggunaanController extends Controller
         ]);
 
         // Redirect guests back to home after storing
-        return redirect()->route('guest.home')->with('success', 'Data Jenis Penggunaan berhasil disimpan!');
+        return redirect()->route('pages.guest.home')->with('success', 'Data Jenis Penggunaan berhasil disimpan!');
     }
 
     public function edit($id)
     {
         $item = JenisPenggunaan::findOrFail($id);
-        return view('jenis_penggunaan.edit', compact('item'));
+        return view('pages.jenis_penggunaan.edit', compact('item'));
     }
 
     public function update(Request $request, $id)
@@ -64,7 +64,7 @@ class JenisPenggunaanController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('jenis-penggunaan.edit', $id)
+            return redirect()->route('pages.jenis-penggunaan.edit', $id)
                 ->withErrors($validator)
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan dalam pengisian form.');
@@ -76,13 +76,13 @@ class JenisPenggunaanController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-    return redirect()->route('guest.home')->with('success', 'Data berhasil diperbarui.');
+    return redirect()->route('pages.guest.home')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $item = JenisPenggunaan::findOrFail($id);
         $item->delete();
-    return redirect()->route('guest.home')->with('success', 'Data berhasil dihapus.');
+    return redirect()->route('pages.guest.home')->with('success', 'Data berhasil dihapus.');
     }
 }

@@ -15,7 +15,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        return view('pages.auth.login');
     }
 
     /**
@@ -39,7 +39,7 @@ class AuthController extends Controller
         // Authentication passed...
         $request->session()->regenerate();
         $user = Auth::user();
-        return redirect()->route('guest.home')->with('success', "Selamat datang, {$user->email}!");
+        return redirect()->route('pages.guest.home')->with('success', "Selamat datang, {$user->email}!");
     }
 
     return back()->withErrors([
@@ -57,7 +57,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('guest.home');
+        return redirect()->route('pages.guest.home');
     }
 
     /**
@@ -65,7 +65,7 @@ class AuthController extends Controller
      */
     public function registerForm()
     {
-        return view('auth.register');
+        return view('pages.auth.register');
     }
 
     /**
@@ -96,7 +96,7 @@ class AuthController extends Controller
 
         // Do NOT auto-login the user after registration. Redirect to the login page
         // with a friendly success message asking them to sign in.
-        return redirect()->route('auth.index')->with('success', "Akun berhasil dibuat untuk: {$user->name}. Silakan login.");
+        return redirect()->route('pages.auth.index')->with('success', "Akun berhasil dibuat untuk: {$user->name}. Silakan login.");
     }
 
     /**
@@ -106,7 +106,7 @@ class AuthController extends Controller
     {
     // show users ordered ascending by id (smallest id at the top)
     $users = User::orderBy('id', 'asc')->paginate(12);
-        return view('auth.users', compact('users'));
+        return view('pages.auth.users', compact('users'));
     }
 
     /**
@@ -115,7 +115,7 @@ class AuthController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('auth.edit', compact('user'));
+    return view('pages.auth.edit', compact('user'));
     }
 
     /**
@@ -146,7 +146,7 @@ class AuthController extends Controller
         }
         $user->save();
 
-        return redirect()->route('auth.users')->with('success', 'User updated successfully.');
+        return redirect()->route('pages.auth.users')->with('success', 'User updated successfully.');
     }
 
     /**
@@ -157,6 +157,6 @@ class AuthController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('auth.users')->with('success', 'User deleted successfully.');
+        return redirect()->route('pages.auth.users')->with('success', 'User deleted successfully.');
     }
 }

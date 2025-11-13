@@ -18,12 +18,12 @@
         <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex align-items-center">
-                <a href="{{ route('guest.home') }}" class="btn btn-outline-secondary me-3" title="Kembali ke Home">
+                <a href="{{ route('pages.guest.home') }}" class="btn btn-outline-secondary me-3" title="Kembali ke Home">
                     <i class="fa fa-arrow-left"></i>
                 </a>
                 <h3 class="m-0">Users</h3>
             </div>
-            <a href="{{ route('auth.register') }}" class="btn btn-success">Tambah User</a>
+            <a href="{{ route('pages.auth.register') }}" class="btn btn-success">Tambah User</a>
         </div>
 
         @if(session('success'))
@@ -77,8 +77,8 @@
                     <div class="d-flex justify-content-between align-items-center user-actions">
                         <div class="small text-muted">Terdaftar: {{ $u->created_at ? $u->created_at->format('d M Y') : '-' }}</div>
                         <div>
-                            <a href="{{ route('auth.users.edit', $u->id) }}" class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i> Edit</a>
-                            <form action="{{ route('auth.users.destroy', $u->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus user ini?');">
+                            <a href="{{ route('pages.auth.users.edit', $u->id) }}" class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i> Edit</a>
+                            <form action="{{ route('pages.auth.users.destroy', $u->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus user ini?');">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>

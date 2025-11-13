@@ -32,7 +32,6 @@
         <div class="container">
             <div class="row g-5 align-items-center">
 
-                {{-- Left: Illustration/Image --}}
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img">
                         <img class="img-fluid w-100 rounded shadow-sm" src="{{ asset('assets-guest/img/aboutPG.webp') }}" alt="Ilustrasi Administrasi Tanah Digital">
@@ -41,7 +40,7 @@
 
                 {{-- Right: Friendly content --}}
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-6 text-uppercase mb-4">Tentang Saya : PERTANAHAN — Guest</h1>
+                    <h1 class="display-6 text-uppercase mb-4">PERTANAHAN — Guest</h1>
 
                     <p class="mb-4">
                         Halo! Kenalin, saya M.Farras Suryaputra (rass) dari kelompok 12 <strong>PERTANAHAN</strong>. Mengurus data tanah itu bisa ribet—jadi kami buat solusi digital yang menyederhanakan semua administrasi persil. Tujuan kami jelas: data yang terstruktur, aman, dan gampang diakses.
@@ -55,7 +54,7 @@
                         Alurnya simpel: <em>Login &rarr; Create / Read / Update</em>. Sistem ini dibuat supaya administrasi lebih cepat, akurat, dan dapat dipercaya.
                     </p>
 
-                    <a href="{{ route('guest.home') }}" class="btn btn-primary py-2 px-4">Kembali ke Beranda</a>
+                    <a href="{{ route('pages.guest.home') }}" class="btn btn-primary py-2 px-4">Kembali ke Beranda</a>
                 </div>
             </div>
         </div>

@@ -4,6 +4,9 @@
 @include('layouts.guest.head')
 
 <body>
+    {{-- Topbar partial --}}
+    @include('layouts.guest.topbar')
+
     {{-- Sidebar partial --}}
     @include('layouts.guest.sidebar')
 
@@ -11,7 +14,7 @@
     @include('layouts.guest.navbar')
 
     <!-- Janji temu -->
-    <div class="container-fluid appoinment mt-6 mb-6 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid appoinment mt-0 mb-1 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container pt-5">
             <div class="row gy-5 gx-0">
                 <div class="col-lg-6 pe-lg-5 wow fadeIn" data-wow-delay="0.3s">
@@ -60,7 +63,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('jenis-penggunaan.store') }}">
+                        <form method="POST" action="{{ route('pages.jenis-penggunaan.store') }}">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-sm-12">
