@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\GuestPersilController;
+use App\Http\Controllers\WargaController;
 
 Route::get('/', function () {
     return view('pages.guest.home');
@@ -44,3 +45,14 @@ Route::delete('jenis-penggunaan/{id}', [JenisPenggunaanController::class, 'destr
 Route::get('/about', function () {
     return view('pages.guest.about');
 })->name('pages.guest.about');
+
+// Routes Warga - bisa diakses tanpa login
+Route::prefix('warga')->name('pages.warga.')->group(function () {
+    Route::get('/', [WargaController::class, 'index'])->name('index');
+    Route::get('/create', [WargaController::class, 'create'])->name('create');
+    Route::post('/', [WargaController::class, 'store'])->name('store');
+    Route::get('/{warga}', [WargaController::class, 'show'])->name('show');
+    Route::get('/{warga}/edit', [WargaController::class, 'edit'])->name('edit');
+    Route::put('/{warga}', [WargaController::class, 'update'])->name('update');
+    Route::delete('/{warga}', [WargaController::class, 'destroy'])->name('destroy');
+});
