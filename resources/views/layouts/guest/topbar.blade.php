@@ -11,6 +11,36 @@
                             height: auto;
                             margin-right: 10px;
                         }
+                        .btn-login-custom {
+                            background: #ffe3a3;
+                            color: #b87d1a;
+                            border: 2px solid #b87d1a;
+                            font-weight: 600;
+                            transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
+                            box-shadow: none;
+                        }
+                        .btn-login-custom:hover, .btn-login-custom:active, .btn-login-custom:focus {
+                            background: #ffd37a;
+                            color: #a36b14;
+                            border-color: #a36b14;
+                            box-shadow: 0 0 0 0.18rem #f5e3c2;
+                            outline: none;
+                        }
+                        .btn-signup-custom {
+                            background: #ffe3a3;
+                            color: #b87d1a;
+                            border: 2px solid #b87d1a;
+                            font-weight: 600;
+                            transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
+                            box-shadow: none;
+                        }
+                        .btn-signup-custom:hover, .btn-signup-custom:active, .btn-signup-custom:focus {
+                            background: #ffd37a;
+                            color: #a36b14;
+                            border-color: #a36b14;
+                            box-shadow: 0 0 0 0.18rem #f5e3c2;
+                            outline: none;
+                        }
                     </style>
                     <img src="{{ asset('assets-guest/img/Logo_BPN-KemenATR_(2017).png') }}" alt="Logo" class="logo-img">
                 </div>

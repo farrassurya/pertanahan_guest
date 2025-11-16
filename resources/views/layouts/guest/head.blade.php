@@ -106,5 +106,59 @@
             padding-left: 15px;
             padding-right: 15px;
         }
+        /* Responsive grid dan gambar */
+        .container,
+        .container-fluid {
+            max-width: 100vw;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        img, .img-fluid {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        [class^="col-"], [class*=" col-"] {
+            padding-left: 15px;
+            padding-right: 15px;
+            min-width: 0;
+        }
+        /* Card grid warga */
+        .warga-card-grid {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+        @media (max-width: 991px) {
+            .main-content {
+                padding: 0 0.5rem;
+            }
+            .warga-card-grid {
+                grid-template-columns: 1fr;
+            }
+            .warga-detail-card {
+                padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+            }
+            .warga-detail-title {
+                font-size: 1.15rem;
+            }
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.2rem !important; }
+            .warga-detail-avatar {
+                width: 56px;
+                height: 56px;
+                font-size: 1.5rem;
+                top: -28px;
+            }
+            .warga-detail-title {
+                margin-top: 32px;
+            }
+        }
     </style>
 </head>
