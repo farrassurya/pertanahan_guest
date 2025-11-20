@@ -33,7 +33,7 @@ class PersilController extends Controller
         // Validation Rules
         $request->validate([
             'kode_persil'      => 'required|string|max:50|unique:persil,kode_persil',
-            'pemilik_warga_id' => 'required|exists:warga,id',
+            'pemilik_warga_id' => 'required|exists:warga,warga_id',
             'luas_m2'          => 'required|numeric|min:1',
             'penggunaan'       => 'required|string|max:100',
             'alamat_lahan'     => 'required|string',
@@ -57,10 +57,9 @@ class PersilController extends Controller
             // Simpan data
             Persil::create($request->all());
 
-            // Redirect dengan success message
-            return redirect()->route('persil.create')
-                ->with('success', 'Data persil berhasil disimpan!')
-                ->withInput(); // Untuk repopulate form jika ada field lain
+            // Redirect ke index dengan success message
+            return redirect()->route('pages.persil.index')
+                ->with('success', 'Data persil berhasil disimpan!');
         } catch (\Exception $e) {
             // Redirect back dengan error message
             return redirect()->back()
@@ -97,7 +96,7 @@ class PersilController extends Controller
 
         $request->validate([
             'kode_persil'      => 'required|string|max:50|unique:persil,kode_persil,' . $id . ',persil_id',
-            'pemilik_warga_id' => 'required|exists:warga,id',
+            'pemilik_warga_id' => 'required|exists:warga,warga_id',
             'luas_m2'          => 'required|numeric|min:1',
             'penggunaan'       => 'required|string|max:100',
             'alamat_lahan'     => 'required|string',
@@ -107,7 +106,7 @@ class PersilController extends Controller
 
         try {
             $persil->update($request->all());
-            return redirect()->route('persil.index')
+            return redirect()->route('pages.persil.index')
                 ->with('success', 'Data persil berhasil diupdate!');
         } catch (\Exception $e) {
             return redirect()->back()
@@ -125,7 +124,7 @@ class PersilController extends Controller
             $persil = Persil::findOrFail($id);
             $persil->delete();
 
-            return redirect()->route('persil.index')
+            return redirect()->route('pages.persil.index')
                 ->with('success', 'Data persil berhasil dihapus!');
         } catch (\Exception $e) {
             return redirect()->back()

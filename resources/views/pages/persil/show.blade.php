@@ -1,19 +1,19 @@
 @extends('layouts.guest.app')
 
-@section('title', 'Detail Warga - Pertanahan')
+@section('title', 'Detail Persil - Pertanahan')
 
 @section('content')
 <div class="container-fluid py-4">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="text-uppercase">Detail Data Warga</h2>
-            <a href="{{ route('pages.warga.index') }}" class="btn btn-secondary">
+            <h2 class="text-uppercase">Detail Data Persil</h2>
+            <a href="{{ route('pages.persil.index') }}" class="btn btn-secondary">
                 <i class="fa fa-arrow-left me-1"></i> Kembali
             </a>
         </div>
 
         <style>
-            .warga-detail-card {
+            .persil-detail-card {
                 background: #fff;
                 border-radius: 20px;
                 box-shadow: 0 8px 32px rgba(184, 125, 26, 0.12);
@@ -23,7 +23,7 @@
                 margin: 0 auto;
                 position: relative;
             }
-            .warga-detail-avatar {
+            .persil-detail-avatar {
                 width: 80px;
                 height: 80px;
                 border-radius: 50%;
@@ -40,48 +40,44 @@
                 transform: translateX(-50%);
                 border: 3px solid #fff;
             }
-            .warga-detail-title {
+            .persil-detail-title {
                 text-align: center;
-                font-size: 1.5rem;
-                font-weight: bold;
+                font-size: 1.8rem;
+                font-weight: 700;
                 color: #b87d1a;
                 margin-top: 55px;
                 margin-bottom: 1.2rem;
-                letter-spacing: 1px;
+                letter-spacing: 1.2px;
+                text-shadow: 0 2px 4px rgba(184, 125, 26, 0.1);
             }
-            .warga-detail-grid {
+            .persil-detail-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 1.5rem;
                 margin-bottom: 1.5rem;
             }
-            .warga-detail-info {
-                font-size: 1.08rem;
+            .persil-detail-info {
+                font-size: 1.05rem;
                 margin-bottom: 0.7rem;
-                color: #222;
+                color: #555;
             }
-            .warga-detail-info strong {
+            .persil-detail-info strong {
                 color: #b87d1a;
-                min-width: 120px;
+                min-width: 140px;
                 display: inline-block;
-            }
-            .warga-detail-badge {
-                display: inline-block;
-                background: #b87d1a;
-                color: #fff;
-                font-size: 0.95rem;
                 font-weight: 600;
-                border-radius: 12px;
-                padding: 0.2rem 0.8rem;
-                margin-left: 0.5rem;
             }
-            .warga-detail-actions {
+            .persil-detail-info .value-text {
+                color: #222;
+                font-weight: 400;
+            }
+            .persil-detail-actions {
                 display: flex;
                 justify-content: center;
                 gap: 1rem;
                 margin-top: 2rem;
             }
-            .warga-detail-actions .btn {
+            .persil-detail-actions .btn {
                 border-radius: 8px;
                 font-weight: 600;
                 font-size: 1.08rem;
@@ -90,47 +86,47 @@
                 border: none;
                 transition: background 0.18s, color 0.18s, box-shadow 0.18s;
             }
-            .warga-detail-actions .btn-warning {
+            .persil-detail-actions .btn-warning {
                 background: #ffe3a3;
                 color: #b87d1a;
             }
-            .warga-detail-actions .btn-warning:hover {
+            .persil-detail-actions .btn-warning:hover {
                 background: #ffd37a;
                 color: #a36b14;
             }
-            .warga-detail-actions .btn-danger {
+            .persil-detail-actions .btn-danger {
                 background: #f7c2b7;
                 color: #b87d1a;
             }
-            .warga-detail-actions .btn-danger:hover {
+            .persil-detail-actions .btn-danger:hover {
                 background: #f28b7b;
                 color: #fff;
             }
         </style>
-        <div class="warga-detail-card">
-            <div class="warga-detail-avatar">
-                <i class="fa fa-user"></i>
+
+        <div class="persil-detail-card">
+            <div class="persil-detail-avatar">
+                <i class="fa fa-map-marked-alt"></i>
             </div>
-            <div class="warga-detail-title">{{ $warga->nama }}</div>
-            <div class="warga-detail-grid">
+            <div class="persil-detail-title">{{ $persil->kode_persil }}</div>
+            <div class="persil-detail-grid">
                 <div>
-                    <div class="warga-detail-info"><strong>No KTP</strong>: {{ $warga->no_ktp }}</div>
-                    <div class="warga-detail-info"><strong>Jenis Kelamin</strong>: {{ $warga->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
-                        <span class="warga-detail-badge">{{ $warga->jenis_kelamin == 'L' ? 'L' : 'P' }}</span>
-                    </div>
-                    <div class="warga-detail-info"><strong>Agama</strong>: {{ $warga->agama }}</div>
+                    <div class="persil-detail-info"><strong>Kode Persil</strong>: <span class="value-text">{{ $persil->kode_persil }}</span></div>
+                    <div class="persil-detail-info"><strong>Pemilik Warga</strong>: <span class="value-text">{{ $persil->pemilik->nama ?? '-' }}</span></div>
+                    <div class="persil-detail-info"><strong>Luas (m2)</strong>: <span class="value-text">{{ $persil->luas_m2 }}</span></div>
+                    <div class="persil-detail-info"><strong>Alamat Lahan</strong>: <span class="value-text">{{ $persil->alamat_lahan }}</span></div>
                 </div>
                 <div>
-                    <div class="warga-detail-info"><strong>Pekerjaan</strong>: {{ $warga->pekerjaan ?? '-' }}</div>
-                    <div class="warga-detail-info"><strong>Telepon</strong>: {{ $warga->telp ?? '-' }}</div>
-                    <div class="warga-detail-info"><strong>Email</strong>: {{ $warga->email ?? '-' }}</div>
+                    <div class="persil-detail-info"><strong>Penggunaan</strong>: <span class="value-text">{{ $persil->penggunaan }}</span></div>
+                    <div class="persil-detail-info"><strong>RT</strong>: <span class="value-text">{{ $persil->rt }}</span></div>
+                    <div class="persil-detail-info"><strong>RW</strong>: <span class="value-text">{{ $persil->rw }}</span></div>
                 </div>
             </div>
-            <div class="warga-detail-actions">
-                <a href="{{ route('pages.warga.edit', $warga->warga_id) }}" class="btn btn-warning">
+            <div class="persil-detail-actions">
+                <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn btn-warning">
                     <i class="fa fa-edit me-1"></i> Edit
                 </a>
-                <form action="{{ route('pages.warga.destroy', $warga->warga_id) }}" method="POST" class="d-inline">
+                <form action="{{ route('pages.persil.destroy', $persil->persil_id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus data?')">

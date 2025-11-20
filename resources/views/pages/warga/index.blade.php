@@ -28,115 +28,176 @@
             @endif
 
             <style>
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
                 .warga-card-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-                    gap: 2rem;
+                    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+                    gap: 1.25rem;
                 }
+
                 .warga-card {
-                    background: #fff;
-                    border-radius: 18px;
-                    box-shadow: 0 6px 24px rgba(184, 125, 26, 0.10);
-                    padding: 2rem 1.5rem 1.5rem 1.5rem;
-                    transition: box-shadow 0.2s, transform 0.2s;
+                    border: 0;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    background: linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+                    box-shadow: 0 8px 30px rgba(11, 18, 35, 0.06);
+                    transition: transform .28s cubic-bezier(.2, .9, .3, 1), box-shadow .28s ease;
                     position: relative;
-                    border: 2px solid #f5e3c2;
+                    border-left: 6px solid rgba(184, 125, 26, 0.14);
+                    min-height: 140px;
+                    padding: 1.1rem 1.25rem;
                 }
+
                 .warga-card:hover {
-                    box-shadow: 0 12px 36px rgba(184, 125, 26, 0.18);
-                    transform: translateY(-4px) scale(1.02);
-                    border-color: #b87d1a;
+                    transform: translateY(-8px);
+                    box-shadow: 0 18px 48px rgba(11, 18, 35, 0.12);
                 }
+
+                .warga-card::after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 6px;
+                    background: linear-gradient(180deg, #b87d1a, #e6b66a);
+                    opacity: .08;
+                }
+
                 .warga-card .card-title {
-                    font-size: 1.3rem;
-                    font-weight: bold;
-                    margin-bottom: 0.7rem;
-                    color: #b87d1a;
-                    letter-spacing: 0.5px;
-                }
-                .warga-card .card-info {
+                    font-weight: 700;
+                    letter-spacing: .2px;
+                    font-family: 'Poppins', sans-serif;
                     font-size: 1.05rem;
-                    margin-bottom: 0.3rem;
-                    color: #222;
+                    color: #1f2d3d;
+                    margin-bottom: 0.4rem;
                 }
+
+                .warga-card .card-meta {
+                    font-size: 13px;
+                    color: #6c757d;
+                    margin-bottom: 0.6rem;
+                }
+
+                .warga-card .card-body {
+                    padding: 0;
+                }
+
+                .warga-card .card-info {
+                    color: #555;
+                    margin-bottom: 0.35rem;
+                    font-size: 14px;
+                    line-height: 1.5;
+                }
+
                 .warga-card .card-info strong {
                     color: #b87d1a;
+                    font-weight: 600;
                 }
+
                 .warga-card .card-actions {
-                    position: absolute;
-                    top: 1.1rem;
-                    right: 1.1rem;
                     display: flex;
-                    gap: 0.7rem;
+                    gap: 0.5rem;
                 }
+
                 .warga-card .card-actions .btn {
-                    border-radius: 50%;
-                    width: 40px;
-                    height: 40px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 1.15rem;
-                    box-shadow: 0 2px 8px rgba(184, 125, 26, 0.08);
-                    border: none;
-                    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+                    font-size: 12px;
+                    padding: 0.35rem 0.65rem;
+                    border-radius: 6px;
+                    transition: all 0.2s ease;
                 }
-                .warga-card .btn-info {
-                    background: #b87d1a;
-                    color: #fff;
+
+                .warga-card .card-actions .btn i {
+                    font-size: 12px;
                 }
-                .warga-card .btn-info:hover {
-                    background: #a36b14;
-                    color: #fff;
-                }
-                .warga-card .btn-warning {
-                    background: #ffe3a3;
+
+                .warga-card .btn-outline-primary {
                     color: #b87d1a;
+                    border-color: #b87d1a;
                 }
-                .warga-card .btn-warning:hover {
-                    background: #ffd37a;
-                    color: #a36b14;
-                }
-                .warga-card .btn-danger {
-                    background: #f7c2b7;
-                    color: #b87d1a;
-                }
-                .warga-card .btn-danger:hover {
-                    background: #f28b7b;
+
+                .warga-card .btn-outline-primary:hover {
+                    background-color: #b87d1a;
+                    border-color: #b87d1a;
                     color: #fff;
                 }
-                .warga-card .fa {
-                    vertical-align: middle;
+
+                .warga-card .btn-outline-secondary {
+                    color: #6c757d;
+                    border-color: #6c757d;
+                }
+
+                .warga-card .btn-outline-secondary:hover {
+                    background-color: #6c757d;
+                    border-color: #6c757d;
+                    color: #fff;
+                }
+
+                .warga-card .btn-outline-danger {
+                    color: #dc3545;
+                    border-color: #dc3545;
+                }
+
+                .warga-card .btn-outline-danger:hover {
+                    background-color: #dc3545;
+                    border-color: #dc3545;
+                    color: #fff;
                 }
             </style>
+
             <div class="warga-card-grid">
                 @forelse ($warga as $item)
-                    <div class="warga-card">
-                        <div class="card-actions">
-                            <a href="{{ route('pages.warga.show', $item->warga_id) }}" class="btn btn-info" title="Lihat Detail">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                            <a href="{{ route('pages.warga.edit', $item->warga_id) }}" class="btn btn-warning" title="Edit">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <form action="{{ route('pages.warga.destroy', $item->warga_id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" title="Hapus" onclick="return confirm('Yakin hapus data?')">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>
+                    <div class="card warga-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <div class="card-title">{{ $item->nama }}</div>
+                                    <div class="card-meta">No KTP: {{ $item->no_ktp }}</div>
+                                </div>
+                                <div class="card-actions">
+                                    <a href="{{ route('pages.warga.show', $item->warga_id) }}"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="Lihat Detail">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('pages.warga.edit', $item->warga_id) }}"
+                                       class="btn btn-sm btn-outline-secondary"
+                                       title="Edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('pages.warga.destroy', $item->warga_id) }}"
+                                          method="POST"
+                                          style="display:inline-block;"
+                                          onsubmit="return confirm('Hapus data ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-outline-danger" title="Hapus">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <p class="card-info mb-2">
+                                <strong>Jenis Kelamin:</strong> {{ $item->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
+                            </p>
+                            <p class="card-info mb-2">
+                                <strong>Agama:</strong> {{ $item->agama }}
+                            </p>
+                            <p class="card-info mb-2">
+                                <strong>Pekerjaan:</strong> {{ $item->pekerjaan }}
+                            </p>
+                            <p class="card-info mb-0">
+                                <strong>Email:</strong> {{ $item->email }}
+                            </p>
                         </div>
-                        <div class="card-title">{{ $item->nama }}</div>
-                        <div class="card-info"><strong>No KTP:</strong> {{ $item->no_ktp }}</div>
-                        <div class="card-info"><strong>Jenis Kelamin:</strong> {{ $item->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</div>
-                        <div class="card-info"><strong>Agama:</strong> {{ $item->agama }}</div>
-                        <div class="card-info"><strong>Pekerjaan:</strong> {{ $item->pekerjaan }}</div>
-                        <div class="card-info"><strong>Email:</strong> {{ $item->email }}</div>
                     </div>
                 @empty
-                    <div class="warga-card">
-                        <div class="card-title">Belum ada data warga.</div>
+                    <div class="card warga-card">
+                        <div class="card-body">
+                            <div class="card-title">Belum ada data warga.</div>
+                        </div>
                     </div>
                 @endforelse
             </div>

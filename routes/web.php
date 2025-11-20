@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -5,6 +6,18 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\GuestPersilController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\PersilController;
+
+// Routes Persil - bisa diakses tanpa login
+Route::prefix('persil')->name('pages.persil.')->group(function () {
+    Route::get('/', [PersilController::class, 'index'])->name('index');
+    Route::get('/create', [PersilController::class, 'create'])->name('create');
+    Route::post('/', [PersilController::class, 'store'])->name('store');
+    Route::get('/{persil}', [PersilController::class, 'show'])->name('show');
+    Route::get('/{persil}/edit', [PersilController::class, 'edit'])->name('edit');
+    Route::put('/{persil}', [PersilController::class, 'update'])->name('update');
+    Route::delete('/{persil}', [PersilController::class, 'destroy'])->name('destroy');
+});
 
 Route::get('/', function () {
     return view('pages.guest.home');

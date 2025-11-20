@@ -89,8 +89,12 @@
                             class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') ? 'active' : '' }}"
                             data-bs-toggle="dropdown">Services</a>
                         <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0 centered">
-                            <a href="{{ route('pages.guest.services') }}#jenis" class="dropdown-item">Jenis
-                                Penggunaan</a>
+                            <a href="{{ route('pages.persil.index') }}" class="dropdown-item">
+                                <i class="fa fa-certificate me-2 text-warning"></i> Data Persil
+                            </a>
+                            <a href="{{ route('pages.guest.services') }}#jenis" class="dropdown-item">
+                                <i class="fa fa-tags me-2 text-success"></i> Jenis Penggunaan
+                            </a>
                             <!-- Data dari DB Jenis Penggunaan -->
                             @if (isset($jenisPenggunaanList) && count($jenisPenggunaanList) > 0)
                                 @foreach ($jenisPenggunaanList as $jenis)

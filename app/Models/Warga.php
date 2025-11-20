@@ -20,9 +20,6 @@ class Warga extends Model
         'pekerjaan',
         'telp',
         'email',
-        'alamat',
-        'rt',
-        'rw',
         'no_hp'
     ];
 }
