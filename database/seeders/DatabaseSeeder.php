@@ -13,11 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Panggil seeder untuk membuat user pertama, data dummy warga, dan persil
+        $this->call([
+            CreateFirstUser::class,
+            CreateWargaDummy::class,  // Seeder data warga dummy (harus duluan)
+            CreatePersilDummy::class, // Seeder data persil dummy (butuh warga_id)
         ]);
+
+        // Uncomment jika ingin membuat dummy users untuk testing
+        // User::factory(10)->create();
     }
 }

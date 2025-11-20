@@ -28,7 +28,12 @@
 
     <div class="auth-center">
         <div class="card p-4 shadow-sm auth-card" style="max-width:480px; width:100%;">
-            <h4 class="mb-3">Register (Sign Up)</h4>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0">Register (Sign Up)</h4>
+                <a href="{{ route('pages.guest.home') }}" class="btn btn-sm btn-outline-secondary">
+                    <i class="fa fa-arrow-left me-1"></i> Home
+                </a>
+            </div>
 
             {{-- success message --}}
             @if(session('success'))
