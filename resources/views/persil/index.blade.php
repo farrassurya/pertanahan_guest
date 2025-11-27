@@ -23,6 +23,34 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
+
+        {{-- Wrapper with border --}}
+        <div class="position-relative rounded-3 p-4 bg-white" style="border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05); background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
+            {{-- Top accent border --}}
+            <div class="position-absolute top-0 start-0 w-100" style="height: 4px; background: linear-gradient(90deg, #b87d1a 0%, #d4a055 50%, #b87d1a 100%); border-radius: 8px 8px 0 0;"></div>
+
+            {{-- Filter --}}
+            <div class="mb-4">
+                <form method="GET" action="{{ route('pages.persil.index') }}" class="d-flex gap-2 align-items-end">
+                    <div>
+                        <select name="rt" class="form-select form-select-lg" onchange="this.form.submit()" style="border-radius: 12px; min-width: 200px; padding: 12px 20px; font-size: 1rem;">
+                            <option value="">Semua RT</option>
+                            @foreach($rtList as $rt)
+                                <option value="{{ $rt }}" {{ request('rt') == $rt ? 'selected' : '' }}>RT {{ $rt }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <select name="rw" class="form-select form-select-lg" onchange="this.form.submit()" style="border-radius: 12px; min-width: 200px; padding: 12px 20px; font-size: 1rem;">
+                            <option value="">Semua RW</option>
+                            @foreach($rwList as $rw)
+                                <option value="{{ $rw }}" {{ request('rw') == $rw ? 'selected' : '' }}>RW {{ $rw }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </form>
+            </div>
+
         <style>
             /* make grid similar to jenis penggunaan cards */
             .persil-card-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.25rem; }
@@ -118,11 +146,13 @@
         </div>
 
         {{-- Pagination --}}
-        <div class="mt-4 mb-3">
+        <div class="mt-4 mb-0">
             <nav aria-label="Pagination Persil">
                 {{ $persil->onEachSide(2)->links('pagination::bootstrap-5') }}
             </nav>
         </div>
+        </div>
+        {{-- End wrapper --}}
     </div>
 </div>
 @endsection

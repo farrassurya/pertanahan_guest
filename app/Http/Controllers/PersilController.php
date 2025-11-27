@@ -10,10 +10,27 @@ class PersilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $persil = Persil::with('pemilik')->orderBy('created_at', 'desc')->paginate(9);
-        return view('persil.index', compact('persil'));
+        $query = Persil::with('pemilik');
+
+        // Filter by RT
+        if ($request->filled('rt')) {
+            $query->where('rt', $request->rt);
+        }
+
+        // Filter by RW
+        if ($request->filled('rw')) {
+            $query->where('rw', $request->rw);
+        }
+
+        $persil = $query->orderBy('created_at', 'desc')->paginate(9)->withQueryString();
+
+        // Get unique RT and RW values for filter dropdown
+        $rtList = Persil::whereNotNull('rt')->distinct()->pluck('rt')->sort()->values();
+        $rwList = Persil::whereNotNull('rw')->distinct()->pluck('rw')->sort()->values();
+
+        return view('persil.index', compact('persil', 'rtList', 'rwList'));
     }
 
     /**

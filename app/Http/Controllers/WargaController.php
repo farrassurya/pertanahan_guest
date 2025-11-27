@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 
 class WargaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $warga = Warga::paginate(9);
+        $query = Warga::query();
+
+        // Filter berdasarkan jenis kelamin
+        if ($request->filled('jenis_kelamin')) {
+            $query->where('jenis_kelamin', $request->jenis_kelamin);
+        }
+
+        $warga = $query->orderBy('nama', 'asc')->paginate(9)->withQueryString();
+
         return view('pages.warga.index', compact('warga'));
     }
 

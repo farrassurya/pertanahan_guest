@@ -220,7 +220,7 @@
                     <!-- Services dengan Dropdown -->
                     <div class="nav-item dropdown">
                         <a href="#"
-                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') || request()->routeIs('pages.persil.*') ? 'active' : '' }}"
+                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') || request()->routeIs('pages.persil.*') || request()->routeIs('pages.jenis-penggunaan.*') ? 'active' : '' }}"
                             data-bs-toggle="dropdown">Services</a>
                         <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0 centered">
                             <a href="{{ route('pages.persil.index') }}" class="dropdown-item">
