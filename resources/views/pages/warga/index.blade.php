@@ -27,6 +27,7 @@
                 </div>
             @endif
 
+            {{-- card --}}
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -224,6 +225,13 @@
                         </div>
                     </div>
                 @endforelse
+            </div>
+
+            {{-- Pagination --}}
+            <div class="mt-4 mb-3">
+                <nav aria-label="Pagination Warga">
+                    {{ $warga->onEachSide(2)->links('pagination::bootstrap-5') }}
+                </nav>
             </div>
         </div>
     </div>

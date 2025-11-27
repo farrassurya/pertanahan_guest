@@ -116,6 +116,13 @@
                 </div>
             @endforelse
         </div>
+
+        {{-- Pagination --}}
+        <div class="mt-4 mb-3">
+            <nav aria-label="Pagination Persil">
+                {{ $persil->onEachSide(2)->links('pagination::bootstrap-5') }}
+            </nav>
+        </div>
     </div>
 </div>
 @endsection

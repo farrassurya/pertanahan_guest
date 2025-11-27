@@ -10,7 +10,7 @@ class JenisPenggunaanController extends Controller
 {
     public function index()
     {
-        $items = JenisPenggunaan::orderBy('id', 'asc')->paginate(12);
+        $items = JenisPenggunaan::orderBy('id', 'asc')->paginate(9);
         return view('pages.jenis_penggunaan.index', compact('items'));
     }
 

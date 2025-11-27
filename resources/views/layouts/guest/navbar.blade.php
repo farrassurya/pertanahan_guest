@@ -211,7 +211,7 @@
             </div>
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav">
+                <div class="navbar-nav ms-lg-4">
                     <a href="{{ route('pages.guest.home') }}"
                         class="nav-item nav-link {{ request()->routeIs('pages.guest.home') ? 'active' : '' }}">Home</a>
                     <a href="{{ route('pages.guest.about') }}"

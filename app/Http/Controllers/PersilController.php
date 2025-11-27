@@ -12,7 +12,7 @@ class PersilController extends Controller
      */
     public function index()
     {
-        $persil = Persil::with('pemilik')->orderBy('created_at', 'desc')->get();
+        $persil = Persil::with('pemilik')->orderBy('created_at', 'desc')->paginate(9);
         return view('persil.index', compact('persil'));
     }
 
