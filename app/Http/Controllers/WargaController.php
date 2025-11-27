@@ -8,16 +8,14 @@ class WargaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Warga::query();
+        $filterableColumns = ['jenis_kelamin'];
 
-        // Filter berdasarkan jenis kelamin
-        if ($request->filled('jenis_kelamin')) {
-            $query->where('jenis_kelamin', $request->jenis_kelamin);
-        }
+        $query = Warga::query()
+            ->filter($request, $filterableColumns);
 
-        // Search berdasarkan nama
+        // Searchable column: nama
         if ($request->filled('search')) {
-            $query->where('nama', 'LIKE', '%' . $request->search . '%');
+            $query->search($request->search);
         }
 
         $warga = $query->orderBy('nama', 'asc')->paginate(9)->withQueryString();

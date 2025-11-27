@@ -12,28 +12,14 @@ class PersilController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Persil::with('pemilik');
+        $filterableColumns = ['rt', 'rw'];
 
-        // Filter by RT
-        if ($request->filled('rt')) {
-            $query->where('rt', $request->rt);
-        }
+        $query = Persil::with('pemilik')
+            ->filter($request, $filterableColumns);
 
-        // Filter by RW
-        if ($request->filled('rw')) {
-            $query->where('rw', $request->rw);
-        }
-
-        // Search by kode_persil, pemilik name, or penggunaan
+        // Searchable columns: kode_persil, penggunaan, pemilik.nama
         if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('kode_persil', 'LIKE', '%' . $search . '%')
-                  ->orWhere('penggunaan', 'LIKE', '%' . $search . '%')
-                  ->orWhereHas('pemilik', function($q) use ($search) {
-                      $q->where('nama', 'LIKE', '%' . $search . '%');
-                  });
-            });
+            $query->search($request->search);
         }
 
         $persil = $query->orderBy('created_at', 'desc')->paginate(9)->withQueryString();
@@ -42,7 +28,7 @@ class PersilController extends Controller
         $rtList = Persil::whereNotNull('rt')->distinct()->pluck('rt')->sort()->values();
         $rwList = Persil::whereNotNull('rw')->distinct()->pluck('rw')->sort()->values();
 
-        return view('persil.index', compact('persil', 'rtList', 'rwList'));
+        return view('pages.persil.index', compact('persil', 'rtList', 'rwList'));
     }
 
     /**
@@ -51,7 +37,7 @@ class PersilController extends Controller
     public function create()
     {
         $warga = Warga::all(); // Untuk dropdown pemilik
-        return view('persil.form', compact('warga'));
+        return view('pages.persil.create', compact('warga'));
     }
 
     /**
@@ -103,7 +89,7 @@ class PersilController extends Controller
     public function show(string $id)
     {
         $persil = Persil::with('pemilik')->findOrFail($id);
-        return view('persil.show', compact('persil'));
+        return view('pages.persil.show', compact('persil'));
     }
 
     /**
@@ -113,7 +99,7 @@ class PersilController extends Controller
     {
         $persil = Persil::findOrFail($id);
         $warga  = Warga::all();
-        return view('persil.edit', compact('persil', 'warga'));
+        return view('pages.persil.edit', compact('persil', 'warga'));
     }
 
     /**

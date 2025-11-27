@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container mt-4">
-    @include('persil.form')
+    @include('pages.persil.form')
 </div>
 @endsection

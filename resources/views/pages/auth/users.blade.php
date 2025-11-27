@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-@include('layouts.guest.head')
+@extends('layouts.guest.app')
+@section('title', 'Users - Pertanahan')
+@section('content')
+
 <body class="db-no-sidebar">
 
     <style>
@@ -18,12 +19,9 @@
         <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex align-items-center">
-                <a href="{{ route('pages.guest.home') }}" class="btn btn-outline-secondary me-3" title="Kembali ke Home">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
                 <h3 class="m-0">Users</h3>
             </div>
-            <a href="{{ route('pages.auth.register') }}" class="btn btn-success">Tambah User</a>
+            <a href="{{ route('pages.auth.register') }}" class="btn" style="background-color: #b87d1a; color: white; border: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#a36b14'" onmouseout="this.style.backgroundColor='#b87d1a'">Tambah User</a>
         </div>
 
         @if(session('success'))
@@ -96,3 +94,4 @@
     @include('layouts.guest.scripts')
 </body>
 </html>
+@endsection

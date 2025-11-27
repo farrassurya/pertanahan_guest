@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class Persil extends Model
 {
@@ -21,5 +22,32 @@ class Persil extends Model
     public function media(): HasMany
     {
         return $this->hasMany(Media::class, 'ref_id')->where('ref_table', 'persil');
+    }
+
+    /**
+     * Scope untuk filterable columns
+     */
+    public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
+    {
+        foreach ($filterableColumns as $column) {
+            if ($request->filled($column)) {
+                $query->where($column, $request->input($column));
+            }
+        }
+        return $query;
+    }
+
+    /**
+     * Scope untuk searchable columns
+     */
+    public function scopeSearch(Builder $query, $search): Builder
+    {
+        return $query->where(function($q) use ($search) {
+            $q->where('kode_persil', 'LIKE', '%' . $search . '%')
+              ->orWhere('penggunaan', 'LIKE', '%' . $search . '%')
+              ->orWhereHas('pemilik', function($q) use ($search) {
+                  $q->where('nama', 'LIKE', '%' . $search . '%');
+              });
+        });
     }
 }

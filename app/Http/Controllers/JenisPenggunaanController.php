@@ -10,11 +10,14 @@ class JenisPenggunaanController extends Controller
 {
     public function index(Request $request)
     {
-        $query = JenisPenggunaan::query();
+        $filterableColumns = [];
 
-        // Search berdasarkan nama penggunaan
+        $query = JenisPenggunaan::query()
+            ->filter($request, $filterableColumns);
+
+        // Searchable column: nama_penggunaan
         if ($request->filled('search')) {
-            $query->where('nama_penggunaan', 'LIKE', '%' . $request->search . '%');
+            $query->search($request->search);
         }
 
         $items = $query->orderBy('id', 'asc')->paginate(9)->withQueryString();
