@@ -28,13 +28,13 @@ class CreatePersilDummy extends Seeder
         }
 
         // Cek apakah sudah ada data dummy persil (dengan kode PRS-)
-        $existingDummy = Persil::where('kode_persil', 'LIKE', 'PRS-%')->count();
-        if ($existingDummy > 0) {
-            $this->command->warn("⚠️  Sudah ada {$existingDummy} data persil dummy! Skip seeding.");
-            $this->command->info('💡 Jika ingin reset, hapus dulu data persil dummy dengan:');
-            $this->command->info('   php artisan tinker --execute="\\App\\Models\\Persil::where(\'kode_persil\', \'LIKE\', \'PRS-%\')->delete();"');
-            return;
-        }
+        // $existingDummy = Persil::where('kode_persil', 'LIKE', 'PRS-%')->count();
+        // if ($existingDummy > 0) {
+        //     $this->command->warn("⚠️  Sudah ada {$existingDummy} data persil dummy! Skip seeding.");
+        //     $this->command->info('💡 Jika ingin reset, hapus dulu data persil dummy dengan:');
+        //     $this->command->info('   php artisan tinker --execute="\\App\\Models\\Persil::where(\'kode_persil\', \'LIKE\', \'PRS-%\')->delete();"');
+        //     return;
+        // }
 
         // Generate 50 data persil dummy
         foreach (range(1, 50) as $index) {

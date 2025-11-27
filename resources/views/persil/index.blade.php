@@ -5,8 +5,8 @@
 @section('content')
 <div class="container-fluid py-4">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="text-uppercase">Data Persil</h2>
+        <div class="d-flex flex-row justify-content-between align-items-center mb-4">
+            <h2 class="text-uppercase mb-0">Data Persil</h2>
             <a href="{{ route('pages.persil.create') }}" class="btn btn-primary">
                 <i class="fa fa-plus me-1"></i> Tambah Persil
             </a>
@@ -25,7 +25,14 @@
         @endif
         <style>
             /* make grid similar to jenis penggunaan cards */
-            .persil-card-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(340px,1fr)); gap: 1.25rem; }
+            .persil-card-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.25rem; }
+
+            @media (max-width: 576px) {
+                .persil-card-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+                }
+            }
 
             .persil-card {
                 border: 0; border-radius: 12px; overflow: hidden;
@@ -49,6 +56,27 @@
             .persil-card .card-actions .btn { font-size:13px; }
 
             .persil-card::after{ content:''; position:absolute; left:0; top:0; bottom:0; width:6px; background: linear-gradient(180deg,#b87d1a,#e6b66a); opacity:.08; }
+
+            @media (max-width: 576px) {
+                .persil-card {
+                    padding: 1rem;
+                }
+                .persil-card .card-title {
+                    font-size: 0.95rem;
+                }
+                .persil-card .card-meta,
+                .persil-card p {
+                    font-size: 12px;
+                }
+                .persil-card .card-actions {
+                    flex-wrap: wrap;
+                    gap: 0.4rem;
+                }
+                .persil-card .card-actions .btn {
+                    font-size: 11px;
+                    padding: 0.3rem 0.5rem;
+                }
+            }
         </style>
         <div class="persil-card-grid">
             @forelse ($persil as $item)

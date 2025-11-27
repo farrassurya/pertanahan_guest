@@ -1,6 +1,6 @@
 <!-- Navbar Partial -->
-<div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s">
-    <div class="container">
+<div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s" style="padding: 0;">
+    <div class="container" id="navbar-container">
         <nav class="navbar navbar-expand-lg bg-white navbar-light p-lg-0" style="padding:0.6rem 0;">
             <style>
                 .navbar-brand-custom {
@@ -48,6 +48,18 @@
                     color: #222;
                 }
 
+                /* Samakan border color untuk user dropdown dengan navbar-toggler */
+                .sidebar-toggle-btn {
+                    border-color: rgba(0, 0, 0, 0.1);
+                    color: rgba(0, 0, 0, 0.55);
+                }
+
+                .sidebar-toggle-btn:hover,
+                .sidebar-toggle-btn:focus {
+                    border-color: rgba(0, 0, 0, 0.1);
+                    color: rgba(0, 0, 0, 0.7);
+                }
+
                 .nav-item .dropdown-menu.centered {
                     left: 50% !important;
                     transform: translateX(-50%) !important;
@@ -60,21 +72,143 @@
                 .nav-item.dropdown {
                     position: relative;
                 }
+
+                /* Responsive Styles */
+                @media (max-width: 991px) {
+                    /* Hilangkan semua container padding dan margin di mobile */
+                    .container-fluid {
+                        padding-left: 0 !important;
+                        padding-right: 0 !important;
+                    }
+
+                    #navbar-container {
+                        max-width: 100% !important;
+                        padding-left: 0 !important;
+                        padding-right: 0 !important;
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
+                        width: 100% !important;
+                    }
+
+                    .navbar {
+                        padding-left: 0 !important;
+                        padding-right: 0 !important;
+                        width: 100%;
+                    }
+
+                    .navbar-brand {
+                        padding-left: 15px !important;
+                        margin-left: 0 !important;
+                    }
+
+                    .navbar-toggler {
+                        margin-right: 15px !important;
+                    }
+
+                    .dropdown.d-lg-none {
+                        margin-right: 0 !important;
+                    }
+
+                    .navbar-brand h1 {
+                        font-size: 1.5rem;
+                    }
+
+                    .navbar-nav {
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        width: 100%;
+                        background: #fff;
+                    }
+
+                    .navbar .nav-link {
+                        padding: 0.75rem 1.5rem !important;
+                        width: 100%;
+                        border-bottom: 1px solid #e9ecef;
+                        margin: 0 !important;
+                    }
+
+                    .nav-item {
+                        width: 100%;
+                        margin: 0 !important;
+                    }
+
+                    .navbar-collapse {
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        background: #fff;
+                        width: 100%;
+                    }
+
+                    .nav-item .dropdown-menu.centered {
+                        left: 0 !important;
+                        transform: none !important;
+                        position: relative;
+                        top: 0;
+                        box-shadow: none;
+                        border: none;
+                        background: #f8f9fa !important;
+                        padding-left: 2rem !important;
+                        width: 100%;
+                        margin: 0 !important;
+                    }
+
+                    .dropdown-menu .dropdown-item {
+                        padding: 0.5rem 1rem;
+                        font-size: 0.9rem;
+                    }
+                }
+
+                @media (max-width: 576px) {
+                    .navbar-brand h1 {
+                        font-size: 1.2rem;
+                    }
+
+                    .sidebar-toggle-btn {
+                        padding: 0.4rem 0.75rem;
+                        font-size: 0.9rem;
+                    }
+                }
             </style>
 
             <a href="{{ url('/') }}" class="navbar-brand d-lg-none">
                 <h1 class="fw-bold m-0">PERTANAHAN</h1>
             </a>
 
-            <button id="sidebar-open" type="button" class="btn btn-outline-secondary me-2 d-lg-none sidebar-toggle-btn"
-                title="Open user sidebar">
-                <i class="fa fa-user"></i>
-            </button>
+            <div class="ms-auto d-flex align-items-center d-lg-none">
+                <!-- User Menu Dropdown untuk Mobile -->
+                <div class="dropdown me-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle sidebar-toggle-btn" type="button" id="userMenuMobile" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuMobile">
+                        @guest
+                            <li><a class="dropdown-item" href="{{ route('pages.auth.index') }}">
+                                <i class="fa fa-sign-in-alt me-2"></i> Login
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ route('pages.auth.register') }}">
+                                <i class="fa fa-user-plus me-2"></i> Sign Up
+                            </a></li>
+                        @else
+                            <li><h6 class="dropdown-header">{{ auth()->user()->name }}</h6></li>
+                            <li><small class="dropdown-item-text text-muted px-3">{{ auth()->user()->email }}</small></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="m-0">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        <i class="fa fa-sign-out-alt me-2"></i> Logout
+                                    </button>
+                                </form>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
 
-            <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav">
@@ -86,7 +220,7 @@
                     <!-- Services dengan Dropdown -->
                     <div class="nav-item dropdown">
                         <a href="#"
-                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') ? 'active' : '' }}"
+                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') || request()->routeIs('pages.persil.*') ? 'active' : '' }}"
                             data-bs-toggle="dropdown">Services</a>
                         <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0 centered">
                             <a href="{{ route('pages.persil.index') }}" class="dropdown-item">

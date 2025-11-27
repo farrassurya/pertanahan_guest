@@ -5,8 +5,8 @@
 @section('content')
     <div class="container-fluid py-4">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="text-uppercase">Data Warga</h2>
+            <div class="d-flex flex-row justify-content-between align-items-center mb-4">
+                <h2 class="text-uppercase mb-0">Data Warga</h2>
                 <a href="{{ route('pages.warga.create') }}" class="btn btn-primary">
                     <i class="fa fa-plus me-1"></i> Tambah Warga
                 </a>
@@ -32,8 +32,15 @@
 
                 .warga-card-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
                     gap: 1.25rem;
+                }
+
+                @media (max-width: 576px) {
+                    .warga-card-grid {
+                        grid-template-columns: 1fr;
+                        gap: 1rem;
+                    }
                 }
 
                 .warga-card {
@@ -143,6 +150,23 @@
                     background-color: #dc3545;
                     border-color: #dc3545;
                     color: #fff;
+                }
+
+                @media (max-width: 576px) {
+                    .warga-card {
+                        padding: 1rem;
+                    }
+                    .warga-card .card-title {
+                        font-size: 0.95rem;
+                    }
+                    .warga-card .card-meta,
+                    .warga-card .card-info {
+                        font-size: 12px;
+                    }
+                    .warga-card .card-actions .btn {
+                        font-size: 11px;
+                        padding: 0.3rem 0.5rem;
+                    }
                 }
             </style>
 

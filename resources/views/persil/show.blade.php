@@ -5,9 +5,9 @@
 @section('content')
 <div class="container-fluid py-4">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="text-uppercase">Detail Data Persil</h2>
-            <a href="{{ route('pages.persil.index') }}" class="btn btn-secondary">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+            <h2 class="text-uppercase mb-0">Detail Data Persil</h2>
+            <a href="{{ route('pages.persil.index') }}\" class="btn btn-secondary w-100 w-md-auto">
                 <i class="fa fa-arrow-left me-1"></i> Kembali
             </a>
         </div>
@@ -111,6 +111,45 @@
                 color: #b87d1a;
                 font-weight: 600;
                 margin-bottom: 1rem;
+            }
+
+            @media (max-width: 768px) {
+                .persil-detail-card {
+                    padding: 2rem 1rem 1.5rem;
+                    margin: 1rem;
+                }
+                .persil-detail-avatar {
+                    width: 60px;
+                    height: 60px;
+                    font-size: 2rem;
+                    top: -30px;
+                }
+                .persil-detail-title {
+                    font-size: 1.3rem;
+                    margin-top: 40px;
+                    letter-spacing: 0.5px;
+                }
+                .persil-detail-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+                }
+                .persil-detail-info {
+                    font-size: 0.9rem;
+                }
+                .persil-detail-info strong {
+                    min-width: 100px;
+                    display: block;
+                    margin-bottom: 0.2rem;
+                }
+                .persil-detail-actions {
+                    flex-direction: column;
+                    gap: 0.75rem;
+                }
+                .persil-detail-actions .btn {
+                    width: 100%;
+                    font-size: 0.95rem;
+                    padding: 0.6rem 1rem;
+                }
             }
         </style>
 

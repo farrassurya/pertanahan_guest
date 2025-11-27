@@ -102,14 +102,25 @@
     @media (max-width: 768px) {
         .persil-form-card {
             padding: 1.5rem 1rem;
-            max-width: 95vw;
+            max-width: 100%;
+            margin: 1rem auto;
         }
         .persil-form-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
         .persil-form-grid {
             grid-template-columns: 1fr;
             gap: 1rem;
+        }
+        .btn-gold, .btn-reset {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.95rem;
+            width: 100%;
+            margin-left: 0;
+            margin-top: 0.5rem;
+        }
+        .form-control, .form-select {
+            font-size: 0.9rem;
         }
     }
 

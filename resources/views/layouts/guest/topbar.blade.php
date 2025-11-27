@@ -1,4 +1,5 @@
 <!-- Topbar Partial -->
+<!-- Desktop Topbar -->
 <div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.2s">
     <div class="container py-4">
         <div class="d-flex align-items-center justify-content-between">
@@ -40,6 +41,16 @@
                             border-color: #a36b14;
                             box-shadow: 0 0 0 0.18rem #f5e3c2;
                             outline: none;
+                        }
+
+                        /* Mobile Topbar Styles */
+                        .mobile-topbar {
+                            background: #b87d1a;
+                            padding: 0.75rem 0;
+                        }
+                        .mobile-topbar .btn {
+                            font-size: 0.85rem;
+                            padding: 0.4rem 0.8rem;
                         }
                     </style>
                     <img src="{{ asset('assets-guest/img/Logo_BPN-KemenATR_(2017).png') }}" alt="Logo" class="logo-img">
@@ -91,3 +102,5 @@
         </div>
     </div>
 </div>
+
+<!-- Mobile Topbar dihapus - Fitur login/signup dipindah ke navbar dropdown -->
