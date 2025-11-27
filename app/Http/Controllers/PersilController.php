@@ -24,6 +24,18 @@ class PersilController extends Controller
             $query->where('rw', $request->rw);
         }
 
+        // Search by kode_persil, pemilik name, or penggunaan
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('kode_persil', 'LIKE', '%' . $search . '%')
+                  ->orWhere('penggunaan', 'LIKE', '%' . $search . '%')
+                  ->orWhereHas('pemilik', function($q) use ($search) {
+                      $q->where('nama', 'LIKE', '%' . $search . '%');
+                  });
+            });
+        }
+
         $persil = $query->orderBy('created_at', 'desc')->paginate(9)->withQueryString();
 
         // Get unique RT and RW values for filter dropdown

@@ -8,9 +8,16 @@ use App\Models\JenisPenggunaan;
 
 class JenisPenggunaanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $items = JenisPenggunaan::orderBy('id', 'asc')->paginate(9);
+        $query = JenisPenggunaan::query();
+
+        // Search berdasarkan nama penggunaan
+        if ($request->filled('search')) {
+            $query->where('nama_penggunaan', 'LIKE', '%' . $request->search . '%');
+        }
+
+        $items = $query->orderBy('id', 'asc')->paginate(9)->withQueryString();
         return view('pages.jenis_penggunaan.index', compact('items'));
     }
 

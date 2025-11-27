@@ -36,6 +36,35 @@
             {{-- Top accent border --}}
             <div class="position-absolute top-0 start-0 w-100" style="height: 4px; background: linear-gradient(90deg, #b87d1a 0%, #d4a055 50%, #b87d1a 100%); border-radius: 8px 8px 0 0;"></div>
 
+            {{-- Search --}}
+            <div class="mb-4">
+                <style>
+                    .btn-clear-custom-jp:hover {
+                        background-color: #b87d1a !important;
+                        color: white !important;
+                    }
+                    .btn-clear-custom-jp:active {
+                        background-color: #a36b14 !important;
+                        color: white !important;
+                    }
+                </style>
+                <form method="GET" action="{{ route('pages.jenis-penggunaan.index') }}" class="d-flex gap-2 align-items-end">
+                    <div style="min-width: 250px;">
+                        <div class="input-group input-group-lg">
+                            <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}" style="border-radius: 12px 0 0 12px; padding: 12px 20px; font-size: 1rem;">
+                            <button type="submit" class="btn" style="background-color: white; border: 1px solid #ced4da; border-radius: 0 {{ request('search') ? '' : '12px 12px' }} 0; border-left: 1px solid #ced4da; color: #6c757d;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            @if(request('search'))
+                            <a href="{{ route('pages.jenis-penggunaan.index') }}" class="btn btn-clear-custom-jp" style="background-color: white; color: #b87d1a; border: 1px solid #ced4da; border-radius: 0 12px 12px 0; border-left: 1px solid #ced4da; font-weight: normal; transition: all 0.3s ease;">
+                                Clear
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                </form>
+            </div>
+
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 

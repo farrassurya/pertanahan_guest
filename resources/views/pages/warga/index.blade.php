@@ -34,13 +34,36 @@
 
                 {{-- Filter --}}
                 <div class="mb-4">
-                    <form method="GET" action="{{ route('pages.warga.index') }}" class="row g-3 align-items-end">
-                        <div class="col-auto">
+                    <style>
+                        .btn-clear-custom:hover {
+                            background-color: #b87d1a !important;
+                            color: white !important;
+                        }
+                        .btn-clear-custom:active {
+                            background-color: #a36b14 !important;
+                            color: white !important;
+                        }
+                    </style>
+                    <form method="GET" action="{{ route('pages.warga.index') }}" class="d-flex gap-2 align-items-end">
+                        <div>
                             <select name="jenis_kelamin" class="form-select form-select-lg" onchange="this.form.submit()" style="border-radius: 12px; min-width: 200px; padding: 12px 20px; font-size: 1rem;">
                                 <option value="">Semua</option>
                                 <option value="L" {{ request('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki</option>
                                 <option value="P" {{ request('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan</option>
                             </select>
+                        </div>
+                        <div style="min-width: 250px;">
+                            <div class="input-group input-group-lg">
+                                <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}" style="border-radius: 12px 0 0 12px; padding: 12px 20px; font-size: 1rem;">
+                                <button type="submit" class="btn" style="background-color: white; border: 1px solid #ced4da; border-radius: 0 {{ request('search') ? '' : '12px 12px' }} 0; border-left: 1px solid #ced4da; color: #6c757d;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                @if(request('search'))
+                                <a href="{{ route('pages.warga.index', ['jenis_kelamin' => request('jenis_kelamin')]) }}" class="btn btn-clear-custom" style="background-color: white; color: #b87d1a; border: 1px solid #ced4da; border-radius: 0 12px 12px 0; border-left: 1px solid #ced4da; font-weight: normal; transition: all 0.3s ease;">
+                                    Clear
+                                </a>
+                                @endif
+                            </div>
                         </div>
                     </form>
                 </div>

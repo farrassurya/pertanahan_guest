@@ -31,22 +31,45 @@
 
             {{-- Filter --}}
             <div class="mb-4">
-                <form method="GET" action="{{ route('pages.persil.index') }}" class="d-flex gap-2 align-items-end">
+                <style>
+                    .btn-clear-custom-persil:hover {
+                        background-color: #b87d1a !important;
+                        color: white !important;
+                    }
+                    .btn-clear-custom-persil:active {
+                        background-color: #a36b14 !important;
+                        color: white !important;
+                    }
+                </style>
+                <form method="GET" action="{{ route('pages.persil.index') }}" class="d-flex align-items-end" style="gap: 0.5rem;">
                     <div>
-                        <select name="rt" class="form-select form-select-lg" onchange="this.form.submit()" style="border-radius: 12px; min-width: 200px; padding: 12px 20px; font-size: 1rem;">
+                        <select name="rt" class="form-select form-select-lg" onchange="this.form.submit()" style="border-radius: 12px; min-width: 130px; padding: 12px 20px; font-size: 1rem;">
                             <option value="">Semua RT</option>
                             @foreach($rtList as $rt)
                                 <option value="{{ $rt }}" {{ request('rt') == $rt ? 'selected' : '' }}>RT {{ $rt }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div>
-                        <select name="rw" class="form-select form-select-lg" onchange="this.form.submit()" style="border-radius: 12px; min-width: 200px; padding: 12px 20px; font-size: 1rem;">
+                    <div style="margin-right: 1rem;">
+                        <select name="rw" class="form-select form-select-lg" onchange="this.form.submit()" style="border-radius: 12px; min-width: 130px; padding: 12px 20px; font-size: 1rem;">
                             <option value="">Semua RW</option>
                             @foreach($rwList as $rw)
                                 <option value="{{ $rw }}" {{ request('rw') == $rw ? 'selected' : '' }}>RW {{ $rw }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div style="min-width: 250px;">
+                        <div class="input-group input-group-lg">
+                            <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}" style="border-radius: 12px 0 0 12px; padding: 12px 20px; font-size: 1rem;">
+                            <button type="submit" class="btn" style="background-color: white; border: 1px solid #ced4da; border-radius: 0 {{ request('search') ? '' : '12px 12px' }} 0; border-left: 1px solid #ced4da; color: #6c757d;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            @if(request('search'))
+                            <a href="{{ route('pages.persil.index', ['rt' => request('rt'), 'rw' => request('rw')]) }}" class="btn btn-clear-custom-persil" style="background-color: white; color: #b87d1a; border: 1px solid #ced4da; border-radius: 0 12px 12px 0; border-left: 1px solid #ced4da; font-weight: normal; transition: all 0.3s ease;">
+                                Clear
+                            </a>
+                            @endif
+                        </div>
                     </div>
                 </form>
             </div>

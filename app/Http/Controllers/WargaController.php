@@ -15,6 +15,11 @@ class WargaController extends Controller
             $query->where('jenis_kelamin', $request->jenis_kelamin);
         }
 
+        // Search berdasarkan nama
+        if ($request->filled('search')) {
+            $query->where('nama', 'LIKE', '%' . $request->search . '%');
+        }
+
         $warga = $query->orderBy('nama', 'asc')->paginate(9)->withQueryString();
 
         return view('pages.warga.index', compact('warga'));
