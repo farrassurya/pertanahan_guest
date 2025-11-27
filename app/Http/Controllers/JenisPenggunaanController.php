@@ -32,8 +32,7 @@ class JenisPenggunaanController extends Controller
         ]);
 
         if ($validator->fails()) {
-            // always redirect back to home on validation errors for guest submissions
-            return redirect()->route('pages.guest.home')
+            return redirect()->back()
                 ->withErrors($validator)
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan dalam pengisian form.');
@@ -44,8 +43,7 @@ class JenisPenggunaanController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-        // Redirect guests back to home after storing
-        return redirect()->route('pages.guest.home')->with('success', 'Data Jenis Penggunaan berhasil disimpan!');
+        return redirect()->route('pages.jenis-penggunaan.index')->with('success', 'Data Jenis Penggunaan berhasil disimpan!');
     }
 
     public function edit($id)
@@ -76,13 +74,14 @@ class JenisPenggunaanController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-    return redirect()->route('pages.guest.home')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('pages.jenis-penggunaan.index')->with('success', 'Data berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
         $item = JenisPenggunaan::findOrFail($id);
         $item->delete();
-    return redirect()->route('pages.guest.home')->with('success', 'Data berhasil dihapus.');
+
+        return redirect()->route('pages.jenis-penggunaan.index')->with('success', 'Data berhasil dihapus!');
     }
 }

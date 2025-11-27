@@ -211,11 +211,7 @@
 
         {{-- Pagination --}}
         @if($items->hasPages())
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mt-4 mb-3">
-            <div class="text-muted small mb-3 mb-md-0">
-                Showing <strong>{{ $items->firstItem() ?? 0 }}</strong> to <strong>{{ $items->lastItem() ?? 0 }}</strong> of <strong>{{ $items->total() }}</strong> results
-            </div>
-
+        <div class="mt-4 mb-3">
             <nav aria-label="Pagination Jenis Penggunaan">
                 {{ $items->onEachSide(2)->links('pagination::bootstrap-5') }}
             </nav>
