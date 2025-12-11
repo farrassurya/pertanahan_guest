@@ -3,7 +3,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 
 class Persil extends Model
@@ -17,11 +16,6 @@ class Persil extends Model
     public function pemilik(): BelongsTo
     {
         return $this->belongsTo(Warga::class, 'pemilik_warga_id', 'warga_id');
-    }
-
-    public function media(): HasMany
-    {
-        return $this->hasMany(Media::class, 'ref_id')->where('ref_table', 'persil');
     }
 
     /**
