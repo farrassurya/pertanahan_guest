@@ -67,7 +67,7 @@
                 <small class="me-4"><i class="fa fa-phone-alt me-2"></i>+62 812 75166478</small>
             </div>
 
-            <!-- Tombol Login & Sign Up di kanan -->
+            <!-- Tombol Login & Sign Up atau Profile Dropdown di kanan -->
             @guest
                 <div class="d-flex align-items-center">
                     <a class="btn btn-info btn-login-custom px-3 py-2 me-2" href="{{ route('pages.auth.index') }}"
@@ -82,21 +82,33 @@
                     </a>
                 </div>
             @else
-                <!-- Jika sudah login, tampilkan info user -->
-                <div class="d-flex align-items-center">
-                    <div class="user-avatar bg-white text-primary rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 35px; height: 35px;">
-                        <i class="fa fa-user"></i>
-                    </div>
-                    <div class="me-3">
-                        <div class="small fw-bold">{{ auth()->user()->name }}</div>
-                        <div class="small">{{ auth()->user()->email }}</div>
-                    </div>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="m-0">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-light btn-sm">
-                            <i class="fa fa-sign-out-alt me-1"></i> Logout
-                        </button>
-                    </form>
+                <!-- Profile Dropdown -->
+                <div class="dropdown" style="position: relative; z-index: 1050;">
+                    <button class="btn d-flex align-items-center gap-2 dropdown-toggle border-0" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: white; color: #b87d1a; font-weight: 600; padding: 0.5rem 1rem; border-radius: 4px;">
+                        <div class="user-avatar text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background: linear-gradient(135deg, #b87d1a 0%, #d97706 100%);">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="text-start">
+                            <div class="fw-bold text-uppercase" style="font-size: 0.9rem; color: #b87d1a;">{{ auth()->user()->name }}</div>
+                            <div style="font-size: 0.75rem; color: #8c6914;">{{ auth()->user()->email }}</div>
+                        </div>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown" style="min-width: 280px; border-radius: 8px; border: 1px solid #e0e0e0; padding: 0.5rem; margin-top: 0.5rem; z-index: 1051;">
+                        <li><a class="dropdown-item py-2" href="#" style="color: #555;"><i class="fa fa-user-circle me-2" style="color: #999;"></i> My Profile</a></li>
+                        <li><a class="dropdown-item py-2" href="#" style="color: #555;"><i class="fa fa-cog me-2" style="color: #999;"></i> Settings</a></li>
+                        <li class="px-3 py-2">
+                            <small class="text-muted d-flex align-items-center gap-2"><i class="fa fa-clock" style="color: #999;"></i> <span id="realtime-clock"></span></small>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="m-0">
+                                @csrf
+                                <button type="submit" class="dropdown-item text-danger py-2 fw-bold">
+                                    <i class="fa fa-sign-out-alt me-2"></i> Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             @endguest
         </div>
@@ -104,3 +116,25 @@
 </div>
 
 <!-- Mobile Topbar dihapus - Fitur login/signup dipindah ke navbar dropdown -->
+
+<script>
+    // Realtime Clock
+    function updateClock() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+
+        const clockElement = document.getElementById('realtime-clock');
+        if (clockElement) {
+            clockElement.textContent = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+    }
+
+    // Update clock immediately and then every second
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
