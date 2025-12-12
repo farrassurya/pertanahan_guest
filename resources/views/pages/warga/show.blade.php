@@ -127,16 +127,18 @@
                 </div>
             </div>
             <div class="warga-detail-actions">
-                <a href="{{ route('pages.warga.edit', $warga->warga_id) }}" class="btn btn-warning">
-                    <i class="fa fa-edit me-1"></i> Edit
-                </a>
-                <form action="{{ route('pages.warga.destroy', $warga->warga_id) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus data?')">
-                        <i class="fa fa-trash me-1"></i> Hapus
-                    </button>
-                </form>
+                @if(auth()->user()->isOperator())
+                    <a href="{{ route('pages.warga.edit', $warga->warga_id) }}" class="btn btn-warning">
+                        <i class="fa fa-edit me-1"></i> Edit
+                    </a>
+                    <form action="{{ route('pages.warga.destroy', $warga->warga_id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus data?')">
+                            <i class="fa fa-trash me-1"></i> Hapus
+                        </button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

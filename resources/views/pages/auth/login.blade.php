@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             box-sizing: border-box;
@@ -175,7 +176,12 @@
 
             <div class="input-group">
                 <label>Password</label>
-                <input type="password" name="password" id="passwordField" placeholder="Masukkan password">
+                <div style="position: relative;">
+                    <input type="password" name="password" id="passwordField" placeholder="Masukkan password" style="padding-right: 45px;">
+                    <button type="button" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #666; font-size: 18px;">
+                        <i class="fa fa-eye" id="eyeIcon"></i>
+                    </button>
+                </div>
             </div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px">
@@ -188,14 +194,17 @@
     </div>
 
     <script>
-        // Password toggle is optional - only wire if toggle exists
+        // Password toggle with eye icon
         const toggleBtn = document.getElementById('togglePassword');
         const passwordField = document.getElementById('passwordField');
-        if (toggleBtn && passwordField) {
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        if (toggleBtn && passwordField && eyeIcon) {
             toggleBtn.addEventListener('click', function () {
                 const isHidden = passwordField.type === 'password';
                 passwordField.type = isHidden ? 'text' : 'password';
-                toggleBtn.textContent = isHidden ? 'Sembunyikan Password' : 'Lihat Password';
+                eyeIcon.classList.toggle('fa-eye');
+                eyeIcon.classList.toggle('fa-eye-slash');
             });
         }
     </script>

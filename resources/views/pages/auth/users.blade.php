@@ -63,7 +63,9 @@
                             <div class="user-meta">{{ $u->email }}</div>
                         </div>
                         <div class="text-end">
-                            <span class="badge bg-secondary">ID {{ $u->id }}</span>
+                            <span class="badge" style="background-color: {{ $u->role === 'operator' ? '#28a745' : '#6c757d' }}; color: white; font-size: 10px; padding: 3px 8px; border-radius: 3px;">
+                                {{ $u->role === 'operator' ? 'Operator' : 'Warga' }}
+                            </span>
                         </div>
                     </div>
 

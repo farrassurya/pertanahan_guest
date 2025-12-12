@@ -76,22 +76,33 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'nullable|string|max:255',
             'email' => 'required|email|unique:users,email',
+            'role' => 'nullable|in:operator,warga',
             // password must be at least 8 chars and start with an uppercase letter
             'password' => ['required','string','min:8','confirmed','regex:/^[A-Z].*/'],
         ], [
             'email.required' => 'Email wajib diisi!',
             'email.email' => 'Format email tidak valid',
             'email.unique' => 'Email sudah terdaftar',
+            'role.in' => 'Role tidak valid!',
             'password.required' => 'Password wajib diisi!',
             'password.min' => 'Password minimal 8 karakter!',
             'password.confirmed' => 'Password konfirmasi tidak cocok',
             'password.regex' => 'Password harus diawali huruf besar (A-Z)!',
         ]);
 
+        // Default role adalah 'warga' jika tidak ada role yang dipilih atau user tidak login
+        $role = $validated['role'] ?? 'warga';
+
+        // Hanya operator yang bisa set role, jika bukan operator atau guest maka default 'warga'
+        if (!auth()->check() || !auth()->user()->isOperator()) {
+            $role = 'warga';
+        }
+
         $user = User::create([
             'name' => $validated['name'] ?? null,
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
+            'role' => $role,
         ]);
 
         // Do NOT auto-login the user after registration. Redirect to the login page
@@ -128,12 +139,15 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'nullable|string|max:255',
             'email' => ['required','email', Rule::unique('users')->ignore($user->id)],
+            'role' => ['required', 'in:operator,warga'],
             // password optional, but if present must be min 8 and start with uppercase
             'password' => ['nullable','string','min:8','confirmed','regex:/^[A-Z].*/'],
         ], [
             'email.required' => 'Email wajib diisi!',
             'email.email' => 'Format email tidak valid',
             'email.unique' => 'Email sudah terdaftar',
+            'role.required' => 'Role wajib dipilih!',
+            'role.in' => 'Role tidak valid!',
             'password.min' => 'Password minimal 8 karakter!',
             'password.confirmed' => 'Password konfirmasi tidak cocok',
             'password.regex' => 'Password harus diawali huruf besar (A-Z)!',
@@ -141,6 +155,7 @@ class AuthController extends Controller
 
         $user->name = $validated['name'] ?? $user->name;
         $user->email = $validated['email'];
+        $user->role = $validated['role'];
         if(!empty($validated['password'])){
             $user->password = Hash::make($validated['password']);
         }

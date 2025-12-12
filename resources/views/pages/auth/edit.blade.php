@@ -31,6 +31,15 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label">Role</label>
+                    <select name="role" class="form-select" required>
+                        <option value="operator" {{ old('role', $user->role) === 'operator' ? 'selected' : '' }}>Operator (Full CRUD Access)</option>
+                        <option value="warga" {{ old('role', $user->role) === 'warga' ? 'selected' : '' }}>Warga (View & Input Only)</option>
+                    </select>
+                    <small class="text-muted">Operator memiliki akses penuh untuk Edit & Hapus data</small>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label">Password (kosongkan jika tidak ingin mengubah)</label>
                     <input type="password" name="password" class="form-control">
                 </div>

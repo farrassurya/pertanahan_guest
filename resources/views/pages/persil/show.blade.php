@@ -347,36 +347,42 @@
                         @endforeach
                     </div>
 
-                    <div class="text-center mt-4">
-                        <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn-upload-new">
-                            <i class="fa fa-plus-circle"></i> Upload File Baru
-                        </a>
-                    </div>
+                    @if(auth()->user()->isOperator())
+                        <div class="text-center mt-4">
+                            <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn-upload-new">
+                                <i class="fa fa-plus-circle"></i> Upload File Baru
+                            </a>
+                        </div>
+                    @endif
                 </div>
             @else
                 <div class="media-gallery-section">
                     <div class="text-center">
                         <i class="fa fa-folder-open" style="font-size: 4rem; color: #bdc3c7; margin-bottom: 1rem;"></i>
                         <p style="color: #7f8c8d; font-size: 1.1rem; margin-bottom: 1.5rem;">Belum ada file pendukung</p>
-                        <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn-upload-new">
-                            <i class="fa fa-plus-circle"></i> Upload File Baru
-                        </a>
+                        @if(auth()->user()->isOperator())
+                            <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn-upload-new">
+                                <i class="fa fa-plus-circle"></i> Upload File Baru
+                            </a>
+                        @endif
                     </div>
                 </div>
             @endif
 
-            <div class="persil-detail-actions">
-                <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn btn-warning">
-                    <i class="fa fa-edit me-1"></i> Edit
-                </a>
-                <form action="{{ route('pages.persil.destroy', $persil->persil_id) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus data?')">
-                        <i class="fa fa-trash me-1"></i> Hapus
-                    </button>
-                </form>
-            </div>
+            @if(auth()->user()->isOperator())
+                <div class="persil-detail-actions">
+                    <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn btn-warning">
+                        <i class="fa fa-edit me-1"></i> Edit
+                    </a>
+                    <form action="{{ route('pages.persil.destroy', $persil->persil_id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus data?')">
+                            <i class="fa fa-trash me-1"></i> Hapus
+                        </button>
+                    </form>
+                </div>
+            @endif
         </div>
     </div>
 </div>

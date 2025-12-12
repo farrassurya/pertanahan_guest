@@ -140,12 +140,14 @@
                             </div>
                             <div class="text-end card-actions">
                                 <a href="{{ route('pages.persil.show', $item->persil_id) }}" class="btn btn-sm btn-outline-primary" title="Lihat Detail"><i class="fa fa-eye"></i></a>
-                                <a href="{{ route('pages.persil.edit', $item->persil_id) }}" class="btn btn-sm btn-outline-secondary" title="Edit"><i class="fa fa-edit"></i></a>
-                                <form action="{{ route('pages.persil.destroy', $item->persil_id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus data ini?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                </form>
+                                @if(auth()->user()->isOperator())
+                                    <a href="{{ route('pages.persil.edit', $item->persil_id) }}" class="btn btn-sm btn-outline-secondary" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <form action="{{ route('pages.persil.destroy', $item->persil_id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus data ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
 

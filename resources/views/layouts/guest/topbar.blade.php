@@ -94,8 +94,18 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown" style="min-width: 280px; border-radius: 8px; border: 1px solid #e0e0e0; padding: 0.5rem; margin-top: 0.5rem; z-index: 1051;">
-                        <li><a class="dropdown-item py-2" href="#" style="color: #555;"><i class="fa fa-user-circle me-2" style="color: #999;"></i> My Profile</a></li>
-                        <li><a class="dropdown-item py-2" href="#" style="color: #555;"><i class="fa fa-cog me-2" style="color: #999;"></i> Settings</a></li>
+                        <li class="px-3 py-2">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <i class="fa fa-shield-alt" style="color: {{ auth()->user()->role === 'operator' ? '#28a745' : '#6c757d' }};"></i>
+                                <span class="badge" style="background-color: {{ auth()->user()->role === 'operator' ? '#28a745' : '#6c757d' }}; color: white; font-size: 11px; padding: 4px 10px; border-radius: 6px;">
+                                    {{ auth()->user()->role === 'operator' ? 'Operator' : 'Warga' }}
+                                </span>
+                            </div>
+                            <small class="text-muted" style="font-size: 10px;">
+                                {{ auth()->user()->role === 'operator' ? 'Full CRUD Access' : 'View & Input Only' }}
+                            </small>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
                         <li class="px-3 py-2">
                             <small class="text-muted d-flex align-items-center gap-2"><i class="fa fa-clock" style="color: #999;"></i> <span id="realtime-clock"></span></small>
                         </li>

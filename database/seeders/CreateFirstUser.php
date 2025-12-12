@@ -15,17 +15,33 @@ class CreateFirstUser extends Seeder
      */
     public function run(): void
     {
-        // Buat user admin pertama
+        // Buat user operator pertama (full CRUD access)
         User::create([
-            'name'     => 'Admin',
-            'email'    => 'admin@pertanahan.com',
-            'password' => Hash::make('admin123'), // Password: admin123
+            'name'     => 'Operator Pertanahan',
+            'email'    => 'operator@pertanahan.com',
+            'password' => Hash::make('operator123'), // Password: operator123
+            'role'     => 'operator', // Role operator
             'email_verified_at' => now(), // Langsung verified
         ]);
 
-        $this->command->info('✅ User pertama berhasil dibuat!');
-        $this->command->info('📧 Email: admin@pertanahan.com');
-        $this->command->info('🔑 Password: admin123');
+        // Buat user warga contoh (only view & input access)
+        User::create([
+            'name'     => 'Warga Contoh',
+            'email'    => 'warga@pertanahan.com',
+            'password' => Hash::make('warga123'), // Password: warga123
+            'role'     => 'warga', // Role warga
+            'email_verified_at' => now(), // Langsung verified
+        ]);
+
+        $this->command->info('✅ User berhasil dibuat!');
+        $this->command->info('');
+        $this->command->info('👤 OPERATOR (Full CRUD Access):');
+        $this->command->info('   📧 Email: operator@pertanahan.com');
+        $this->command->info('   🔑 Password: operator123');
+        $this->command->info('');
+        $this->command->info('👤 WARGA (View & Input Only):');
+        $this->command->info('   📧 Email: warga@pertanahan.com');
+        $this->command->info('   🔑 Password: warga123');
         $this->command->warn('⚠️  Jangan lupa ganti password setelah login pertama kali!');
     }
 }

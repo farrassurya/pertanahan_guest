@@ -46,10 +46,10 @@
                     </style>
                     <form method="GET" action="{{ route('pages.warga.index') }}" class="d-flex gap-2 align-items-end">
                         <div>
-                            <select name="jenis_kelamin" class="form-select form-select-lg" onchange="this.form.submit()" style="border-radius: 12px; min-width: 200px; padding: 12px 20px; font-size: 1rem;">
+                            <select name="jenis_kelamin" class="form-select form-select-lg" onchange="this.form.submit()" style="border-radius: 12px; min-width: 220px; padding: 12px 20px; font-size: 1rem;">
                                 <option value="">Semua</option>
-                                <option value="L" {{ request('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki</option>
-                                <option value="P" {{ request('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan</option>
+                                <option value="L" {{ request('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki ♂️</option>
+                                <option value="P" {{ request('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan ♀️</option>
                             </select>
                         </div>
                         <div style="min-width: 250px;">
@@ -218,7 +218,14 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <div>
-                                    <div class="card-title">{{ $item->nama }}</div>
+                                    <div class="card-title d-flex align-items-center gap-2">
+                                        {{ $item->nama }}
+                                        @if($item->jenis_kelamin == 'L')
+                                            <i class="fa fa-mars" style="color: #3498db; font-size: 1.2rem;" title="Laki-laki"></i>
+                                        @else
+                                            <i class="fa fa-venus" style="color: #e91e63; font-size: 1.2rem;" title="Perempuan"></i>
+                                        @endif
+                                    </div>
                                     <div class="card-meta">No KTP: {{ $item->no_ktp }}</div>
                                 </div>
                                 <div class="card-actions">
@@ -227,27 +234,26 @@
                                        title="Lihat Detail">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('pages.warga.edit', $item->warga_id) }}"
-                                       class="btn btn-sm btn-outline-secondary"
-                                       title="Edit">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <form action="{{ route('pages.warga.destroy', $item->warga_id) }}"
-                                          method="POST"
-                                          style="display:inline-block;"
-                                          onsubmit="return confirm('Hapus data ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-sm btn-outline-danger" title="Hapus">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    @if(auth()->user()->isOperator())
+                                        <a href="{{ route('pages.warga.edit', $item->warga_id) }}"
+                                           class="btn btn-sm btn-outline-secondary"
+                                           title="Edit">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <form action="{{ route('pages.warga.destroy', $item->warga_id) }}"
+                                              method="POST"
+                                              style="display:inline-block;"
+                                              onsubmit="return confirm('Hapus data ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-outline-danger" title="Hapus">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
 
-                            <p class="card-info mb-2">
-                                <strong>Jenis Kelamin:</strong> {{ $item->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
-                            </p>
                             <p class="card-info mb-2">
                                 <strong>Agama:</strong> {{ $item->agama }}
                             </p>

@@ -66,16 +66,37 @@
                         placeholder="email@contoh.com" required>
                 </div>
 
+                @auth
+                    @if(auth()->user()->isOperator())
+                        <div class="mb-3">
+                            <label class="form-label">Role</label>
+                            <select name="role" class="form-select" required>
+                                <option value="warga" {{ old('role') === 'warga' ? 'selected' : '' }}>Warga (View & Input Only)</option>
+                                <option value="operator" {{ old('role') === 'operator' ? 'selected' : '' }}>Operator (Full CRUD Access)</option>
+                            </select>
+                            <small class="text-muted">Pilih role untuk user baru</small>
+                        </div>
+                    @endif
+                @endauth
+
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Minimal 8 karakter"
-                        required>
+                    <div class="position-relative">
+                        <input type="password" name="password" id="passwordField" class="form-control" placeholder="Minimal 8 karakter" style="padding-right: 45px;" required>
+                        <button type="button" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #666; font-size: 18px;">
+                            <i class="fa fa-eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Konfirmasi Password</label>
-                    <input type="password" name="password_confirmation" class="form-control"
-                        placeholder="Ulangi password" required>
+                    <div class="position-relative">
+                        <input type="password" name="password_confirmation" id="passwordConfirmField" class="form-control" placeholder="Ulangi password" style="padding-right: 45px;" required>
+                        <button type="button" id="togglePasswordConfirm" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #666; font-size: 18px;">
+                            <i class="fa fa-eye" id="eyeIconConfirm"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center">
@@ -88,6 +109,36 @@
     </div>
 
     @include('layouts.guest.scripts')
+
+    <script>
+        // Toggle password visibility
+        const toggleBtn = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('passwordField');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        if (toggleBtn && passwordField && eyeIcon) {
+            toggleBtn.addEventListener('click', function () {
+                const isHidden = passwordField.type === 'password';
+                passwordField.type = isHidden ? 'text' : 'password';
+                eyeIcon.classList.toggle('fa-eye');
+                eyeIcon.classList.toggle('fa-eye-slash');
+            });
+        }
+
+        // Toggle password confirmation visibility
+        const toggleBtnConfirm = document.getElementById('togglePasswordConfirm');
+        const passwordConfirmField = document.getElementById('passwordConfirmField');
+        const eyeIconConfirm = document.getElementById('eyeIconConfirm');
+
+        if (toggleBtnConfirm && passwordConfirmField && eyeIconConfirm) {
+            toggleBtnConfirm.addEventListener('click', function () {
+                const isHidden = passwordConfirmField.type === 'password';
+                passwordConfirmField.type = isHidden ? 'text' : 'password';
+                eyeIconConfirm.classList.toggle('fa-eye');
+                eyeIconConfirm.classList.toggle('fa-eye-slash');
+            });
+        }
+    </script>
 </body>
 
 </html>
