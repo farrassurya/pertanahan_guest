@@ -3,7 +3,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Persil;
 use App\Models\Warga;
+use App\Models\Media;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PersilController extends Controller
 {
@@ -54,6 +56,8 @@ class PersilController extends Controller
             'alamat_lahan'     => 'required|string',
             'rt'               => 'required|string|max:3',
             'rw'               => 'required|string|max:3',
+            'media_files'      => 'nullable|array|max:2',
+            'media_files.*'    => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx|max:1024',
         ], [
             'kode_persil.required'      => 'Kode persil wajib diisi',
             'kode_persil.unique'        => 'Kode persil sudah digunakan',
@@ -66,17 +70,56 @@ class PersilController extends Controller
             'alamat_lahan.required'     => 'Alamat lahan wajib diisi',
             'rt.required'               => 'RT wajib diisi',
             'rw.required'               => 'RW wajib diisi',
+            'media_files.max'           => 'Maksimal 2 file',
+            'media_files.*.mimes'       => 'File harus: jpg, jpeg, png, pdf, doc, docx, xls, xlsx',
+            'media_files.*.max'         => 'Ukuran file maksimal 1MB (1024KB)',
         ]);
 
         try {
-            // Simpan data
-            Persil::create($request->all());
+            // Simpan data persil
+            $persil = Persil::create($request->only([
+                'kode_persil', 'pemilik_warga_id', 'luas_m2',
+                'penggunaan', 'alamat_lahan', 'rt', 'rw'
+            ]));
 
-            // Redirect ke index dengan success message
+            // Handle multiple file upload
+            if ($request->hasFile('media_files')) {
+                // Pastikan folder media ada
+                $mediaPath = storage_path('app/public/media');
+                if (!is_dir($mediaPath)) {
+                    mkdir($mediaPath, 0755, true);
+                }
+
+                foreach ($request->file('media_files') as $index => $file) {
+                    // Get mime type BEFORE moving file
+                    $mimeType = $file->getMimeType();
+
+                    // Generate unique filename
+                    $originalName = $file->getClientOriginalName();
+                    $fileName = time() . '_' . $index . '_' . str_replace(' ', '_', $originalName);
+
+                    // Save file menggunakan move()
+                    try {
+                        $file->move($mediaPath, $fileName);
+
+                        // Save to database
+                        Media::create([
+                            'ref_table'  => 'persil',
+                            'ref_id'     => $persil->persil_id,
+                            'file_name'  => $fileName,
+                            'mime_type'  => $mimeType,
+                            'sort_order' => $index,
+                        ]);
+                    } catch (\Exception $e) {
+                        // Log error but continue with other files
+                        \Log::error('File upload failed: ' . $e->getMessage());
+                    }
+                }
+            }
+
             return redirect()->route('pages.persil.index')
                 ->with('success', 'Data persil berhasil disimpan!');
         } catch (\Exception $e) {
-            // Redirect back dengan error message
             return redirect()->back()
                 ->with('error', 'Gagal menyimpan data: ' . $e->getMessage())
                 ->withInput();
@@ -117,10 +160,69 @@ class PersilController extends Controller
             'alamat_lahan'     => 'required|string',
             'rt'               => 'required|string|max:3',
             'rw'               => 'required|string|max:3',
+            'media_files'      => 'nullable|array|max:2',
+            'media_files.*'    => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx|max:1024',
         ]);
 
+        // Validasi total file (existing + new)
+        if ($request->hasFile('media_files')) {
+            $existingCount = Media::where('ref_table', 'persil')
+                ->where('ref_id', $persil->persil_id)
+                ->count();
+            $newCount = count($request->file('media_files'));
+
+            if (($existingCount + $newCount) > 2) {
+                return redirect()->back()
+                    ->withErrors(['media_files' => 'Total file maksimal 2. Saat ini sudah ada ' . $existingCount . ' file. Hapus file lama terlebih dahulu.'])
+                    ->withInput();
+            }
+        }
+
         try {
-            $persil->update($request->all());
+            $persil->update($request->only([
+                'kode_persil', 'pemilik_warga_id', 'luas_m2',
+                'penggunaan', 'alamat_lahan', 'rt', 'rw'
+            ]));
+
+            // Handle additional file uploads
+            if ($request->hasFile('media_files')) {
+                // Pastikan folder media ada
+                $mediaPath = storage_path('app/public/media');
+                if (!is_dir($mediaPath)) {
+                    mkdir($mediaPath, 0755, true);
+                }
+
+                $currentMaxOrder = Media::where('ref_table', 'persil')
+                    ->where('ref_id', $persil->persil_id)
+                    ->max('sort_order') ?? -1;
+
+                foreach ($request->file('media_files') as $index => $file) {
+                    // Get mime type BEFORE moving file
+                    $mimeType = $file->getMimeType();
+
+                    // Generate unique filename
+                    $originalName = $file->getClientOriginalName();
+                    $fileName = time() . '_' . $index . '_' . str_replace(' ', '_', $originalName);
+
+                    // Save file menggunakan move()
+                    try {
+                        $file->move($mediaPath, $fileName);
+
+                        // Save to database
+                        Media::create([
+                            'ref_table'  => 'persil',
+                            'ref_id'     => $persil->persil_id,
+                            'file_name'  => $fileName,
+                            'mime_type'  => $mimeType,
+                            'sort_order' => $currentMaxOrder + $index + 1,
+                        ]);
+                    } catch (\Exception $e) {
+                        // Log error but continue with other files
+                        \Log::error('File upload failed: ' . $e->getMessage());
+                    }
+                }
+            }
+
             return redirect()->route('pages.persil.index')
                 ->with('success', 'Data persil berhasil diupdate!');
         } catch (\Exception $e) {
@@ -137,6 +239,17 @@ class PersilController extends Controller
     {
         try {
             $persil = Persil::findOrFail($id);
+
+            // Hapus semua media terkait
+            $media = Media::where('ref_table', 'persil')
+                ->where('ref_id', $persil->persil_id)
+                ->get();
+
+            foreach ($media as $m) {
+                Storage::delete('public/media/' . $m->file_name);
+                $m->delete();
+            }
+
             $persil->delete();
 
             return redirect()->route('pages.persil.index')
@@ -144,6 +257,28 @@ class PersilController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('error', 'Gagal menghapus data: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Delete specific media file
+     */
+    public function deleteMedia(string $mediaId)
+    {
+        try {
+            $media = Media::findOrFail($mediaId);
+
+            // Hapus file dari storage
+            Storage::delete('public/media/' . $media->file_name);
+
+            // Hapus record dari database
+            $media->delete();
+
+            return redirect()->back()
+                ->with('success', 'File berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Gagal menghapus file: ' . $e->getMessage());
         }
     }
 }

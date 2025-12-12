@@ -17,6 +17,7 @@ Route::prefix('persil')->name('pages.persil.')->group(function () {
     Route::get('/{persil}/edit', [PersilController::class, 'edit'])->name('edit');
     Route::put('/{persil}', [PersilController::class, 'update'])->name('update');
     Route::delete('/{persil}', [PersilController::class, 'destroy'])->name('destroy');
+    Route::delete('/media/{media}', [PersilController::class, 'deleteMedia'])->name('media.delete');
 });
 
 Route::get('/', function () {

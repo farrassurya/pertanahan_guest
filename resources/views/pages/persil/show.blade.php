@@ -102,6 +102,158 @@
                 background: #f28b7b;
                 color: #fff;
             }
+
+            /* Media Gallery Styles */
+            .media-gallery-section {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+                border-top: 2px solid #f5e3c2;
+            }
+            .media-gallery-title {
+                background: linear-gradient(135deg, #d97706 0%, #b87d1a 100%);
+                color: white;
+                padding: 0.75rem 1.2rem;
+                border-radius: 10px;
+                font-size: 1.1rem;
+                font-weight: 700;
+                text-align: center;
+                margin-bottom: 1.5rem;
+                box-shadow: 0 3px 12px rgba(184, 125, 26, 0.25);
+            }
+            .media-card {
+                background: white;
+                border-radius: 12px;
+                padding: 1rem;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+                border: 2px solid #f5e3c2;
+                transition: all 0.3s ease;
+                height: 100%;
+            }
+            .media-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 4px 20px rgba(184, 125, 26, 0.15);
+                border-color: #d97706;
+            }
+            .media-preview {
+                width: 100%;
+                height: 140px;
+                border-radius: 8px;
+                overflow: hidden;
+                margin-bottom: 0.75rem;
+                background: #f5f5f5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+            .media-preview img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .media-preview-doc {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+            }
+            .media-preview-doc i {
+                font-size: 2.5rem;
+                color: #d97706;
+            }
+            .media-preview-doc .doc-type {
+                background: #d97706;
+                color: white;
+                padding: 0.25rem 0.6rem;
+                border-radius: 5px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+            .media-filename {
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: #2c3e50;
+                margin-bottom: 0.4rem;
+                word-break: break-word;
+                line-height: 1.3;
+                min-height: 32px;
+            }
+            .media-filesize {
+                font-size: 0.75rem;
+                color: #7f8c8d;
+                margin-bottom: 0.75rem;
+            }
+            .media-actions {
+                display: flex;
+                gap: 0.3rem;
+                justify-content: center;
+            }
+            .btn-download {
+                background: #34495e;
+                color: white;
+                border: none;
+                padding: 0.4rem 0.6rem;
+                border-radius: 5px;
+                font-weight: 600;
+                font-size: 0.75rem;
+                transition: all 0.2s;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.3rem;
+            }
+            .btn-download:hover {
+                background: #2c3e50;
+                color: white;
+            }
+            .btn-delete-media {
+                background: #e74c3c;
+                color: white;
+                border: none;
+                padding: 0.4rem 0.6rem;
+                border-radius: 5px;
+                font-weight: 600;
+                font-size: 0.75rem;
+                transition: all 0.2s;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.3rem;
+            }
+            .btn-delete-media:hover {
+                background: #c0392b;
+            }
+            .btn-upload-new {
+                background: linear-gradient(135deg, #d97706 0%, #b87d1a 100%);
+                color: white;
+                border: none;
+                padding: 0.65rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 700;
+                font-size: 0.95rem;
+                transition: all 0.3s;
+                box-shadow: 0 3px 12px rgba(184, 125, 26, 0.25);
+                text-decoration: none;
+                display: inline-block;
+            }
+            .btn-upload-new:hover {
+                background: linear-gradient(135deg, #b87d1a 0%, #d97706 100%);
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 18px rgba(184, 125, 26, 0.35);
+            }
+            @media (max-width: 768px) {
+                .media-gallery-title {
+                    font-size: 1rem;
+                    padding: 0.6rem 1rem;
+                }
+                .media-preview {
+                    height: 120px;
+                }
+            }
         </style>
 
         <div class="persil-detail-card">
@@ -122,6 +274,97 @@
                     <div class="persil-detail-info"><strong>RW</strong>: <span class="value-text">{{ $persil->rw }}</span></div>
                 </div>
             </div>
+
+            {{-- Media Gallery --}}
+            @php
+                $media = \App\Models\Media::where('ref_table', 'persil')
+                    ->where('ref_id', $persil->persil_id)
+                    ->orderBy('sort_order')
+                    ->get();
+            @endphp
+            @if($media->count() > 0)
+                <div class="media-gallery-section">
+                    <div class="media-gallery-title">
+                        <i class="fa fa-folder-open"></i> File Pendukung
+                    </div>
+
+                    <div class="row g-3">
+                        @foreach($media as $m)
+                            <div class="col-md-4 col-lg-3">
+                                <div class="media-card">
+                                    <div class="media-preview">
+                                        @php
+                                            $filePath = storage_path('app/public/media/' . $m->file_name);
+                                            $fileExists = file_exists($filePath);
+                                        @endphp
+                                        @if($fileExists && str_starts_with($m->mime_type, 'image/'))
+                                            <img src="{{ asset('storage/media/' . $m->file_name) }}" alt="{{ $m->file_name }}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'media-preview-doc\'><i class=\'fa fa-image\' style=\'font-size:2.5rem;color:#e74c3c;\'></i><small style=\'color:#e74c3c;margin-top:0.5rem;\'>Gambar Error</small></div>';">
+                                        @elseif($fileExists)
+                                            <div class="media-preview-doc">
+                                                <i class="fa fa-file-alt"></i>
+                                                <span class="doc-type">{{ strtoupper(pathinfo($m->file_name, PATHINFO_EXTENSION)) }}</span>
+                                            </div>
+                                        @else
+                                            <div class="media-preview-doc">
+                                                <i class="fa fa-exclamation-triangle" style="color: #e74c3c;"></i>
+                                                <small style="color: #e74c3c; font-size: 0.7rem;">File Tidak Ditemukan</small>
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    <div class="media-filename" title="{{ $m->file_name }}">
+                                        {{ Str::limit($m->file_name, 35) }}
+                                    </div>
+
+                                    @php
+                                        $fileSize = $fileExists ? filesize($filePath) : 0;
+                                        $fileSizeKB = round($fileSize / 1024, 2);
+                                    @endphp
+                                    <div class="media-filesize">
+                                        {{ $fileSizeKB }} KB
+                                    </div>
+
+                                    <div class="media-actions">
+                                        @if($fileExists)
+                                            <a href="{{ asset('storage/media/' . $m->file_name) }}" download class="btn-download">
+                                                <i class="fa fa-download"></i> Download
+                                            </a>
+                                        @else
+                                            <span class="btn-download" style="opacity: 0.5; cursor: not-allowed;">
+                                                <i class="fa fa-download"></i> Download
+                                            </span>
+                                        @endif
+                                        <form action="{{ route('pages.persil.media.delete', $m->media_id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Hapus file ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn-delete-media">
+                                                <i class="fa fa-trash"></i> Hapus
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn-upload-new">
+                            <i class="fa fa-plus-circle"></i> Upload File Baru
+                        </a>
+                    </div>
+                </div>
+            @else
+                <div class="media-gallery-section">
+                    <div class="text-center">
+                        <i class="fa fa-folder-open" style="font-size: 4rem; color: #bdc3c7; margin-bottom: 1rem;"></i>
+                        <p style="color: #7f8c8d; font-size: 1.1rem; margin-bottom: 1.5rem;">Belum ada file pendukung</p>
+                        <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn-upload-new">
+                            <i class="fa fa-plus-circle"></i> Upload File Baru
+                        </a>
+                    </div>
+                </div>
+            @endif
+
             <div class="persil-detail-actions">
                 <a href="{{ route('pages.persil.edit', $persil->persil_id) }}" class="btn btn-warning">
                     <i class="fa fa-edit me-1"></i> Edit
