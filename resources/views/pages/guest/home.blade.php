@@ -676,24 +676,23 @@
                         <div class="card-body p-4 p-md-5" style="padding-top: 2.5rem !important; position: relative;">
                             <div class="row g-4 align-items-center">
                                 <!-- Profile Image -->
-                                <div class="col-lg-4 text-center">
-                                    <div class="position-relative d-inline-block mb-3">
-                                        <div class="developer-photo-container" style="width: 320px; height: 320px; border-radius: 20px; overflow: hidden; border: 5px solid white; box-shadow: 0 15px 35px rgba(228, 158, 16, 0.3); background: white; transition: all 0.4s ease; cursor: pointer;">
+                                <div class="col-lg-4 d-flex justify-content-center align-items-start">
+                                    <div class="position-relative mb-3" style="width: 100%; max-width: 300px;">
+                                        <div class="developer-photo-container" style="width: 100%; padding-bottom: 100%; position: relative; border-radius: 20px; overflow: hidden; border: 5px solid white; box-shadow: 0 15px 35px rgba(228, 158, 16, 0.3); background: white; transition: all 0.4s ease; cursor: pointer;">
                                             <img src="{{ asset('assets-guest/img/rass3-min.jpeg') }}"
                                                  alt="Developer"
-                                                 class="img-fluid w-100 h-100"
-                                                 style="object-fit: cover; transition: transform 0.4s ease;">
+                                                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
                                         </div>
                                         <!-- Badge overlay -->
-                                        <div style="position: absolute; bottom: -10px; right: -10px; width: 60px; height: 60px; background: linear-gradient(135deg, #e49e10 0%, #d88a0a 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(228, 158, 16, 0.4); border: 3px solid white; transition: all 0.4s ease;">
-                                            <i class="fas fa-code text-white" style="font-size: 22px;"></i>
+                                        <div class="developer-badge" style="position: absolute; bottom: -10px; right: -10px; width: 55px; height: 55px; background: linear-gradient(135deg, #e49e10 0%, #d88a0a 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(228, 158, 16, 0.4); border: 3px solid white; transition: all 0.4s ease;">
+                                            <i class="fas fa-code text-white" style="font-size: 20px;"></i>
                                         </div>
                                     </div>
                                 </div>
 
                                 <style>
                                     .developer-photo-container:hover {
-                                        transform: translateY(-8px) scale(1.03);
+                                        transform: translateY(-8px);
                                         box-shadow: 0 25px 50px rgba(228, 158, 16, 0.5);
                                         border-color: #e49e10;
                                     }
@@ -702,7 +701,7 @@
                                         transform: scale(1.1);
                                     }
 
-                                    .developer-photo-container:hover + div {
+                                    .developer-photo-container:hover + .developer-badge {
                                         transform: scale(1.1) rotate(5deg);
                                         box-shadow: 0 8px 25px rgba(228, 158, 16, 0.6);
                                     }
@@ -787,35 +786,41 @@
 
                                     <!-- Social Media Links -->
                                     <div class="d-flex gap-3">
-                                        <a href="https://www.linkedin.com/in/farrassurya12/" target="_blank"
-                                           class="btn btn-sm"
-                                           style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, #0077b5 0%, #005582 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0, 119, 181, 0.3);"
-                                           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 119, 181, 0.4)';"
-                                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0, 119, 181, 0.3)';">
-                                            <i class="fab fa-linkedin-in"></i>
+                                        <a href="https://www.linkedin.com/in/farrassurya12/" target="_blank" class="social-link"
+                                           style="width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; border-radius: 15px; background: linear-gradient(135deg, #0077b5 0%, #005582 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3); text-decoration: none; padding: 0; margin: 0; overflow: hidden; position: relative;">
+                                            <i class="fab fa-linkedin-in" style="font-size: 20px;"></i>
                                         </a>
-                                        <a href="https://github.com/farrassurya" target="_blank"
-                                           class="btn btn-sm"
-                                           style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, #333 0%, #1a1a1a 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);"
-                                           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.4)';"
-                                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0, 0, 0, 0.3)';">
-                                            <i class="fab fa-github"></i>
+                                        <a href="https://github.com/farrassurya" target="_blank" class="social-link"
+                                           style="width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; border-radius: 15px; background: linear-gradient(135deg, #333 0%, #1a1a1a 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); text-decoration: none; padding: 0; margin: 0; overflow: hidden; position: relative;">
+                                            <i class="fab fa-github" style="font-size: 20px;"></i>
                                         </a>
-                                        <a href="https://www.instagram.com/farrassuryaa/" target="_blank"
-                                           class="btn btn-sm"
-                                           style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, #e4405f 0%, #c13584 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 10px rgba(228, 64, 95, 0.3);"
-                                           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(228, 64, 95, 0.4)';"
-                                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(228, 64, 95, 0.3)';">
-                                            <i class="fab fa-instagram"></i>
+                                        <a href="https://www.instagram.com/farrassuryaa/" target="_blank" class="social-link"
+                                           style="width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; border-radius: 15px; background: linear-gradient(135deg, #e4405f 0%, #c13584 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 12px rgba(228, 64, 95, 0.3); text-decoration: none; padding: 0; margin: 0; overflow: hidden; position: relative;">
+                                            <i class="fab fa-instagram" style="font-size: 20px;"></i>
                                         </a>
-                                        <a href="https://wa.me/+62811691328" target="_blank"
-                                           class="btn btn-sm"
-                                           style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);"
-                                           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.4)';"
-                                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(37, 211, 102, 0.3)';">
-                                            <i class="fab fa-whatsapp"></i>
+                                        <a href="https://wa.me/+62811691328" target="_blank" class="social-link"
+                                           style="width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; border-radius: 15px; background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); text-decoration: none; padding: 0; margin: 0; overflow: hidden; position: relative;">
+                                            <i class="fab fa-whatsapp" style="font-size: 20px;"></i>
                                         </a>
                                     </div>
+
+                                    <style>
+                                        .social-link {
+                                            -webkit-tap-highlight-color: transparent;
+                                            outline: none !important;
+                                            border: none !important;
+                                            box-sizing: border-box;
+                                        }
+                                        .social-link:hover {
+                                            transform: translateY(-5px) scale(1.05);
+                                        }
+                                        .social-link:focus {
+                                            outline: none !important;
+                                        }
+                                        .social-link:active {
+                                            transform: scale(0.95);
+                                        }
+                                    </style>
                                 </div>
                             </div>
                         </div>
