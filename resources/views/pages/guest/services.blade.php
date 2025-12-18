@@ -14,7 +14,7 @@
     <div class="container-fluid appoinment mt-0 mb-1 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container pt-5">
             <div class="row gy-5 gx-0">
-                <div class="col-lg-6 pe-lg-5 wow fadeIn" data-wow-delay="0.3s">
+                <div class="col-lg-5 col-md-12 pe-lg-4 wow fadeIn" data-wow-delay="0.3s">
                     <h1 class="display-6 text-uppercase text-white mb-4">Pertanahan - guest (farrassurya)
                     </h1>
                     <p class="text-white mb-5 wow fadeIn" data-wow-delay="0.4s">Belum tau mau diisi apa hehe, nanti
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mb-n5 wow fadeIn" data-wow-delay="0.7s">
+                <div class="col-lg-7 col-md-12 mb-n5 wow fadeIn" data-wow-delay="0.7s">
                     <div class="bg-white p-5">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h2 id="jenis" class="text-uppercase mb-0">Jenis Penggunaan</h2>
