@@ -82,7 +82,7 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img">
-                        <img class="img-fluid w-100" src="{{ asset('assets-guest/img/image1.png') }}">
+                        <img class="img-fluid w-100" src="{{ asset('assets-guest/img/beranda3 (1)-min.jpg') }}">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -645,33 +645,186 @@
     <!-- Testimonial End -->
 
 
-    <!-- Saran & Masukan -->
-    {{-- <div class="container-fluid newsletter mt-6 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container pb-5">
-            <div class="bg-white p-5 mb-5">
-                <div class="row g-5">
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.3s">
-                        <h1 class="display-6 text-uppercase mb-4">Saran & Masukan</h1>
-                        <div class="d-flex">
-                            <i class="far fa-envelope-open fa-3x text-primary me-4"></i>
-                            <p class="fs-5 fst-italic mb-0">Semua saran & masukan kalian sangat berharga dan akan
-                                selalu kami cek juga pertimbangkan, terimakasih.</p>
+    <!-- Developer Profile Start -->
+    <div class="container-fluid py-6 wow fadeIn" data-wow-delay="0.1s" style="background: linear-gradient(135deg, #ffffff 0%, #fff8e7 100%); position: relative; overflow: hidden; padding-bottom: 100px !important;">
+        <!-- Decorative elements -->
+        <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(228, 158, 16, 0.08); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: rgba(228, 158, 16, 0.06); border-radius: 50%;"></div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: rgba(228, 158, 16, 0.03); border-radius: 50%; z-index: 0;"></div>
+
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 700px;">
+                <h1 class="display-5 text-uppercase mb-2" style="color: #2c3e50; font-weight: 800; letter-spacing: 2px;">Meet The Developer</h1>
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #e49e10 0%, #d88a0a 100%); margin: 0 auto; border-radius: 2px;"></div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-9">
+                    <div class="card border-0 wow fadeInUp" data-wow-delay="0.3s"
+                         style="background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
+                        <!-- Card Header with Gradient -->
+                        <div class="card-header border-0 p-0 d-flex align-items-center justify-content-center"
+                             style="background: linear-gradient(135deg, #e49e10 0%, #d88a0a 100%); height: 120px; position: relative;">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-pill px-5 py-3"
+                                 style="background: rgba(255,255,255,0.25); box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 2;">
+                                <i class="fa fa-code text-white me-3" style="font-size: 18px;"></i>
+                                <span class="text-white fw-bold" style="font-size: 18px; letter-spacing: 1.5px;">Profil Pengembang</span>
+                            </div>
+                            <div style="position: absolute; top: 0; right: 0; width: 200px; height: 120px; background: rgba(255,255,255,0.1); clip-path: polygon(100% 0, 0 0, 100% 100%);"></div>
                         </div>
-                    </div>
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control border-0 bg-light" id="mail"
-                                placeholder="Your Email">
-                            <label for="mail">Email</label>
+
+                        <div class="card-body p-4 p-md-5" style="padding-top: 2.5rem !important; position: relative;">
+                            <div class="row g-4 align-items-center">
+                                <!-- Profile Image -->
+                                <div class="col-lg-4 text-center">
+                                    <div class="position-relative d-inline-block mb-3">
+                                        <div class="developer-photo-container" style="width: 320px; height: 320px; border-radius: 20px; overflow: hidden; border: 5px solid white; box-shadow: 0 15px 35px rgba(228, 158, 16, 0.3); background: white; transition: all 0.4s ease; cursor: pointer;">
+                                            <img src="{{ asset('assets-guest/img/rass3-min.jpeg') }}"
+                                                 alt="Developer"
+                                                 class="img-fluid w-100 h-100"
+                                                 style="object-fit: cover; transition: transform 0.4s ease;">
+                                        </div>
+                                        <!-- Badge overlay -->
+                                        <div style="position: absolute; bottom: -10px; right: -10px; width: 60px; height: 60px; background: linear-gradient(135deg, #e49e10 0%, #d88a0a 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(228, 158, 16, 0.4); border: 3px solid white; transition: all 0.4s ease;">
+                                            <i class="fas fa-code text-white" style="font-size: 22px;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <style>
+                                    .developer-photo-container:hover {
+                                        transform: translateY(-8px) scale(1.03);
+                                        box-shadow: 0 25px 50px rgba(228, 158, 16, 0.5);
+                                        border-color: #e49e10;
+                                    }
+
+                                    .developer-photo-container:hover img {
+                                        transform: scale(1.1);
+                                    }
+
+                                    .developer-photo-container:hover + div {
+                                        transform: scale(1.1) rotate(5deg);
+                                        box-shadow: 0 8px 25px rgba(228, 158, 16, 0.6);
+                                    }
+                                </style>
+
+                                <!-- Profile Info -->
+                                <div class="col-lg-8">
+                                    <div class="mb-4">
+
+                                        <div class="row g-3 mb-3">
+                                            <!-- NAMA -->
+                                            <div class="col-md-6">
+                                                <div class="d-flex align-items-start p-3" style="background: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; border-radius: 18px;">
+                                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #e49e10 0%, #d88a0a 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 3px 8px rgba(228, 158, 16, 0.3);">
+                                                        <i class="fas fa-user text-white"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <small class="text-muted d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">NAMA</small>
+                                                        <strong style="color: #2c3e50; font-size: 15px;">M. Farras Suryaputra</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- NIM -->
+                                            <div class="col-md-6">
+                                                <div class="d-flex align-items-start p-3" style="background: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; border-radius: 18px;">
+                                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #e49e10 0%, #d88a0a 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 3px 8px rgba(228, 158, 16, 0.3);">
+                                                        <i class="fas fa-id-card text-white"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <small class="text-muted d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">NIM</small>
+                                                        <strong style="color: #2c3e50; font-size: 15px;">2457301078</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- KAMPUS -->
+                                            <div class="col-md-6">
+                                                <div class="d-flex align-items-start p-3" style="background: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; border-radius: 18px;">
+                                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #e49e10 0%, #d88a0a 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 3px 8px rgba(228, 158, 16, 0.3);">
+                                                        <i class="fas fa-university text-white"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <small class="text-muted d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Kampus</small>
+                                                        <strong style="color: #2c3e50; font-size: 15px;">Politeknik Caltex Riau</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- PRODI -->
+                                            <div class="col-md-6">
+                                                <div class="d-flex align-items-start p-3" style="background: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; border-radius: 18px;">
+                                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #e49e10 0%, #d88a0a 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 3px 8px rgba(228, 158, 16, 0.3);">
+                                                        <i class="fas fa-graduation-cap text-white"></i>
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <small class="text-muted d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Prodi</small>
+                                                        <strong style="color: #2c3e50; font-size: 15px;">Sistem Informasi</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Badges -->
+                                    <div class="d-flex flex-wrap gap-2 mb-4">
+                                        <span class="badge px-3 py-2" style="background: linear-gradient(135deg, #e49e10 0%, #d88a0a 100%); font-size: 12px; border-radius: 8px; font-weight: 600;">
+                                            <i class="fas fa-user-graduate me-2"></i>Mahasiswa
+                                        </span>
+                                        <span class="badge px-3 py-2" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-size: 12px; border-radius: 8px; font-weight: 600;">
+                                            <i class="fas fa-users me-2"></i>G24
+                                        </span>
+                                        <span class="badge px-3 py-2" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); font-size: 12px; border-radius: 8px; font-weight: 600;">
+                                            <i class="fas fa-map-marker-alt me-2"></i>Indonesia
+                                        </span>
+                                    </div>
+
+                                    <!-- Email -->
+                                    <div class="mb-4 p-3 rounded" style="background: #fff5e6; border-left: 4px solid #e49e10;">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-envelope me-3" style="color: #e49e10; font-size: 18px;"></i>
+                                            <a href="mailto:suryaputra24si@mahasiswa.pcr.ac.id" class="text-decoration-none" style="color: #2c3e50; font-weight: 600;">suryaputra24si@mahasiswa.pcr.ac.id</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Social Media Links -->
+                                    <div class="d-flex gap-3">
+                                        <a href="https://www.linkedin.com/in/farrassurya12/" target="_blank"
+                                           class="btn btn-sm"
+                                           style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, #0077b5 0%, #005582 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0, 119, 181, 0.3);"
+                                           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 119, 181, 0.4)';"
+                                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0, 119, 181, 0.3)';">
+                                            <i class="fab fa-linkedin-in"></i>
+                                        </a>
+                                        <a href="https://github.com/farrassurya" target="_blank"
+                                           class="btn btn-sm"
+                                           style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, #333 0%, #1a1a1a 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);"
+                                           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.4)';"
+                                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0, 0, 0, 0.3)';">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                        <a href="https://www.instagram.com/farrassuryaa/" target="_blank"
+                                           class="btn btn-sm"
+                                           style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, #e4405f 0%, #c13584 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 10px rgba(228, 64, 95, 0.3);"
+                                           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(228, 64, 95, 0.4)';"
+                                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(228, 64, 95, 0.3)';">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                        <a href="https://wa.me/+62811691328" target="_blank"
+                                           class="btn btn-sm"
+                                           style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);"
+                                           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.4)';"
+                                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(37, 211, 102, 0.3)';">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <button class="btn btn-primary w-100 py-3" type="submit">Kirim</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
-    <!-- Newsletter Start -->
-
+    </div>
+    <!-- Developer Profile End -->
 
     {{-- Footer partial --}}
     @include('layouts.guest.footer')
