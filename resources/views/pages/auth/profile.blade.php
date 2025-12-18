@@ -4,7 +4,11 @@
 <body>
     <div class="container py-5">
         <div class="card p-4" style="max-width:640px; margin:auto;">
-            <h4 class="mb-3">Edit User</h4>
+            <h4 class="mb-3">Edit Profil Saya</h4>
+
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -16,7 +20,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('pages.auth.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -43,25 +47,23 @@
 
                 <div class="mb-3">
                     <label class="form-label">Role</label>
-                    <select name="role" class="form-select" required>
-                        <option value="operator" {{ old('role', $user->role) === 'operator' ? 'selected' : '' }}>Operator (Full CRUD Access)</option>
-                        <option value="warga" {{ old('role', $user->role) === 'warga' ? 'selected' : '' }}>Warga (View & Input Only)</option>
-                    </select>
-                    <small class="text-muted">Operator memiliki akses penuh untuk Edit & Hapus data</small>
+                    <input type="text" class="form-control" value="{{ $user->role === 'operator' ? 'Operator (Full CRUD Access)' : 'Warga (View & Input Only)' }}" disabled>
+                    <small class="text-muted">Role tidak dapat diubah sendiri. Hubungi operator jika perlu perubahan role.</small>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Password (kosongkan jika tidak ingin mengubah)</label>
+                    <label class="form-label">Password Baru (kosongkan jika tidak ingin mengubah)</label>
                     <input type="password" name="password" class="form-control">
+                    <small class="text-muted">Minimal 8 karakter, diawali huruf besar (A-Z)</small>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Konfirmasi Password</label>
+                    <label class="form-label">Konfirmasi Password Baru</label>
                     <input type="password" name="password_confirmation" class="form-control">
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('pages.auth.users') }}" class="btn btn-outline-secondary">Kembali</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">Kembali</a>
                     <button class="btn btn-primary">Simpan Perubahan</button>
                 </div>
             </form>

@@ -47,6 +47,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/auth/register', [AuthController::class, 'registerForm'])->name('pages.auth.register');
 Route::post('/auth/register', [AuthController::class, 'register'])->name('pages.auth.register.store');
 
+// Profile - untuk user yang login (edit profil sendiri)
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+    Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile.update');
+});
+
 // User management - hanya untuk operator
 Route::middleware(['auth', 'role:operator'])->group(function () {
     Route::get('/auth/users', [AuthController::class, 'users'])->name('pages.auth.users');

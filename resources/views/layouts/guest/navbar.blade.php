@@ -1,5 +1,5 @@
 <!-- Navbar Partial -->
-<div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s" style="padding: 0;">
+<div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s" style="padding: 0; z-index: 1000; position: sticky;">
     <div class="container" id="navbar-container">
         <nav class="navbar navbar-expand-lg bg-white navbar-light p-lg-0" style="padding:0.6rem 0;">
             <style>
@@ -281,12 +281,14 @@
                         </div>
                     </div>
 
-                    <!-- Menu untuk user yang sudah login -->
+                    <!-- Menu USER hanya untuk Operator -->
                     @auth
-                        <a href="{{ route('pages.auth.users') }}"
-                            class="nav-item nav-link {{ request()->routeIs('pages.auth.users') ? 'active' : '' }}">
-                            User
-                        </a>
+                        @if(auth()->user()->isOperator())
+                            <a href="{{ route('pages.auth.users') }}"
+                                class="nav-item nav-link {{ request()->routeIs('pages.auth.users') ? 'active' : '' }}">
+                                User
+                            </a>
+                        @endif
                     @endauth
                 </div>
 

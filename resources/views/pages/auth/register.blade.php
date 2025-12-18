@@ -51,7 +51,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('pages.auth.register.store') }}" method="POST">
+            <form action="{{ route('pages.auth.register.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3">
@@ -61,23 +61,16 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label">Foto Profil (opsional)</label>
+                    <input type="file" name="profile_photo" class="form-control" accept="image/*">
+                    <small class="text-muted">Format: JPG, PNG, max 1MB</small>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label">Email</label>
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}"
                         placeholder="email@contoh.com" required>
                 </div>
-
-                @auth
-                    @if(auth()->user()->isOperator())
-                        <div class="mb-3">
-                            <label class="form-label">Role</label>
-                            <select name="role" class="form-select" required>
-                                <option value="warga" {{ old('role') === 'warga' ? 'selected' : '' }}>Warga (View & Input Only)</option>
-                                <option value="operator" {{ old('role') === 'operator' ? 'selected' : '' }}>Operator (Full CRUD Access)</option>
-                            </select>
-                            <small class="text-muted">Pilih role untuk user baru</small>
-                        </div>
-                    @endif
-                @endauth
 
                 <div class="mb-3">
                     <label class="form-label">Password</label>

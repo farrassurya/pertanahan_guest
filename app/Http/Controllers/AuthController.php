@@ -76,9 +76,9 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'nullable|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'role' => 'nullable|in:operator,warga',
             // password must be at least 8 chars and start with an uppercase letter
             'password' => ['required','string','min:8','confirmed','regex:/^[A-Z].*/'],
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         ], [
             'email.required' => 'Email wajib diisi!',
             'email.email' => 'Format email tidak valid',
@@ -88,14 +88,18 @@ class AuthController extends Controller
             'password.min' => 'Password minimal 8 karakter!',
             'password.confirmed' => 'Password konfirmasi tidak cocok',
             'password.regex' => 'Password harus diawali huruf besar (A-Z)!',
+            'profile_photo.image' => 'File harus berupa gambar!',
+            'profile_photo.mimes' => 'Foto harus format: jpeg, png, jpg',
+            'profile_photo.max' => 'Ukuran foto maksimal 1MB',
         ]);
 
-        // Default role adalah 'warga' jika tidak ada role yang dipilih atau user tidak login
-        $role = $validated['role'] ?? 'warga';
+        // Semua user baru otomatis mendapat role 'warga'
+        $role = 'warga';
 
-        // Hanya operator yang bisa set role, jika bukan operator atau guest maka default 'warga'
-        if (!auth()->check() || !auth()->user()->isOperator()) {
-            $role = 'warga';
+        // Handle profile photo upload
+        $profilePhotoPath = null;
+        if ($request->hasFile('profile_photo')) {
+            $profilePhotoPath = $request->file('profile_photo')->store('profile_photos', 'public');
         }
 
         $user = User::create([
@@ -103,6 +107,7 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => $role,
+            'profile_photo' => $profilePhotoPath,
         ]);
 
         // Do NOT auto-login the user after registration. Redirect to the login page
@@ -142,6 +147,7 @@ class AuthController extends Controller
             'role' => ['required', 'in:operator,warga'],
             // password optional, but if present must be min 8 and start with uppercase
             'password' => ['nullable','string','min:8','confirmed','regex:/^[A-Z].*/'],
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         ], [
             'email.required' => 'Email wajib diisi!',
             'email.email' => 'Format email tidak valid',
@@ -151,6 +157,9 @@ class AuthController extends Controller
             'password.min' => 'Password minimal 8 karakter!',
             'password.confirmed' => 'Password konfirmasi tidak cocok',
             'password.regex' => 'Password harus diawali huruf besar (A-Z)!',
+            'profile_photo.image' => 'File harus berupa gambar!',
+            'profile_photo.mimes' => 'Foto harus format: jpeg, png, jpg',
+            'profile_photo.max' => 'Ukuran foto maksimal 1MB',
         ]);
 
         $user->name = $validated['name'] ?? $user->name;
@@ -159,6 +168,16 @@ class AuthController extends Controller
         if(!empty($validated['password'])){
             $user->password = Hash::make($validated['password']);
         }
+
+        // Handle profile photo upload
+        if ($request->hasFile('profile_photo')) {
+            // Delete old photo if exists
+            if ($user->profile_photo) {
+                \Storage::disk('public')->delete($user->profile_photo);
+            }
+            $user->profile_photo = $request->file('profile_photo')->store('profile_photos', 'public');
+        }
+
         $user->save();
 
         return redirect()->route('pages.auth.users')->with('success', 'User updated successfully.');
@@ -173,5 +192,63 @@ class AuthController extends Controller
         $user->delete();
 
         return redirect()->route('pages.auth.users')->with('success', 'User deleted successfully.');
+    }
+
+    /**
+     * Show profile edit form for logged in user
+     */
+    public function profile()
+    {
+        $user = auth()->user();
+        return view('pages.auth.profile', compact('user'));
+    }
+
+    /**
+     * Update profile for logged in user
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => ['required','email', Rule::unique('users')->ignore($user->id)],
+            'password' => ['nullable','string','min:8','confirmed','regex:/^[A-Z].*/'],
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+        ], [
+            'email.required' => 'Email wajib diisi!',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'password.min' => 'Password minimal 8 karakter!',
+            'password.confirmed' => 'Password konfirmasi tidak cocok',
+            'password.regex' => 'Password harus diawali huruf besar (A-Z)!',
+            'profile_photo.image' => 'File harus berupa gambar!',
+            'profile_photo.mimes' => 'Foto harus format: jpeg, png, jpg',
+            'profile_photo.max' => 'Ukuran foto maksimal 1MB',
+        ]);
+
+        $user->name = $validated['name'] ?? $user->name;
+        $user->email = $validated['email'];
+        
+        // Password optional
+        if(!empty($validated['password'])){
+            $user->password = Hash::make($validated['password']);
+        }
+        
+        // Handle profile photo upload
+        if ($request->hasFile('profile_photo')) {
+            // Delete old photo if exists
+            if ($user->profile_photo) {
+                \Storage::disk('public')->delete($user->profile_photo);
+            }
+            $user->profile_photo = $request->file('profile_photo')->store('profile_photos', 'public');
+        }
+        
+        // Role tidak bisa diubah oleh user sendiri - tetap seperti semula
+        // Hanya operator yang bisa mengubah role via halaman user management
+        
+        $user->save();
+
+        return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui!');
     }
 }

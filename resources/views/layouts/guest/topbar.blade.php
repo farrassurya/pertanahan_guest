@@ -1,6 +1,6 @@
 <!-- Topbar Partial -->
 <!-- Desktop Topbar -->
-<div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.2s">
+<div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.2s" style="position: relative; z-index: 9999;">
     <div class="container py-2">
         <div class="d-flex align-items-center justify-content-between">
             <!-- Logo dan PERTANAHAN di kiri -->
@@ -80,17 +80,19 @@
                 </div>
             @else
                 <!-- Profile Dropdown -->
-                <div class="dropdown" style="position: relative; z-index: 1050;">
-                    <button class="btn d-flex align-items-center gap-2 dropdown-toggle border-0" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: white; color: #b87d1a; font-weight: 600; padding: 0.5rem 1rem; border-radius: 4px;">
-                        <div class="user-avatar text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background: linear-gradient(135deg, #b87d1a 0%, #d97706 100%);">
-                            <i class="fa fa-user"></i>
-                        </div>
+                <div class="dropdown" style="position: relative; z-index: 10000;">
+                    <button class="btn d-flex align-items-center gap-2 dropdown-toggle border-0" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent; color: white; font-weight: 600; padding: 0.5rem 0; border-radius: 4px; cursor: pointer;">
+                        @if(auth()->user()->profile_photo)
+                            <img src="{{ asset('storage/' . auth()->user()->profile_photo) }}" alt="{{ auth()->user()->name }}" class="rounded-circle" style="width: 35px; height: 35px; object-fit: cover; border: 2px solid white;">
+                        @else
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='white'/%3E%3Ctext x='50' y='50' font-family='Arial,sans-serif' font-size='45' font-weight='600' fill='%23b87d1a' text-anchor='middle' dy='.35em'%3E{{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}%3C/text%3E%3C/svg%3E" alt="{{ auth()->user()->name }}" class="rounded-circle" style="width: 35px; height: 35px; object-fit: cover; border: 2px solid white;">
+                        @endif
                         <div class="text-start">
-                            <div class="fw-bold text-uppercase" style="font-size: 0.9rem; color: #b87d1a;">{{ auth()->user()->name }}</div>
-                            <div style="font-size: 0.75rem; color: #8c6914;">{{ auth()->user()->email }}</div>
+                            <div class="fw-bold text-uppercase" style="font-size: 0.9rem; color: white;">{{ auth()->user()->name }}</div>
+                            <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">{{ auth()->user()->email }}</div>
                         </div>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown" style="min-width: 280px; border-radius: 8px; border: 1px solid #e0e0e0; padding: 0.5rem; margin-top: 0.5rem; z-index: 1051;">
+                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown" style="min-width: 280px; border-radius: 8px; border: 1px solid #e0e0e0; padding: 0.5rem; margin-top: 0.5rem; z-index: 10001 !important; position: absolute !important;">
                         <li class="px-3 py-2">
                             <div class="d-flex align-items-center gap-2 mb-2">
                                 <i class="fa fa-shield-alt" style="color: {{ auth()->user()->role === 'operator' ? '#28a745' : '#6c757d' }};"></i>
@@ -101,6 +103,12 @@
                             <small class="text-muted" style="font-size: 10px;">
                                 {{ auth()->user()->role === 'operator' ? 'Full CRUD Access' : 'View & Input Only' }}
                             </small>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a href="{{ route('profile') }}" class="dropdown-item py-2">
+                                <i class="fa fa-user-edit me-2" style="color: #b87d1a;"></i> Edit Profil
+                            </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="px-3 py-2">
