@@ -1,7 +1,7 @@
 <!-- Topbar Partial -->
 <!-- Desktop Topbar -->
 <div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.2s">
-    <div class="container py-4">
+    <div class="container py-2">
         <div class="d-flex align-items-center justify-content-between">
             <!-- Logo dan PERTANAHAN di kiri -->
             <div class="d-flex align-items-center">
@@ -53,11 +53,8 @@
                             padding: 0.4rem 0.8rem;
                         }
                     </style>
-                    <img src="{{ asset('assets-guest/img/Logo_BPN-KemenATR_(2017).png') }}" alt="Logo" class="logo-img">
+                    <img src="{{ asset('assets-guest/img/logoHorizontal.png') }}?v={{ time() }}" alt="Logo" style="height: 75px; width: auto; margin: 0px 0 0px 30px;">
                 </div>
-                <a href="{{ url('/') }}">
-                    <h2 class="text-white fw-bold m-0">PERTANAHAN</h2>
-                </a>
             </div>
 
             <!-- Informasi kontak di tengah -->

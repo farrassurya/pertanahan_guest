@@ -47,28 +47,8 @@
                 <p class="text-uppercase mb-0">Minggu</p>
                 <p>Tutup</p>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <h5 class="text-uppercase text-light mb-4">Gallery</h5>
-                <div class="row g-1">
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ asset('assets-guest/img/service-1.jpg') }}" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ asset('assets-guest/img/service-2.jpg') }}" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ asset('assets-guest/img/service-3.jpg') }}" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ asset('assets-guest/img/service-4.jpg') }}" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ asset('assets-guest/img/service-5.jpg') }}" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ asset('assets-guest/img/service-6.jpg') }}" alt="">
-                    </div>
-                </div>
+            <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-start ps-4">
+                <img src="{{ asset('assets-guest/img/logoVertikal.png') }}?v={{ time() }}" alt="Logo" style="max-width: 150px; height: auto;">
             </div>
         </div>
     </div>

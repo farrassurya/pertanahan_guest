@@ -248,7 +248,7 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(../img/carousel-1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(../img/beranda.jpg) center center no-repeat;
     background-size: cover;
 }
 
@@ -269,6 +269,31 @@
     border: 5px solid var(--bs-primary);
     animation: animateUpDown 3s ease-in-out infinite;
     z-index: -1;
+}
+
+@media (max-width: 991px) {
+    .about-img {
+        padding-left: 35px;
+        margin-bottom: 30px;
+    }
+
+    .about-img::before {
+        width: 160px;
+        height: 240px;
+        border-width: 4px;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-img {
+        padding-left: 25px;
+    }
+
+    .about-img::before {
+        width: 140px;
+        height: 210px;
+        border-width: 3px;
+    }
 }
 
 @keyframes animateUpDown {
@@ -390,7 +415,7 @@
 
 /*** Appoinment ***/
 .appoinment {
-    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(../img/carousel-2.jpg) left center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(../img/beranda2.jpg) left center no-repeat;
     background-size: cover;
 }
 

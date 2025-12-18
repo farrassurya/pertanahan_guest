@@ -50,14 +50,25 @@
 
                 /* Samakan border color untuk user dropdown dengan navbar-toggler */
                 .sidebar-toggle-btn {
-                    border-color: rgba(0, 0, 0, 0.1);
-                    color: rgba(0, 0, 0, 0.55);
+                    border-color: rgba(255, 255, 255, 0.3);
+                    color: white;
                 }
 
                 .sidebar-toggle-btn:hover,
                 .sidebar-toggle-btn:focus {
-                    border-color: rgba(0, 0, 0, 0.1);
-                    color: rgba(0, 0, 0, 0.7);
+                    border-color: rgba(255, 255, 255, 0.5);
+                    color: white;
+                    background: rgba(255, 255, 255, 0.1);
+                }
+
+                @media (max-width: 991px) {
+                    .navbar-toggler {
+                        border-color: rgba(255, 255, 255, 0.3) !important;
+                    }
+
+                    .navbar-toggler-icon {
+                        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+                    }
                 }
 
                 .nav-item .dropdown-menu.centered {
@@ -75,6 +86,15 @@
 
                 /* Responsive Styles */
                 @media (max-width: 991px) {
+                    /* Orange background untuk mobile */
+                    .container-fluid.bg-white {
+                        background: #b87d1a !important;
+                    }
+
+                    .navbar.bg-white {
+                        background: #b87d1a !important;
+                    }
+
                     /* Hilangkan semua container padding dan margin di mobile */
                     .container-fluid {
                         padding-left: 0 !important;
@@ -170,8 +190,8 @@
                 }
             </style>
 
-            <a href="{{ url('/') }}" class="navbar-brand d-lg-none">
-                <h1 class="fw-bold m-0">PERTANAHAN</h1>
+            <a href="{{ url('/') }}" class="navbar-brand d-lg-none" style="padding: 0; margin: 0;">
+                <img src="{{ asset('assets-guest/img/logoHorizontal.png') }}?v={{ time() }}" alt="Logo" style="height: 50px; width: auto; margin-left: 15px;">
             </a>
 
             <div class="ms-auto d-flex align-items-center d-lg-none">
