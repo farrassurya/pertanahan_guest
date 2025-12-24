@@ -229,12 +229,12 @@ class AuthController extends Controller
 
         $user->name = $validated['name'] ?? $user->name;
         $user->email = $validated['email'];
-        
+
         // Password optional
         if(!empty($validated['password'])){
             $user->password = Hash::make($validated['password']);
         }
-        
+
         // Handle profile photo upload
         if ($request->hasFile('profile_photo')) {
             // Delete old photo if exists
@@ -243,10 +243,10 @@ class AuthController extends Controller
             }
             $user->profile_photo = $request->file('profile_photo')->store('profile_photos', 'public');
         }
-        
+
         // Role tidak bisa diubah oleh user sendiri - tetap seperti semula
         // Hanya operator yang bisa mengubah role via halaman user management
-        
+
         $user->save();
 
         return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui!');

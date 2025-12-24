@@ -87,8 +87,9 @@
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="display-6 text-uppercase mb-4">pertanahan</h1>
-                    <p class="mb-4">Belum tau mau diisi apa hehe, nanti
-                        dipikirin mau diisi deskripsi seperti apa, terimakasihh</p>
+                    <p class="mb-4">Solusi Cerdas Pengelolaan Data Pertanahan.
+                        Kami menghadirkan sistem integrasi persil tanah yang akurat, transparan,
+                        dan memudahkan pemetaan aset Anda secara digital.</p>
                     <div class="row g-5 mb-4">
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
@@ -107,11 +108,11 @@
                             </div>
                         </div>
                     </div>
-                    <p><i class="fa fa-check-square text-primary me-3"></i>Many variations of passages of lorem ipsum
+                    <p><i class="fa fa-check-square text-primary me-3"></i>Pemetaan Persil Digital
                     </p>
-                    <p><i class="fa fa-check-square text-primary me-3"></i>Many variations of passages of lorem ipsum
+                    <p><i class="fa fa-check-square text-primary me-3"></i>Keamanan Data Terjamin
                     </p>
-                    <p><i class="fa fa-check-square text-primary me-3"></i>Many variations of passages of lorem ipsum
+                    <p><i class="fa fa-check-square text-primary me-3"></i>​Akses Real-Time
                     </p>
                     {{-- <div class="border border-5 border-primary p-4 text-center mt-4">
                         <h4 class="lh-base text-uppercase mb-0">We’re Good in All Metal Works Using Quality Welding Tools</h4>
@@ -128,13 +129,13 @@
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
                     <div class="feature-item border h-100">
                         <div class="feature-icon btn-xxl-square bg-primary mb-4 mt-n4">
-                            <i class="fa fa-hammer fa-2x text-white"></i>
+                            <i class="fa fa-database fa-2x text-white"></i>
                         </div>
                         <div class="p-5 pt-0">
-                            <h5 class="text-uppercase mb-3">Quality Welding</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
+                            <h5 class="text-uppercase mb-3">Database Terintegrasi</h5>
+                            <p>Sistem penyimpanan data persil, dokumen, dan warga yang terorganisir dengan baik dan mudah diakses.</p>
                             <a class="position-relative text-body text-uppercase small d-flex justify-content-between"
-                                href="#"><b class="bg-white pe-3">Read More</b> <i
+                                href="{{ route('pages.persil.index') }}"><b class="bg-white pe-3">Lihat Data</b> <i
                                     class="bi bi-arrow-right bg-white ps-3"></i></a>
                         </div>
                     </div>
@@ -142,13 +143,13 @@
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.4s">
                     <div class="feature-item border h-100">
                         <div class="feature-icon btn-xxl-square bg-primary mb-4 mt-n4">
-                            <i class="fa fa-dollar-sign fa-2x text-white"></i>
+                            <i class="fa fa-file-alt fa-2x text-white"></i>
                         </div>
                         <div class="p-5 pt-0">
-                            <h5 class="text-uppercase">Affordable Pricing</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur augue.</p>
+                            <h5 class="text-uppercase">Manajemen Dokumen</h5>
+                            <p>Kelola sertifikat, SPPT PBB, AJB, dan dokumen pertanahan lainnya secara digital dan aman.</p>
                             <a class="position-relative text-body text-uppercase small d-flex justify-content-between"
-                                href="#"><b class="bg-white pe-3">Read More</b> <i
+                                href="{{ route('pages.dokumen-persil.index') }}"><b class="bg-white pe-3">Kelola Dokumen</b> <i
                                     class="bi bi-arrow-right bg-white ps-3"></i></a>
                         </div>
                     </div>
@@ -156,13 +157,13 @@
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
                     <div class="feature-item border h-100">
                         <div class="feature-icon btn-xxl-square bg-primary mb-4 mt-n4">
-                            <i class="fa fa-check-double fa-2x text-white"></i>
+                            <i class="fa fa-map-marked-alt fa-2x text-white"></i>
                         </div>
                         <div class="p-5 pt-0">
-                            <h5 class="text-uppercase">Best Welder</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
+                            <h5 class="text-uppercase">Pemetaan Lahan</h5>
+                            <p>Informasi lengkap lokasi persil dengan koordinat, luas lahan, dan penggunaan tanah yang akurat.</p>
                             <a class="position-relative text-body text-uppercase small d-flex justify-content-between"
-                                href="#"><b class="bg-white pe-3">Read More</b> <i
+                                href="{{ route('pages.persil.index') }}"><b class="bg-white pe-3">Lihat Peta</b> <i
                                     class="bi bi-arrow-right bg-white ps-3"></i></a>
                         </div>
                     </div>
@@ -170,13 +171,13 @@
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.6s">
                     <div class="feature-item border h-100">
                         <div class="feature-icon btn-xxl-square bg-primary mb-4 mt-n4">
-                            <i class="fa fa-tools fa-2x text-white"></i>
+                            <i class="fa fa-shield-alt fa-2x text-white"></i>
                         </div>
                         <div class="p-5 pt-0">
-                            <h5 class="text-uppercase">Quality Tools</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
+                            <h5 class="text-uppercase">Keamanan Data</h5>
+                            <p>Sistem role-based access dengan enkripsi data untuk menjaga keamanan informasi pertanahan Anda.</p>
                             <a class="position-relative text-body text-uppercase small d-flex justify-content-between"
-                                href="#"><b class="bg-white pe-3">Read More</b> <i
+                                href="{{ route('pages.warga.index') }}"><b class="bg-white pe-3">Data Warga</b> <i
                                     class="bi bi-arrow-right bg-white ps-3"></i></a>
                         </div>
                     </div>
@@ -798,7 +799,7 @@
                                            style="width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; border-radius: 15px; background: linear-gradient(135deg, #e4405f 0%, #c13584 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 12px rgba(228, 64, 95, 0.3); text-decoration: none; padding: 0; margin: 0; overflow: hidden; position: relative;">
                                             <i class="fab fa-instagram" style="font-size: 20px;"></i>
                                         </a>
-                                        <a href="https://wa.me/+62811691328" target="_blank" class="social-link"
+                                        <a href="https://wa.me/+628117691328" target="_blank" class="social-link"
                                            style="width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; border-radius: 15px; background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: white; transition: all 0.3s; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); text-decoration: none; padding: 0; margin: 0; overflow: hidden; position: relative;">
                                             <i class="fab fa-whatsapp" style="font-size: 20px;"></i>
                                         </a>

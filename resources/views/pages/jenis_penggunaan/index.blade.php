@@ -86,14 +86,12 @@
             .jp-card {
                 border: 0;
                 border-radius: 12px;
-                overflow: hidden;
-                background: linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
-                box-shadow: 0 8px 30px rgba(11, 18, 35, 0.06);
-                transition: transform .28s cubic-bezier(.2, .9, .3, 1), box-shadow .28s ease;
+                padding: 1.5rem;
+                background: linear-gradient(180deg, #fff, #fbfbfd);
+                box-shadow: 0 8px 28px rgba(11,18,35,0.06);
+                transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease;
                 position: relative;
-                border-left: 6px solid rgba(184, 125, 26, 0.14);
-                min-height: 140px;
-                padding: 1.1rem 1.25rem;
+                overflow: hidden;
             }
 
             .jp-card:hover {
@@ -101,15 +99,16 @@
                 box-shadow: 0 18px 48px rgba(11, 18, 35, 0.12);
             }
 
-            .jp-card::after {
+            /* Accent corner */
+            .jp-card::before {
                 content: '';
                 position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 6px;
-                background: linear-gradient(180deg, #b87d1a, #e6b66a);
-                opacity: .08;
+                right: -40px;
+                top: -24px;
+                width: 120px;
+                height: 120px;
+                background: radial-gradient(circle at 30% 30%, rgba(184,125,26,0.12), rgba(184,125,26,0.06));
+                transform: rotate(18deg);
             }
 
             /* Title and meta */

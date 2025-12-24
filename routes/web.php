@@ -7,6 +7,8 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\GuestPersilController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\PersilController;
+use App\Http\Controllers\DokumenPersilController;
+use App\Http\Controllers\JenisPenggunaanController;
 
 // Routes Persil - memerlukan authentication
 Route::prefix('persil')->name('pages.persil.')->middleware('auth')->group(function () {
@@ -22,6 +24,23 @@ Route::prefix('persil')->name('pages.persil.')->middleware('auth')->group(functi
         Route::put('/{persil}', [PersilController::class, 'update'])->name('update');
         Route::delete('/{persil}', [PersilController::class, 'destroy'])->name('destroy');
         Route::delete('/media/{media}', [PersilController::class, 'deleteMedia'])->name('media.delete');
+    });
+});
+
+// Routes Dokumen Persil - memerlukan authentication
+Route::prefix('dokumen-persil')->name('pages.dokumen-persil.')->middleware('auth')->group(function () {
+    // View & Create - dapat diakses oleh operator dan warga
+    Route::get('/', [DokumenPersilController::class, 'index'])->name('index');
+    Route::get('/create', [DokumenPersilController::class, 'create'])->name('create');
+    Route::post('/', [DokumenPersilController::class, 'store'])->name('store');
+    Route::get('/{dokumen}', [DokumenPersilController::class, 'show'])->name('show');
+
+    // Edit, Update, Delete - hanya untuk operator (CRUD penuh)
+    Route::middleware('role:operator')->group(function () {
+        Route::get('/{dokumen}/edit', [DokumenPersilController::class, 'edit'])->name('edit');
+        Route::put('/{dokumen}', [DokumenPersilController::class, 'update'])->name('update');
+        Route::delete('/{dokumen}', [DokumenPersilController::class, 'destroy'])->name('destroy');
+        Route::delete('/media/{media}', [DokumenPersilController::class, 'deleteMedia'])->name('media.delete');
     });
 });
 
@@ -64,7 +83,6 @@ Route::middleware(['auth', 'role:operator'])->group(function () {
 Route::get('home', [IndexController::class, 'index'])->name('index');
 
 // Jenis Penggunaan CRUD - memerlukan authentication
-use App\Http\Controllers\JenisPenggunaanController;
 Route::middleware('auth')->group(function () {
     // View & Create - dapat diakses oleh operator dan warga
     Route::get('jenis-penggunaan', [JenisPenggunaanController::class, 'index'])->name('pages.jenis-penggunaan.index');

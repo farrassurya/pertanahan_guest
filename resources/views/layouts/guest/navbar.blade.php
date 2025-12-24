@@ -240,11 +240,14 @@
                     <!-- Services dengan Dropdown -->
                     <div class="nav-item dropdown">
                         <a href="#"
-                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') || request()->routeIs('pages.persil.*') || request()->routeIs('pages.jenis-penggunaan.*') ? 'active' : '' }}"
+                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') || request()->routeIs('pages.persil.*') || request()->routeIs('pages.jenis-penggunaan.*') || request()->routeIs('pages.dokumen-persil.*') ? 'active' : '' }}"
                             data-bs-toggle="dropdown">Services</a>
                         <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0 centered">
                             <a href="{{ route('pages.persil.index') }}" class="dropdown-item">
                                 <i class="fa fa-certificate me-2 text-warning"></i> Persil
+                            </a>
+                            <a href="{{ route('pages.dokumen-persil.index') }}" class="dropdown-item">
+                                <i class="fa fa-file-alt me-2 text-info"></i> Dokumen Persil
                             </a>
                             <a href="{{ route('pages.guest.services') }}#jenis" class="dropdown-item">
                                 <i class="fa fa-tags me-2 text-success"></i> Jenis Penggunaan
