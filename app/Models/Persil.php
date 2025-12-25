@@ -36,6 +36,16 @@ class Persil extends Model
     }
 
     /**
+     * Relasi ke Media
+     */
+    public function media(): HasMany
+    {
+        return $this->hasMany(Media::class, 'ref_id', 'persil_id')
+                    ->where('ref_table', 'persil')
+                    ->orderBy('sort_order');
+    }
+
+    /**
      * Scope untuk filterable columns
      */
     public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder

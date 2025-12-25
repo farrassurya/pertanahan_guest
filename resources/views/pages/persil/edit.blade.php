@@ -79,6 +79,45 @@
                             @error('media_files')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                             @error('media_files.*')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                         </div>
+
+                        {{-- Display Existing Files --}}
+                        @if($persil->media && $persil->media->count() > 0)
+                        <div class="mt-3">
+                            <p class="mb-2 text-muted" style="font-size: 0.9rem;">File yang sudah diupload:</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                @foreach($persil->media as $media)
+                                    @php
+                                        $extension = strtolower(pathinfo($media->file_name, PATHINFO_EXTENSION));
+                                        $iconColor = '#6c757d';
+                                        $icon = 'fa-file';
+                                        
+                                        if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+                                            $iconColor = '#28a745';
+                                            $icon = 'fa-file-image';
+                                        } elseif($extension === 'pdf') {
+                                            $iconColor = '#dc3545';
+                                            $icon = 'fa-file-pdf';
+                                        } elseif(in_array($extension, ['doc', 'docx'])) {
+                                            $iconColor = '#2b5797';
+                                            $icon = 'fa-file-word';
+                                        } elseif(in_array($extension, ['xls', 'xlsx'])) {
+                                            $iconColor = '#217346';
+                                            $icon = 'fa-file-excel';
+                                        }
+                                    @endphp
+                                    <div class="d-flex align-items-center p-2 border rounded" style="background: #f8f9fa; max-width: 250px;">
+                                        <i class="fas {{ $icon }} me-2" style="font-size: 1.2rem; color: {{ $iconColor }};"></i>
+                                        <div class="flex-grow-1" style="min-width: 0;">
+                                            <small class="d-block text-truncate" style="font-size: 0.8rem;">{{ Str::limit($media->file_name, 20) }}</small>
+                                        </div>
+                                        <a href="{{ asset('storage/media/' . $media->file_name) }}" target="_blank" class="btn btn-sm btn-outline-primary ms-2">
+                                            <i class="fa fa-eye" style="font-size: 0.75rem;"></i>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
                     </div>
                     <div class="mt-4 d-flex justify-content-end gap-2">
                         <a href="{{ route('pages.persil.index') }}" class="btn btn-secondary">Batal</a>

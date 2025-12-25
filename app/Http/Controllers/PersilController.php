@@ -134,7 +134,7 @@ class PersilController extends Controller
      */
     public function show(string $id)
     {
-        $persil = Persil::with('pemilik')->findOrFail($id);
+        $persil = Persil::with('pemilik', 'media')->findOrFail($id);
         return view('pages.persil.show', compact('persil'));
     }
 
@@ -143,7 +143,7 @@ class PersilController extends Controller
      */
     public function edit(string $id)
     {
-        $persil = Persil::findOrFail($id);
+        $persil = Persil::with('media')->findOrFail($id);
         $warga  = Warga::all();
         return view('pages.persil.edit', compact('persil', 'warga'));
     }
