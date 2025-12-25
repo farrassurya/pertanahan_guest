@@ -15,10 +15,9 @@
         <div class="container pt-5">
             <div class="row gy-5 gx-0">
                 <div class="col-lg-5 col-md-12 pe-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                    <h1 class="display-6 text-uppercase text-white mb-4">Pertanahan - guest (farrassurya)
+                    <h1 class="display-6 text-uppercase text-white mb-4">Layanan Sistem Informasi Pertanahan
                     </h1>
-                    <p class="text-white mb-5 wow fadeIn" data-wow-delay="0.4s">Belum tau mau diisi apa hehe, nanti
-                        dipikirin mau diisi deskripsi seperti apa, terimakasihh</p>
+                    <p class="text-white mb-5 wow fadeIn" data-wow-delay="0.4s">Kami menyediakan layanan pengelolaan data jenis penggunaan lahan. Sistem ini memudahkan dalam mengategorikan dan mendokumentasikan berbagai tipe penggunaan tanah untuk keperluan administrasi pertanahan yang lebih terorganisir dan efisien.</p>
                     <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.5s">
                         <div class="btn-lg-square bg-white">
                             <i class="bi bi-geo-alt text-dark fs-3"></i>

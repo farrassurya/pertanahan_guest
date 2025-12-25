@@ -46,9 +46,26 @@ class PetaPersilController extends Controller
             'geojson' => 'nullable|string',
             'panjang_m' => 'nullable|numeric|min:0',
             'lebar_m' => 'nullable|numeric|min:0',
+            'files.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx|max:2048',
         ]);
 
         $petaPersil = PetaPersil::create($validated);
+
+        // Handle file uploads
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $index => $file) {
+                $filename = time() . '_' . $index . '_' . $file->getClientOriginalName();
+                $file->storeAs('media', $filename, 'public');
+
+                Media::create([
+                    'ref_table' => 'peta_persil',
+                    'ref_id' => $petaPersil->peta_id,
+                    'file_name' => $filename,
+                    'mime_type' => $file->getClientMimeType(),
+                    'sort_order' => $index + 1,
+                ]);
+            }
+        }
 
         return redirect()->route('pages.peta-persil.index')
             ->with('success', 'Peta persil berhasil ditambahkan!');
@@ -56,14 +73,14 @@ class PetaPersilController extends Controller
 
     public function show($id)
     {
-        $petaPersil = PetaPersil::with('persil')->findOrFail($id);
+        $petaPersil = PetaPersil::with(['persil', 'media'])->findOrFail($id);
 
         return view('pages.peta_persil.show', compact('petaPersil'));
     }
 
     public function edit($id)
     {
-        $petaPersil = PetaPersil::findOrFail($id);
+        $petaPersil = PetaPersil::with('media')->findOrFail($id);
         $persils = Persil::orderBy('kode_persil')->get();
 
         return view('pages.peta_persil.edit', compact('petaPersil', 'persils'));
@@ -78,9 +95,30 @@ class PetaPersilController extends Controller
             'geojson' => 'nullable|string',
             'panjang_m' => 'nullable|numeric|min:0',
             'lebar_m' => 'nullable|numeric|min:0',
+            'files.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx|max:2048',
         ]);
 
         $petaPersil->update($validated);
+
+        // Handle new file uploads
+        if ($request->hasFile('files')) {
+            $existingCount = Media::where('ref_table', 'peta_persil')
+                ->where('ref_id', $petaPersil->peta_id)
+                ->count();
+
+            foreach ($request->file('files') as $index => $file) {
+                $filename = time() . '_' . $index . '_' . $file->getClientOriginalName();
+                $file->storeAs('media', $filename, 'public');
+
+                Media::create([
+                    'ref_table' => 'peta_persil',
+                    'ref_id' => $petaPersil->peta_id,
+                    'file_name' => $filename,
+                    'mime_type' => $file->getClientMimeType(),
+                    'sort_order' => $existingCount + $index + 1,
+                ]);
+            }
+        }
 
         return redirect()->route('pages.peta-persil.show', $petaPersil->peta_id)
             ->with('success', 'Peta persil berhasil diupdate!');
@@ -89,6 +127,19 @@ class PetaPersilController extends Controller
     public function destroy($id)
     {
         $petaPersil = PetaPersil::findOrFail($id);
+
+        // Delete all associated files
+        $media = Media::where('ref_table', 'peta_persil')
+            ->where('ref_id', $petaPersil->peta_id)
+            ->get();
+
+        foreach ($media as $m) {
+            if (Storage::disk('public')->exists('media/' . $m->file_name)) {
+                Storage::disk('public')->delete('media/' . $m->file_name);
+            }
+            $m->delete();
+        }
+
         $petaPersil->delete();
 
         return redirect()->route('pages.peta-persil.index')
@@ -125,5 +176,22 @@ class PetaPersilController extends Controller
             'type' => 'FeatureCollection',
             'features' => $features
         ]);
+    }
+
+    public function deleteMedia($id)
+    {
+        $media = Media::findOrFail($id);
+
+        // Delete file from storage
+        if (Storage::disk('public')->exists('media/' . $media->file_name)) {
+            Storage::disk('public')->delete('media/' . $media->file_name);
+        }
+
+        // Get the ref_id before deleting
+        $petaId = $media->ref_id;
+
+        $media->delete();
+
+        return redirect()->back()->with('success', 'File berhasil dihapus!');
     }
 }

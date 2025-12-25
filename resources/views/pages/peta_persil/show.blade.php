@@ -29,7 +29,7 @@
                     <div class="card-body p-4">
                         <h5 class="mb-3"><i class="fa fa-map me-2 text-primary"></i>Visualisasi Peta</h5>
                         @if($petaPersil->geojson)
-                        <div id="petaMap" style="height: 400px; border-radius: 12px;"></div>
+                        <div id="petaMap" style="height: 500px; border-radius: 12px;"></div>
                         @else
                         <div class="alert alert-warning">
                             <i class="fa fa-exclamation-triangle me-2"></i>Tidak ada data koordinat GeoJSON untuk ditampilkan.
@@ -187,6 +187,54 @@
                             </span>
                         </div>
 
+                        {{-- File Dokumen Info --}}
+                        <div class="mb-4">
+                            <div class="info-label">File Dokumen</div>
+                            @if($petaPersil->media && $petaPersil->media->count() > 0)
+                                <div class="d-flex flex-column gap-2">
+                                    @foreach($petaPersil->media as $media)
+                                    @php
+                                        $extension = strtolower(pathinfo($media->file_name, PATHINFO_EXTENSION));
+                                        $iconClass = 'fa fa-file';
+                                        $iconColor = '#6c757d';
+
+                                        if ($extension == 'pdf') {
+                                            $iconClass = 'fa fa-file-pdf';
+                                            $iconColor = '#dc3545';
+                                        } elseif (in_array($extension, ['doc', 'docx'])) {
+                                            $iconClass = 'fa fa-file-word';
+                                            $iconColor = '#2b5797';
+                                        } elseif (in_array($extension, ['xls', 'xlsx'])) {
+                                            $iconClass = 'fa fa-file-excel';
+                                            $iconColor = '#217346';
+                                        } elseif (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
+                                            $iconClass = 'fa fa-file-image';
+                                            $iconColor = '#28a745';
+                                        }
+                                    @endphp
+                                    <a href="{{ asset('storage/media/' . $media->file_name) }}" target="_blank"
+                                        class="d-flex align-items-center gap-2 p-2 rounded"
+                                        style="background: linear-gradient(135deg, #f8f4ed 0%, #fdfbf7 100%); border: 1px solid #f0e9dc; text-decoration: none; transition: all 0.3s; overflow: hidden;"
+                                        onmouseover="this.style.borderColor='#b87d1a'; this.style.boxShadow='0 2px 8px rgba(184,125,26,0.2)';"
+                                        onmouseout="this.style.borderColor='#f0e9dc'; this.style.boxShadow='none';">
+                                        <i class="{{ $iconClass }}" style="color: {{ $iconColor }}; font-size: 1.1rem; flex-shrink: 0;"></i>
+                                        <div class="flex-grow-1" style="min-width: 0; overflow: hidden;">
+                                            <div class="text-truncate" style="font-size: 0.75rem; color: #495057; font-weight: 500; line-height: 1.3;" title="{{ $media->file_name }}">
+                                                {{ Str::limit($media->file_name, 25) }}
+                                            </div>
+                                            <small class="text-muted" style="font-size: 0.7rem;">{{ strtoupper($extension) }}</small>
+                                        </div>
+                                        <i class="fa fa-download" style="color: #b87d1a; font-size: 0.9rem; flex-shrink: 0;"></i>
+                                    </a>
+                                    @endforeach
+                                </div>
+                            @else
+                                <p class="mb-0 text-muted" style="font-size: 0.85rem;">
+                                    <i class="fa fa-info-circle me-1"></i>Tidak ada file
+                                </p>
+                            @endif
+                        </div>
+
                         <div class="border-top pt-3 mb-3" style="border-color: #f0e9dc !important;">
                             <small class="text-muted d-block" style="font-size: 0.8rem;">
                                 <i class="fa fa-calendar-plus me-1"></i> Dibuat: {{ $petaPersil->created_at->format('d M Y H:i') }}
@@ -217,7 +265,7 @@
     </div>
 </div>
 
-<!-- Leaflet JS -->
+<!-- Leaflet JS --><!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 @if($petaPersil->geojson)

@@ -135,8 +135,44 @@
             .peta-card .card-info { color:#222; margin-bottom:0.35rem; }
             .peta-card .card-info strong { color:#b87d1a; }
 
-            .peta-card .card-actions { display:flex; gap:0.6rem; position: relative; z-index: 3; }
-            .peta-card .card-actions .btn { font-size:13px; }
+            .peta-card .card-actions { display:flex; gap:0.5rem; position: relative; z-index: 3; }
+            .peta-card .card-actions .btn {
+                font-size: 12px;
+                padding: 0.35rem 0.65rem;
+                border-radius: 6px;
+                transition: all 0.2s ease;
+            }
+            .peta-card .card-actions .btn i { font-size: 12px; }
+
+            .peta-card .btn-outline-primary {
+                color: #b87d1a;
+                border-color: #b87d1a;
+            }
+            .peta-card .btn-outline-primary:hover {
+                background-color: #b87d1a;
+                border-color: #b87d1a;
+                color: #fff;
+            }
+
+            .peta-card .btn-outline-secondary {
+                color: #6c757d;
+                border-color: #6c757d;
+            }
+            .peta-card .btn-outline-secondary:hover {
+                background-color: #6c757d;
+                border-color: #6c757d;
+                color: #fff;
+            }
+
+            .peta-card .btn-outline-danger {
+                color: #dc3545;
+                border-color: #dc3545;
+            }
+            .peta-card .btn-outline-danger:hover {
+                background-color: #dc3545;
+                border-color: #dc3545;
+                color: #fff;
+            }
 
             .peta-card strong {
                 color: #b87d1a;

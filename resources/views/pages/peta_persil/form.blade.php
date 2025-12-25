@@ -80,6 +80,116 @@
         </div>
     </div>
 
+    {{-- File Upload Section --}}
+    <div class="mb-4">
+        <label class="form-label fw-bold">
+            <i class="fa fa-paperclip text-primary me-1"></i> Upload File Peta (Opsional)
+        </label>
+        <input type="file" name="files[]" class="form-control form-control-lg" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx"
+            style="border-radius: 10px; cursor: pointer;">
+        <small class="text-muted">
+            <i class="fa fa-info-circle me-1"></i>Upload gambar peta, PDF, dokumen terkait (Max: 2MB per file)
+        </small>
+    </div>
+
+    {{-- Show Existing Files in Edit Mode --}}
+    @if(isset($petaPersil) && $petaPersil->media && $petaPersil->media->count() > 0)
+    <div class="mb-4">
+        <label class="form-label fw-bold">
+            <i class="fa fa-file text-primary me-1"></i> File Terlampir ({{ $petaPersil->media->count() }} file)
+        </label>
+
+        <style>
+            .media-file-card {
+                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+                border: 2px solid #e9ecef;
+                border-radius: 12px;
+                padding: 1rem;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+            .media-file-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                border-color: #b87d1a;
+            }
+            .media-file-preview {
+                width: 100%;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 8px;
+                background: #f8f9fa;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .media-file-preview img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+            .file-icon-large {
+                font-size: 3.5rem;
+                opacity: 0.8;
+            }
+            .media-file-card .btn-delete {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+        </style>
+
+        <div class="row g-3">
+            @foreach($petaPersil->media as $media)
+            @php
+                $iconClass = 'fa fa-file';
+                $iconColor = '#6c757d';
+                $extension = strtolower(pathinfo($media->file_name, PATHINFO_EXTENSION));
+
+                if ($extension == 'pdf' || str_contains($media->mime_type ?? '', 'pdf')) {
+                    $iconClass = 'fa fa-file-pdf';
+                    $iconColor = '#dc3545';
+                } elseif (in_array($extension, ['doc', 'docx']) || str_contains($media->mime_type ?? '', 'word') || str_contains($media->mime_type ?? '', 'document')) {
+                    $iconClass = 'fa fa-file-word';
+                    $iconColor = '#2b5797';
+                } elseif (in_array($extension, ['xls', 'xlsx']) || str_contains($media->mime_type ?? '', 'excel') || str_contains($media->mime_type ?? '', 'spreadsheet')) {
+                    $iconClass = 'fa fa-file-excel';
+                    $iconColor = '#217346';
+                } elseif (in_array($extension, ['jpg', 'jpeg', 'png', 'gif']) || str_contains($media->mime_type ?? '', 'image')) {
+                    $iconClass = 'image';
+                }
+            @endphp
+            <div class="col-md-3">
+                <div class="media-file-card">
+                    <div class="media-file-preview">
+                        @if($iconClass == 'image')
+                            <img src="{{ asset('storage/media/' . $media->file_name) }}" alt="{{ $media->file_name }}">
+                        @else
+                            <i class="{{ $iconClass }} file-icon-large" style="color: {{ $iconColor }};"></i>
+                        @endif
+                    </div>
+                    <div class="mt-2">
+                        <div class="text-truncate fw-semibold" style="font-size: 0.85rem;" title="{{ $media->file_name }}">
+                            {{ $media->file_name }}
+                        </div>
+                        <small class="text-muted">{{ $extension }}</small>
+                    </div>
+                    <form action="{{ route('pages.peta-persil.media.delete', $media->media_id) }}" method="POST" class="d-inline"
+                        onsubmit="return confirm('Yakin hapus file ini?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger btn-delete">
+                            <i class="fa fa-trash me-1"></i> Hapus
+                        </button>
+                    </form>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
+
     <div class="d-flex justify-content-end gap-3 mt-4 pt-4 border-top">
         <button type="submit" class="btn btn-primary btn-lg px-5" style="background: linear-gradient(135deg, #b87d1a, #d4a055); border: none;">
             <i class="fa fa-save me-2"></i>{{ isset($petaPersil) ? 'Update' : 'Simpan' }} Peta

@@ -141,8 +141,44 @@
             .dokumen-card .card-info { color:#222; margin-bottom:0.35rem; }
             .dokumen-card .card-info strong { color:#b87d1a; }
 
-            .dokumen-card .card-actions { display:flex; gap:0.6rem; position: relative; z-index: 3; }
-            .dokumen-card .card-actions .btn { font-size:13px; }
+            .dokumen-card .card-actions { display:flex; gap:0.5rem; position: relative; z-index: 3; }
+            .dokumen-card .card-actions .btn {
+                font-size: 12px;
+                padding: 0.35rem 0.65rem;
+                border-radius: 6px;
+                transition: all 0.2s ease;
+            }
+            .dokumen-card .card-actions .btn i { font-size: 12px; }
+
+            .dokumen-card .btn-outline-primary {
+                color: #b87d1a;
+                border-color: #b87d1a;
+            }
+            .dokumen-card .btn-outline-primary:hover {
+                background-color: #b87d1a;
+                border-color: #b87d1a;
+                color: #fff;
+            }
+
+            .dokumen-card .btn-outline-secondary {
+                color: #6c757d;
+                border-color: #6c757d;
+            }
+            .dokumen-card .btn-outline-secondary:hover {
+                background-color: #6c757d;
+                border-color: #6c757d;
+                color: #fff;
+            }
+
+            .dokumen-card .btn-outline-danger {
+                color: #dc3545;
+                border-color: #dc3545;
+            }
+            .dokumen-card .btn-outline-danger:hover {
+                background-color: #dc3545;
+                border-color: #dc3545;
+                color: #fff;
+            }
 
             .dokumen-card strong {
                 color: #b87d1a;
@@ -205,7 +241,7 @@
                                     <form action="{{ route('pages.dokumen-persil.destroy', $item->dokumen_id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus data ini?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger" title="Hapus"><i class="fa fa-trash"></i></button>
                                     </form>
                                 @endif
                             </div>

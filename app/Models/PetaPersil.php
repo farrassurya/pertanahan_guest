@@ -30,12 +30,12 @@ class PetaPersil extends Model
         return $this->belongsTo(Persil::class, 'persil_id', 'persil_id');
     }
 
-    // Helper untuk mengambil media
+    // Relasi ke Media
     public function media()
     {
-        return Media::where('ref_table', 'peta_persil')
-            ->where('ref_id', $this->peta_id)
-            ->get();
+        return $this->hasMany(Media::class, 'ref_id', 'peta_id')
+            ->where('ref_table', 'peta_persil')
+            ->orderBy('sort_order');
     }
 
     // Scope untuk filter berdasarkan persil_id

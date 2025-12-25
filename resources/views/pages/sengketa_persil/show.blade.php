@@ -214,7 +214,7 @@
             <div class="sengketa-detail-avatar">
                 <i class="fa fa-balance-scale"></i>
             </div>
-            
+
             <div class="sengketa-detail-title">
                 SENGKETA #{{ $sengketa->sengketa_id }}
             </div>

@@ -1,5 +1,6 @@
 <!-- Navbar Partial -->
-<div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s" style="padding: 0; z-index: 1000; position: sticky;">
+<div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s"
+    style="padding: 0; z-index: 1000; position: sticky;">
     <div class="container" id="navbar-container">
         <nav class="navbar navbar-expand-lg bg-white navbar-light p-lg-0" style="padding:0.6rem 0;">
             <style>
@@ -97,6 +98,7 @@
 
                 /* Responsive Styles */
                 @media (max-width: 991px) {
+
                     /* Orange background untuk mobile */
                     .container-fluid.bg-white {
                         background: #b87d1a !important;
@@ -202,27 +204,33 @@
             </style>
 
             <a href="{{ url('/') }}" class="navbar-brand d-lg-none" style="padding: 0; margin: 0;">
-                <img src="{{ asset('assets-guest/img/logoHorizontal.png') }}?v={{ time() }}" alt="Logo" style="height: 50px; width: auto; margin-left: 15px;">
+                <img src="{{ asset('assets-guest/img/logoHorizontal.png') }}?v={{ time() }}" alt="Logo"
+                    style="height: 50px; width: auto; margin-left: 15px;">
             </a>
 
             <div class="ms-auto d-flex align-items-center d-lg-none">
                 <!-- User Menu Dropdown untuk Mobile -->
                 <div class="dropdown me-2">
-                    <button class="btn btn-outline-secondary dropdown-toggle sidebar-toggle-btn" type="button" id="userMenuMobile" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-outline-secondary dropdown-toggle sidebar-toggle-btn" type="button"
+                        id="userMenuMobile" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-user"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuMobile">
                         @guest
                             <li><a class="dropdown-item" href="{{ route('pages.auth.index') }}">
-                                <i class="fa fa-sign-in-alt me-2"></i> Login
-                            </a></li>
+                                    <i class="fa fa-sign-in-alt me-2"></i> Login
+                                </a></li>
                             <li><a class="dropdown-item" href="{{ route('pages.auth.register') }}">
-                                <i class="fa fa-user-plus me-2"></i> Sign Up
-                            </a></li>
+                                    <i class="fa fa-user-plus me-2"></i> Sign Up
+                                </a></li>
                         @else
-                            <li><h6 class="dropdown-header">{{ auth()->user()->name }}</h6></li>
+                            <li>
+                                <h6 class="dropdown-header">{{ auth()->user()->name }}</h6>
+                            </li>
                             <li><small class="dropdown-item-text text-muted px-3">{{ auth()->user()->email }}</small></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST" class="m-0">
                                     @csrf
@@ -251,22 +259,23 @@
                     <!-- Services dengan Dropdown -->
                     <div class="nav-item dropdown">
                         <a href="#"
-                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') || request()->routeIs('pages.persil.*') || request()->routeIs('pages.jenis-penggunaan.*') || request()->routeIs('pages.dokumen-persil.*') || request()->routeIs('pages.peta-persil.*') || request()->routeIs('pages.sengketa-persil.*') ? 'active' : '' }}"
+                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') || request()->routeIs('pages.persil.*') || request()->routeIs('pages.jenis-penggunaan.*') || request()->routeIs('pages.dokumen-persil.*') || request()->routeIs('pages.peta-persil.*') ? 'active' : '' }}"
                             data-bs-toggle="dropdown">Services</a>
                         <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0 centered">
-                            <a href="{{ route('pages.persil.index') }}" class="dropdown-item {{ request()->routeIs('pages.persil.*') ? 'active' : '' }}">
+                            <a href="{{ route('pages.persil.index') }}"
+                                class="dropdown-item {{ request()->routeIs('pages.persil.*') ? 'active' : '' }}">
                                 <i class="fa fa-certificate me-2 text-warning"></i> Persil
                             </a>
-                            <a href="{{ route('pages.dokumen-persil.index') }}" class="dropdown-item {{ request()->routeIs('pages.dokumen-persil.*') ? 'active' : '' }}">
+                            <a href="{{ route('pages.dokumen-persil.index') }}"
+                                class="dropdown-item {{ request()->routeIs('pages.dokumen-persil.*') ? 'active' : '' }}">
                                 <i class="fa fa-file-alt me-2 text-info"></i> Dokumen Persil
                             </a>
-                            <a href="{{ route('pages.peta-persil.index') }}" class="dropdown-item {{ request()->routeIs('pages.peta-persil.*') ? 'active' : '' }}">
+                            <a href="{{ route('pages.peta-persil.index') }}"
+                                class="dropdown-item {{ request()->routeIs('pages.peta-persil.*') ? 'active' : '' }}">
                                 <i class="fa fa-map-marked-alt me-2 text-success"></i> Peta Persil
                             </a>
-                            <a href="{{ route('pages.sengketa-persil.index') }}" class="dropdown-item {{ request()->routeIs('pages.sengketa-persil.*') ? 'active' : '' }}">
-                                <i class="fa fa-balance-scale me-2 text-danger"></i> Sengketa Persil
-                            </a>
-                            <a href="{{ route('pages.guest.services') }}#jenis" class="dropdown-item {{ request()->routeIs('pages.jenis-penggunaan.*') ? 'active' : '' }}">
+                            <a href="{{ route('pages.guest.services') }}#jenis"
+                                class="dropdown-item {{ request()->routeIs('pages.jenis-penggunaan.*') ? 'active' : '' }}">
                                 <i class="fa fa-tags me-2 text-primary"></i> Jenis Penggunaan
                             </a>
                             <!-- Data dari DB Jenis Penggunaan -->
@@ -303,7 +312,7 @@
 
                     <!-- Menu USER hanya untuk Operator -->
                     @auth
-                        @if(auth()->user()->isOperator())
+                        @if (auth()->user()->isOperator())
                             <a href="{{ route('pages.auth.users') }}"
                                 class="nav-item nav-link {{ request()->routeIs('pages.auth.users') ? 'active' : '' }}">
                                 User
@@ -311,11 +320,8 @@
                         @endif
                     @endauth
                 </div>
-
-                <div class="ms-auto d-none d-lg-block">
-                    <a href="" class="btn btn-get-quote py-2 px-3">Get A Quote</a>
-                </div>
             </div>
-        </nav>
     </div>
+    </nav>
+</div>
 </div>

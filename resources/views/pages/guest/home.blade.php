@@ -96,7 +96,7 @@
                                 <div class="flex-shrink-0 btn-xl-square bg-light me-3">
                                     <i class="fa fa-users-cog fa-2x text-primary"></i>
                                 </div>
-                                <h5 class="lh-base text-uppercase mb-0">Certified Expert & Team</h5>
+                                <h5 class="lh-base text-uppercase mb-0">Tim Profesional & Berpengalaman</h5>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -104,7 +104,7 @@
                                 <div class="flex-shrink-0 btn-xl-square bg-light me-3">
                                     <i class="fa fa-tachometer-alt fa-2x text-primary"></i>
                                 </div>
-                                <h5 class="lh-base text-uppercase mb-0">Fast & Reliable Services</h5>
+                                <h5 class="lh-base text-uppercase mb-0">Sistem Cepat & Terpercaya</h5>
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                             <h5 class="text-uppercase">Pemetaan Lahan</h5>
                             <p>Informasi lengkap lokasi persil dengan koordinat, luas lahan, dan penggunaan tanah yang akurat.</p>
                             <a class="position-relative text-body text-uppercase small d-flex justify-content-between"
-                                href="{{ route('pages.persil.index') }}"><b class="bg-white pe-3">Lihat Peta</b> <i
+                                href="{{ route('pages.peta-persil.index') }}"><b class="bg-white pe-3">Lihat Peta</b> <i
                                     class="bi bi-arrow-right bg-white ps-3"></i></a>
                         </div>
                     </div>
@@ -541,22 +541,22 @@
     <div class="container-fluid pt-6 pb-6">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="display-6 text-uppercase mb-5">What They’re Talking About Our Welding Work</h1>
+                <h1 class="display-6 text-uppercase mb-5">Testimoni Pengguna</h1>
             </div>
             <div class="row g-5 align-items-center">
                 <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="testimonial-img">
                         <div class="animated flip infinite">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/testimonial-1.jpg') }}" alt="Testimonial 1">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/testi1-min.jpeg') }}" alt="Testimonial 1">
                         </div>
                         <div class="animated flip infinite">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/testimonial-2.jpg') }}" alt="Testimonial 2">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/testi3-min.jpeg') }}" alt="Testimonial 2">
                         </div>
                         <div class="animated flip infinite">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/testimonial-3.jpg') }}" alt="Testimonial 3">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/testi4-min.jpeg') }}" alt="Testimonial 3">
                         </div>
                         <div class="animated flip infinite">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/testimonial-4.jpg') }}" alt="Testimonial 4">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/testi2-min.jpeg') }}" alt="Testimonial 4">
                         </div>
                     </div>
                 </div>
@@ -564,7 +564,7 @@
                     <div class="owl-carousel testimonial-carousel">
                         <div class="testimonial-item">
                             <div class="d-flex align-items-center mb-4">
-                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testimonial-1.jpg') }}" alt="Client 1" style="width:64px;height:64px;object-fit:cover;">
+                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testi1-min.jpeg') }}" alt="Client 1" style="width:64px;height:64px;object-fit:cover;">
                                 <div class="ms-3">
                                     <div class="mb-2">
                                         <i class="far fa-star text-primary"></i>
@@ -573,17 +573,16 @@
                                         <i class="far fa-star text-primary"></i>
                                         <i class="far fa-star text-primary"></i>
                                     </div>
-                                    <h5 class="text-uppercase">Client Name</h5>
-                                    <span>Profession</span>
+                                    <h5 class="text-uppercase">Rizky Hidayat</h5>
+                                    <span>Kepala RT 05</span>
                                 </div>
                             </div>
-                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
-                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+                            <p class="fs-5">Sistem ini sangat membantu dalam pengelolaan data persil di wilayah kami. Semua informasi lahan warga dapat diakses dengan mudah dan cepat. Tidak perlu lagi mencari arsip dokumen secara manual, semua sudah tersimpan rapi secara digital. Sangat efisien!
                             </p>
                         </div>
                         <div class="testimonial-item">
                             <div class="d-flex align-items-center mb-4">
-                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testimonial-2.jpg') }}" alt="Client 2" style="width:64px;height:64px;object-fit:cover;">
+                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testi2-min.jpeg') }}" alt="Client 2" style="width:64px;height:64px;object-fit:cover;">
                                 <div class="ms-3">
                                     <div class="mb-2">
                                         <i class="far fa-star text-primary"></i>
@@ -592,17 +591,16 @@
                                         <i class="far fa-star text-primary"></i>
                                         <i class="far fa-star text-primary"></i>
                                     </div>
-                                    <h5 class="text-uppercase">Client Name</h5>
-                                    <span>Profession</span>
+                                    <h5 class="text-uppercase">Raihan Irfandy</h5>
+                                    <span>Staf Kelurahan</span>
                                 </div>
                             </div>
-                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
-                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+                            <p class="fs-5">Pengelolaan dokumen persil menjadi jauh lebih terorganisir dengan sistem ini. Fitur upload dokumen sangat praktis, dan saya bisa melampirkan berbagai jenis file dengan mudah. Pencarian data juga sangat cepat berkat fitur filter berdasarkan RT dan RW. Luar biasa!
                             </p>
                         </div>
                         <div class="testimonial-item">
                             <div class="d-flex align-items-center mb-4">
-                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testimonial-3.jpg') }}" alt="Client 3" style="width:64px;height:64px;object-fit:cover;">
+                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testi3-min.jpeg') }}" alt="Client 3" style="width:64px;height:64px;object-fit:cover;">
                                 <div class="ms-3">
                                     <div class="mb-2">
                                         <i class="far fa-star text-primary"></i>
@@ -611,17 +609,16 @@
                                         <i class="far fa-star text-primary"></i>
                                         <i class="far fa-star text-primary"></i>
                                     </div>
-                                    <h5 class="text-uppercase">Client Name</h5>
-                                    <span>Profession</span>
+                                    <h5 class="text-uppercase">Dea Salsabila</h5>
+                                    <span>Surveyor Tanah</span>
                                 </div>
                             </div>
-                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
-                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+                            <p class="fs-5">Fitur pemetaan persil dengan visualisasi GeoJSON sangat membantu pekerjaan saya. Batas-batas lahan dapat terlihat jelas pada peta digital, dan data koordinat tersimpan akurat. Ini memudahkan dalam penyelesaian sengketa batas tanah antar warga. Sistem yang sangat profesional!
                             </p>
                         </div>
                         <div class="testimonial-item">
                             <div class="d-flex align-items-center mb-4">
-                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testimonial-4.jpg') }}" alt="Client 4" style="width:64px;height:64px;object-fit:cover;">
+                                <img class="img-fluid rounded-circle" src="{{ asset('assets-guest/img/testi4-min.jpeg') }}" alt="Client 4" style="width:64px;height:64px;object-fit:cover;">
                                 <div class="ms-3">
                                     <div class="mb-2">
                                         <i class="far fa-star text-primary"></i>
@@ -630,12 +627,11 @@
                                         <i class="far fa-star text-primary"></i>
                                         <i class="far fa-star text-primary"></i>
                                     </div>
-                                    <h5 class="text-uppercase">Client Name</h5>
-                                    <span>Profession</span>
+                                    <h5 class="text-uppercase">Rifta Leni</h5>
+                                    <span>Pemilik Tanah</span>
                                 </div>
                             </div>
-                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
-                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+                            <p class="fs-5">Sebagai pemilik tanah, saya merasa tenang karena semua data persil saya tersimpan aman di sistem ini. Login dengan autentikasi membuat data terjamin keamanannya. Tampilan dashboard juga user-friendly, bahkan untuk orang awam seperti saya. Sangat puas dengan layanan ini!
                             </p>
                         </div>
                     </div>
@@ -655,7 +651,7 @@
 
         <div class="container" style="position: relative; z-index: 1;">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 700px;">
-                <h1 class="display-5 text-uppercase mb-2" style="color: #2c3e50; font-weight: 800; letter-spacing: 2px;">Meet The Developer</h1>
+                <h1 class="display-5 text-uppercase mb-2" style="color: #2c3e50; font-weight: 800; letter-spacing: 2px;">Identitas Developer</h1>
                 <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #e49e10 0%, #d88a0a 100%); margin: 0 auto; border-radius: 2px;"></div>
             </div>
 

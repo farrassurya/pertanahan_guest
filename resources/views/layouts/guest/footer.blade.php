@@ -34,11 +34,9 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-uppercase text-light mb-4">Tautan</h5>
-                <a class="btn btn-link" href="">Tentang Kami</a>
-                <a class="btn btn-link" href="">Kontak</a>
-                <a class="btn btn-link" href="">Pelayanan</a>
-                <a class="btn btn-link" href="">Syarat & Ketentuan</a>
-                <a class="btn btn-link" href="">Dukungan</a>
+                <a class="btn btn-link" href="{{ route('pages.guest.about') }}">Tentang Kami</a>
+                <a class="btn btn-link" href="mailto:farrassurya12@gmail.com">Kontak</a>
+                <a class="btn btn-link" href="{{ route('pages.guest.services') }}">Pelayanan</a>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-uppercase text-light mb-4">Jam Kerja</h5>

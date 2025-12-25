@@ -17,7 +17,7 @@ class CreateSengketaPersilDummy extends Seeder
         }
 
         $statusOptions = ['Proses', 'Mediasi', 'Pengadilan', 'Selesai'];
-        
+
         $pihak1Names = [
             'Ahmad Sugiarto', 'Budi Santoso', 'Chandra Wijaya', 'Deni Firmansyah', 'Eko Prasetyo',
             'Fajar Nugroho', 'Gunawan Setiawan', 'Hendra Kusuma', 'Irwan Budiman', 'Joko Widodo',
@@ -54,7 +54,7 @@ class CreateSengketaPersilDummy extends Seeder
         $count = 0;
         foreach ($persils->random(min(50, $persils->count())) as $persil) {
             $status = $statusOptions[array_rand($statusOptions)];
-            
+
             SengketaPersil::create([
                 'persil_id' => $persil->persil_id,
                 'pihak_1' => $pihak1Names[array_rand($pihak1Names)],
@@ -65,7 +65,7 @@ class CreateSengketaPersilDummy extends Seeder
                 'created_at' => now()->subDays(rand(1, 365)),
                 'updated_at' => now()->subDays(rand(0, 30)),
             ]);
-            
+
             $count++;
         }
 

@@ -59,6 +59,7 @@ Route::prefix('peta-persil')->name('pages.peta-persil.')->middleware('auth')->gr
         Route::get('/{peta}/edit', [PetaPersilController::class, 'edit'])->name('edit');
         Route::put('/{peta}', [PetaPersilController::class, 'update'])->name('update');
         Route::delete('/{peta}', [PetaPersilController::class, 'destroy'])->name('destroy');
+        Route::delete('/media/{media}', [PetaPersilController::class, 'deleteMedia'])->name('media.delete');
     });
 });
 
