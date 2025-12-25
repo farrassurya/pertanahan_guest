@@ -251,7 +251,7 @@
                     <!-- Services dengan Dropdown -->
                     <div class="nav-item dropdown">
                         <a href="#"
-                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') || request()->routeIs('pages.persil.*') || request()->routeIs('pages.jenis-penggunaan.*') || request()->routeIs('pages.dokumen-persil.*') || request()->routeIs('pages.peta-persil.*') ? 'active' : '' }}"
+                            class="nav-link dropdown-toggle {{ request()->routeIs('pages.guest.services') || request()->routeIs('pages.persil.*') || request()->routeIs('pages.jenis-penggunaan.*') || request()->routeIs('pages.dokumen-persil.*') || request()->routeIs('pages.peta-persil.*') || request()->routeIs('pages.sengketa-persil.*') ? 'active' : '' }}"
                             data-bs-toggle="dropdown">Services</a>
                         <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0 centered">
                             <a href="{{ route('pages.persil.index') }}" class="dropdown-item {{ request()->routeIs('pages.persil.*') ? 'active' : '' }}">
@@ -262,6 +262,9 @@
                             </a>
                             <a href="{{ route('pages.peta-persil.index') }}" class="dropdown-item {{ request()->routeIs('pages.peta-persil.*') ? 'active' : '' }}">
                                 <i class="fa fa-map-marked-alt me-2 text-success"></i> Peta Persil
+                            </a>
+                            <a href="{{ route('pages.sengketa-persil.index') }}" class="dropdown-item {{ request()->routeIs('pages.sengketa-persil.*') ? 'active' : '' }}">
+                                <i class="fa fa-balance-scale me-2 text-danger"></i> Sengketa Persil
                             </a>
                             <a href="{{ route('pages.guest.services') }}#jenis" class="dropdown-item {{ request()->routeIs('pages.jenis-penggunaan.*') ? 'active' : '' }}">
                                 <i class="fa fa-tags me-2 text-primary"></i> Jenis Penggunaan

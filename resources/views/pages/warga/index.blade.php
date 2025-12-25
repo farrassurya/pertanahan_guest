@@ -12,25 +12,24 @@
                 </a>
             </div>
 
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fa fa-check-circle me-2"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fa fa-exclamation-circle me-2"></i> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+
             {{-- Wrapper with border --}}
             <div class="position-relative rounded-3 p-4 bg-white" style="border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05); background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
                 {{-- Top accent border --}}
                 <div class="position-absolute top-0 start-0 w-100" style="height: 4px; background: linear-gradient(90deg, #b87d1a 0%, #d4a055 50%, #b87d1a 100%); border-radius: 8px 8px 0 0;"></div>
-
-                {{-- Di bagian alert --}}
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <i class="fa fa-check-circle me-2"></i> {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <i class="fa fa-exclamation-circle me-2"></i> {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                @endif
 
                 {{-- Filter --}}
                 <div class="mb-4">

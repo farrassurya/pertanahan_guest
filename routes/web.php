@@ -10,6 +10,7 @@ use App\Http\Controllers\PersilController;
 use App\Http\Controllers\DokumenPersilController;
 use App\Http\Controllers\PetaPersilController;
 use App\Http\Controllers\JenisPenggunaanController;
+use App\Http\Controllers\SengketaPersilController;
 
 // Routes Persil - memerlukan authentication
 Route::prefix('persil')->name('pages.persil.')->middleware('auth')->group(function () {
@@ -63,6 +64,23 @@ Route::prefix('peta-persil')->name('pages.peta-persil.')->middleware('auth')->gr
 
 // API untuk mendapatkan data peta GeoJSON
 Route::get('/api/peta-persil', [PetaPersilController::class, 'apiGetPetas'])->name('api.peta-persil');
+
+// Routes Sengketa Persil - memerlukan authentication
+Route::prefix('sengketa-persil')->name('pages.sengketa-persil.')->middleware('auth')->group(function () {
+    // View & Create - dapat diakses oleh operator dan warga
+    Route::get('/', [SengketaPersilController::class, 'index'])->name('index');
+    Route::get('/create', [SengketaPersilController::class, 'create'])->name('create');
+    Route::post('/', [SengketaPersilController::class, 'store'])->name('store');
+    Route::get('/{sengketa}', [SengketaPersilController::class, 'show'])->name('show');
+
+    // Edit, Update, Delete - hanya untuk operator (CRUD penuh)
+    Route::middleware('role:operator')->group(function () {
+        Route::get('/{sengketa}/edit', [SengketaPersilController::class, 'edit'])->name('edit');
+        Route::put('/{sengketa}', [SengketaPersilController::class, 'update'])->name('update');
+        Route::delete('/{sengketa}', [SengketaPersilController::class, 'destroy'])->name('destroy');
+        Route::delete('/media/{media}', [SengketaPersilController::class, 'deleteMedia'])->name('media.delete');
+    });
+});
 
 Route::get('/', function () {
     return view('pages.guest.home');
