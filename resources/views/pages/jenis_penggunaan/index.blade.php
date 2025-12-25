@@ -68,17 +68,38 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-            /* Card grid */
+            /* Card grid - Responsive */
             .jp-card-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 1.25rem;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+
+            @media (max-width: 1400px) {
+                .jp-card-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 1.25rem;
+                }
+            }
+
+            @media (max-width: 1024px) {
+                .jp-card-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1.25rem;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .jp-card-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+                }
             }
 
             @media (max-width: 576px) {
                 .jp-card-grid {
                     grid-template-columns: 1fr;
-                    gap: 1rem;
+                    gap: 0.75rem;
                 }
             }
 
@@ -180,6 +201,12 @@
                 background-color: #dc3545;
                 border-color: #dc3545;
                 color: #fff;
+            }
+
+            @media (max-width: 768px) {
+                .jp-card {
+                    padding: 1.25rem;
+                }
             }
 
             @media (max-width: 576px) {

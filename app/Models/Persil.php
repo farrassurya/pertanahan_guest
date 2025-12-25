@@ -28,6 +28,14 @@ class Persil extends Model
     }
 
     /**
+     * Relasi ke PetaPersil
+     */
+    public function peta(): HasMany
+    {
+        return $this->hasMany(PetaPersil::class, 'persil_id', 'persil_id');
+    }
+
+    /**
      * Scope untuk filterable columns
      */
     public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder

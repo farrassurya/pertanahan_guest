@@ -75,13 +75,42 @@
             </div>
 
         <style>
-            /* make grid similar to jenis penggunaan cards */
-            .persil-card-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.25rem; }
+            /* Card Grid Styling - Responsive untuk semua ukuran layar */
+            .persil-card-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.25rem;
+            }
 
-            @media (max-width: 576px) {
+            /* Desktop sedang */
+            @media (max-width: 1400px) {
+                .persil-card-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 1rem;
+                }
+            }
+
+            /* Desktop kecil */
+            @media (max-width: 1024px) {
+                .persil-card-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1rem;
+                }
+            }
+
+            /* Tablet */
+            @media (max-width: 768px) {
                 .persil-card-grid {
                     grid-template-columns: 1fr;
                     gap: 1rem;
+                }
+            }
+
+            /* Mobile */
+            @media (max-width: 576px) {
+                .persil-card-grid {
+                    grid-template-columns: 1fr;
+                    gap: 0.875rem;
                 }
             }
 
@@ -115,12 +144,12 @@
             .persil-card .card-title { font-weight:700; letter-spacing:.2px; font-family: 'Poppins', sans-serif; font-size:1.05rem; color:#1f2d3d; }
             .persil-card .card-meta { font-size: 13px; color:#6c757d; }
 
-            .persil-card .card-body { padding: 0; }
+            .persil-card .card-body { padding: 0; position: relative; z-index: 2; }
             .persil-card .card-row { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.6rem; }
             .persil-card .card-info { color:#222; margin-bottom:0.35rem; }
             .persil-card .card-info strong { color:#b87d1a; }
 
-            .persil-card .card-actions { display:flex; gap:0.6rem; }
+            .persil-card .card-actions { display:flex; gap:0.6rem; position: relative; z-index: 3; }
             .persil-card .card-actions .btn { font-size:13px; }
 
             .persil-card strong {

@@ -77,10 +77,13 @@ class PersilController extends Controller
 
         try {
             // Simpan data persil
-            $persil = Persil::create($request->only([
-                'kode_persil', 'pemilik_warga_id', 'luas_m2',
-                'penggunaan', 'alamat_lahan', 'rt', 'rw'
-            ]));
+            $persil = Persil::create(array_merge(
+                $request->only([
+                    'kode_persil', 'pemilik_warga_id', 'luas_m2',
+                    'penggunaan', 'alamat_lahan', 'rt', 'rw'
+                ]),
+                ['created_by' => auth()->id()]
+            ));
 
             // Handle multiple file upload
             if ($request->hasFile('media_files')) {

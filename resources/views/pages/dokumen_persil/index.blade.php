@@ -67,13 +67,42 @@
             </div>
 
         <style>
-            /* Card Grid Styling */
-            .dokumen-card-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.25rem; }
+            /* Card Grid Styling - Responsive untuk semua ukuran layar */
+            .dokumen-card-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.25rem;
+            }
 
-            @media (max-width: 576px) {
+            /* Desktop sedang */
+            @media (max-width: 1400px) {
+                .dokumen-card-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 1rem;
+                }
+            }
+
+            /* Desktop kecil */
+            @media (max-width: 1024px) {
+                .dokumen-card-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1rem;
+                }
+            }
+
+            /* Tablet */
+            @media (max-width: 768px) {
                 .dokumen-card-grid {
                     grid-template-columns: 1fr;
                     gap: 1rem;
+                }
+            }
+
+            /* Mobile */
+            @media (max-width: 576px) {
+                .dokumen-card-grid {
+                    grid-template-columns: 1fr;
+                    gap: 0.875rem;
                 }
             }
 
@@ -107,12 +136,12 @@
             .dokumen-card .card-title { font-weight:700; letter-spacing:.2px; font-family: 'Poppins', sans-serif; font-size:1.05rem; color:#1f2d3d; }
             .dokumen-card .card-meta { font-size: 13px; color:#6c757d; }
 
-            .dokumen-card .card-body { padding: 0; }
+            .dokumen-card .card-body { padding: 0; position: relative; z-index: 2; }
             .dokumen-card .card-row { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.6rem; }
             .dokumen-card .card-info { color:#222; margin-bottom:0.35rem; }
             .dokumen-card .card-info strong { color:#b87d1a; }
 
-            .dokumen-card .card-actions { display:flex; gap:0.6rem; }
+            .dokumen-card .card-actions { display:flex; gap:0.6rem; position: relative; z-index: 3; }
             .dokumen-card .card-actions .btn { font-size:13px; }
 
             .dokumen-card strong {
@@ -120,7 +149,21 @@
                 font-weight: 700;
             }
 
+            /* Responsive card adjustments */
+            @media (max-width: 1024px) {
+                .dokumen-card {
+                    padding: 1.25rem;
+                }
+            }
 
+            @media (max-width: 768px) {
+                .dokumen-card {
+                    padding: 1.25rem;
+                }
+                .dokumen-card .card-title {
+                    font-size: 1rem;
+                }
+            }
 
             @media (max-width: 576px) {
                 .dokumen-card {
