@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-fluid py-4">
     <div class="container" style="max-width: 800px;">
-        <div class="d-flex flex-row justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="text-uppercase mb-0">Tambah Jenis Penggunaan</h2>
             <a href="{{ route('pages.jenis-penggunaan.index') }}" class="btn btn-secondary">
                 <i class="fa fa-arrow-left me-1"></i> Kembali
@@ -13,7 +13,7 @@
         </div>
 
         @if($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show">
                 <i class="fa fa-exclamation-circle me-2"></i>
                 <strong>Terjadi kesalahan:</strong>
                 <ul class="mb-0 mt-2">
@@ -25,12 +25,12 @@
             </div>
         @endif
 
-        <div class="card shadow-sm">
+        <div class="card shadow-sm border-0" style="border-radius: 12px;">
             <div class="card-body p-4">
                 <form method="POST" action="{{ route('pages.jenis-penggunaan.store') }}">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label">Nama Penggunaan <span class="text-danger">*</span></label>
+                        <label class="form-label fw-semibold">Nama Penggunaan <span class="text-danger">*</span></label>
                         <input type="text"
                                name="nama_penggunaan"
                                value="{{ old('nama_penggunaan') }}"

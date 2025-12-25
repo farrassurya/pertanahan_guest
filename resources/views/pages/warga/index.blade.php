@@ -74,14 +74,35 @@
 
                 .warga-card-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                    gap: 1.25rem;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 1.5rem;
+                }
+
+                @media (max-width: 1400px) {
+                    .warga-card-grid {
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 1.25rem;
+                    }
+                }
+
+                @media (max-width: 1024px) {
+                    .warga-card-grid {
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 1.25rem;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .warga-card-grid {
+                        grid-template-columns: 1fr;
+                        gap: 1rem;
+                    }
                 }
 
                 @media (max-width: 576px) {
                     .warga-card-grid {
                         grid-template-columns: 1fr;
-                        gap: 1rem;
+                        gap: 0.75rem;
                     }
                 }
 
@@ -192,6 +213,12 @@
                     background-color: #dc3545;
                     border-color: #dc3545;
                     color: #fff;
+                }
+
+                @media (max-width: 768px) {
+                    .warga-card {
+                        padding: 1.25rem;
+                    }
                 }
 
                 @media (max-width: 576px) {

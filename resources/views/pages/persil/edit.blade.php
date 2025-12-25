@@ -3,41 +3,42 @@
 @section('title', 'Edit Persil - Pertanahan')
 
 @section('content')
-<style>
-    /* Batasi tinggi dropdown select agar bisa di-scroll */
-    select.form-select {
-        height: 38px !important;
-        overflow-y: auto;
-    }
-</style>
 <div class="container-fluid py-4">
     <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="mb-4">Edit Data Persil</h3>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-uppercase mb-0">Edit Data Persil</h2>
+            <a href="{{ route('pages.persil.index') }}" class="btn btn-secondary">
+                <i class="fa fa-arrow-left me-1"></i> Kembali
+            </a>
+        </div>
 
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show">
+                <i class="fa fa-exclamation-circle me-2"></i>
+                <strong>Terjadi kesalahan:</strong>
+                <ul class="mb-0 mt-2">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
 
+        <div class="card shadow-sm border-0" style="border-radius: 12px;">
+            <div class="card-body p-4">
                 <form action="{{ route('pages.persil.update', $persil->persil_id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="kode_persil" class="form-label">Kode Persil <span class="text-danger">*</span></label>
+                            <label for="kode_persil" class="form-label fw-semibold">Kode Persil <span class="text-danger">*</span></label>
                             <input type="text" name="kode_persil" id="kode_persil" class="form-control @error('kode_persil') is-invalid @enderror" required value="{{ old('kode_persil', $persil->kode_persil) }}">
                             @error('kode_persil')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
                         <div class="col-md-6">
-                            <label for="pemilik_warga_id" class="form-label">Pemilik Warga <span class="text-danger">*</span></label>
-                            <select name="pemilik_warga_id" id="pemilik_warga_id" class="form-select @error('pemilik_warga_id') is-invalid @enderror" required size="1" style="height: 38px; overflow-y: auto;">
+                            <label for="pemilik_warga_id" class="form-label fw-semibold">Pemilik Warga <span class="text-danger">*</span></label>
+                            <select name="pemilik_warga_id" id="pemilik_warga_id" class="form-select @error('pemilik_warga_id') is-invalid @enderror" required>
                                 <option value="">- Pilih Pemilik -</option>
                                 @foreach ($warga as $w)
                                     <option value="{{ $w->warga_id }}" {{ old('pemilik_warga_id', $persil->pemilik_warga_id) == $w->warga_id ? 'selected' : '' }}>{{ $w->nama }}</option>
